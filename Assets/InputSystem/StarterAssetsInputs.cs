@@ -8,48 +8,47 @@ namespace StarterAssets
 	public class StarterAssetsInputs : MonoBehaviour
 	{
 		[Header("Character Input Values")]
-		public Vector2 move;
-		public Vector2 look;
-		public bool jump;
-		public bool sprint;
+		[SerializeField] private Vector2 move;
+		[SerializeField] private Vector2 look;
+		[SerializeField] private bool jump;
+		[SerializeField] private bool sprint;
 
 		[Header("Movement Settings")]
-		public bool analogMovement;
+		[SerializeField] private bool analogMovement;
 
 		[Header("Mouse Cursor Settings")]
-		public bool cursorLocked = true;
-		public bool cursorInputForLook = true;
+		[SerializeField] private bool cursorLocked = true;
+		[SerializeField] private bool cursorInputForLook = true;
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-		public void OnMove(InputValue value)
+		public void OnMove(InputAction.CallbackContext context)
 		{
-			MoveInput(value.Get<Vector2>());
+			MoveInput(context.ReadValue<Vector2>());
 		}
 
-		public void OnLook(InputValue value)
+		public void OnLook(InputAction.CallbackContext context)
 		{
-			if(cursorInputForLook)
+			if (cursorInputForLook)
 			{
-				LookInput(value.Get<Vector2>());
+				LookInput(context.ReadValue<Vector2>());
 			}
 		}
 
-		public void OnJump(InputValue value)
+		public void OnJump(InputAction.CallbackContext context)
 		{
-			JumpInput(value.isPressed);
+			JumpInput(context.action.triggered);
 		}
 
-		public void OnSprint(InputValue value)
+		public void OnSprint(InputAction.CallbackContext context)
 		{
-			SprintInput(value.isPressed);
+			SprintInput(context.action.ReadValue<float>() == 1);
 		}
 #endif
-
 
 		public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
-		} 
+		}
 
 		public void LookInput(Vector2 newLookDirection)
 		{
@@ -65,7 +64,7 @@ namespace StarterAssets
 		{
 			sprint = newSprintState;
 		}
-		
+
 		private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
@@ -74,6 +73,31 @@ namespace StarterAssets
 		private void SetCursorState(bool newState)
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+		}
+
+		public Vector2 GetMove()
+		{
+			return move;
+		}
+
+		public Vector2 GetLook()
+		{
+			return look;
+		}
+
+		public bool IsJumping()
+		{
+			return jump;
+		}
+
+		public bool IsSprinting()
+		{
+			return sprint;
+		}
+
+		public bool IsAnalog()
+		{
+			return analogMovement;
 		}
 	}
 	
