@@ -8,43 +8,50 @@ public class CharacterNeeds : MonoBehaviour
     [Header("Hunger")]
     [SerializeField] float maxHunger = 100f;
     [SerializeField] float decreaseHungerRate = 0.1f;
-    float currentHungerValue;
-    public float HungerPercent => currentHungerValue / maxHunger;
+    [SerializeField] float currentHunger;
+    public float HungerPercent => currentHunger / maxHunger;
 
     [Header("Thirst")]
     [SerializeField] private float maxThirst = 100f;
     [SerializeField] private float decreaseThirstRate = 0.1f;
-    float currentThirstValue;
-    public float ThirstPercent => currentThirstValue / maxThirst;
+    [SerializeField] float currentThirst;
+    public float ThirstPercent => currentThirst / maxThirst;
 
     [Header("Stamina")]
     [SerializeField] float maxStamina = 100f;
     [SerializeField] float decreaseStaminaRate = 0.1f;
     [SerializeField] float rechargeStaminaRate = 1.5f;
     [SerializeField] float rechargeStaminaDelay = 1f;
-    float currentStaminaValue;
+    float currentStamina;
     float currentStaminaDelayCounter;
-    public float Stamina => currentStaminaValue / maxStamina;
+    public float Stamina => currentStamina / maxStamina;
 
     [Header("Player Refernces")]
     StarterAssetsInputs starterAssetsInputs;
 
     void Awake()
     {
-       starterAssetsInputs = GetComponent<StarterAssetsInputs>();
+        starterAssetsInputs = GetComponent<StarterAssetsInputs>();
     }
 
     void Start()
     {
-        currentThirstValue = maxThirst;
-        currentHungerValue = maxHunger;
-        currentStaminaValue = maxStamina;
+        currentThirst = maxThirst;
+        currentHunger = maxHunger;
+        currentStamina = maxStamina;
     }
 
     void Update()
     {
-        currentHungerValue -= decreaseHungerRate * Time.deltaTime;
-        currentThirstValue -= decreaseHungerRate * Time.deltaTime;
+        currentHunger -= decreaseHungerRate * Time.deltaTime;
+        currentThirst -= decreaseThirstRate * Time.deltaTime;
+
+        if (currentHunger <= 0 || currentThirst <= 0)
+        {
+            GameManager.gameManager.playerHealth.DamageEntity(5);
+            currentHunger = 0;
+            currentThirst = 0;
+        }
     }
 
 }

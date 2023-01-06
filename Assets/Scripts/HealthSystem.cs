@@ -6,18 +6,12 @@ public class HealthSystem
 {
     int currentHealth;
     int currentMaxHealth;
+    public int CurrentMaxHealth => currentMaxHealth;
+    public int CurrentHealth => currentHealth;
 
-    public int Health
-    {
-        get
-        {
-            return currentHealth;
-        }
-        set
-        {
-            currentHealth = value;
-        }
-    }
+    public delegate void OnHealthChange(float currentMaxHealth, float currentHealth);
+    public static event OnHealthChange OnHealthChanged;
+
 
     public HealthSystem(int health, int maxHealth)
     {
@@ -30,6 +24,10 @@ public class HealthSystem
         if (currentHealth > 0)
         {
             currentHealth -= damageAmount;
+            if (OnHealthChanged != null)
+            {
+                OnHealthChanged(CurrentMaxHealth, CurrentHealth);
+            }
         }
     }
     public void HealEntity(int healAmount)
@@ -41,6 +39,10 @@ public class HealthSystem
         if (currentHealth > currentMaxHealth)
         {
             currentHealth = currentMaxHealth;
+        }
+        if (OnHealthChanged != null)
+        {
+            OnHealthChanged(CurrentMaxHealth, CurrentHealth);
         }
     }
 }

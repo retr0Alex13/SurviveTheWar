@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager { get; private set; }
 
-    public HealthSystem healthSystem = new HealthSystem(100, 100);
+    public HealthSystem playerHealth = new HealthSystem(100, 100);
 
     void Awake()
     {
@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
         {
             gameManager = this;
         }
+    }
+
+    void Update()
+    {
+        
     }
 
 }

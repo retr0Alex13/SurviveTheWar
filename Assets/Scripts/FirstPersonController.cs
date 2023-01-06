@@ -21,8 +21,6 @@ namespace StarterAssets
 		[SerializeField, Tooltip("Acceleration and deceleration")]
         private float speedChangeRate = 10.0f;
 
-		private bool interacting = false;
-
 		[Space(10)]
 		[SerializeField, Tooltip("The height the player can jump")]
         private float jumpHeight = 1.2f;
@@ -117,7 +115,6 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
-			Interact();
 		}
 
 		private void LateUpdate()
@@ -200,11 +197,6 @@ namespace StarterAssets
 
 			// move the player
 			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-		}
-
-		private void Interact()
-		{
-
 		}
 
 		private void JumpAndGravity()

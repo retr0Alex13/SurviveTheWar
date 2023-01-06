@@ -12,7 +12,6 @@ namespace StarterAssets
 		[SerializeField] private Vector2 look;
 		[SerializeField] private bool jump;
 		[SerializeField] private bool sprint;
-        [SerializeField] private bool interact;
 
         [Header("Movement Settings")]
 		[SerializeField] private bool analogMovement;
@@ -45,17 +44,8 @@ namespace StarterAssets
 			SprintInput(context.action.ReadValue<float>() == 1);
 		}
 
-		public void OnInteract(InputAction.CallbackContext context)
-		{
-			InteractInput(context.action.triggered);
-		}
+
 #endif
-
-		public void InteractInput(bool newInteractState)
-		{
-			interact = newInteractState;
-		}
-
 		public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
@@ -104,11 +94,6 @@ namespace StarterAssets
 		public bool IsSprinting()
 		{
 			return sprint;
-		}
-
-		public bool IsInteracting()
-		{
-			return interact;
 		}
 
 		public bool IsAnalog()
