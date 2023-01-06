@@ -2,6 +2,7 @@ using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterNeeds : MonoBehaviour
 {
@@ -27,11 +28,11 @@ public class CharacterNeeds : MonoBehaviour
     public float Stamina => currentStamina / maxStamina;
 
     [Header("Player Refernces")]
-    StarterAssetsInputs starterAssetsInputs;
+    StarterAssetsInputs playerInputs;
 
     void Awake()
     {
-        starterAssetsInputs = GetComponent<StarterAssetsInputs>();
+        playerInputs = GetComponent<StarterAssetsInputs>();
     }
 
     void Start()
@@ -52,6 +53,29 @@ public class CharacterNeeds : MonoBehaviour
             currentHunger = 0;
             currentThirst = 0;
         }
+
+        if (playerInputs.IsSprinting())
+        {
+            currentStamina -= decreaseStaminaRate * Time.deltaTime;
+        }
+
+        if (!playerInputs.IsSprinting() && currentStamina < maxStamina)
+        {
+            if (currentStaminaDelayCounter < rechargeStaminaDelay)
+            {
+                currentStamina += Time.deltaTime;
+            }
+            if (currentStaminaDelayCounter >= rechargeStaminaDelay)
+            {
+                currentStamina += rechargeStaminaRate * Time.deltaTime;
+                if (currentStamina > maxStamina) currentStamina = maxStamina;
+            }
+        }
+    }
+
+    void AddHungerAndThirst(float hungerAmount, float thirstAmount)
+    {
+
     }
 
 }
