@@ -12,6 +12,12 @@ public class HealthSystem
     public delegate void OnHealthChange(float currentMaxHealth, float currentHealth);
     public static event OnHealthChange OnHealthChanged;
 
+    float damageCounter;
+    float damageRate = 5f;
+
+    float healCounter;
+    float healRate = 5f;
+
 
     public HealthSystem(int health, int maxHealth)
     {
@@ -23,18 +29,32 @@ public class HealthSystem
     {
         if (currentHealth > 0)
         {
-            currentHealth -= damageAmount;
-            if (OnHealthChanged != null)
+            damageCounter += Time.deltaTime;
+            if (damageCounter >= damageRate)
             {
-                OnHealthChanged(CurrentMaxHealth, CurrentHealth);
+                currentHealth -= damageAmount;
+                if (OnHealthChanged != null)
+                {
+                    OnHealthChanged(CurrentMaxHealth, CurrentHealth);
+                }
+                damageCounter = 0;
             }
+        }
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
         }
     }
     public void HealEntity(int healAmount)
     {
         if (currentHealth < currentMaxHealth)
         {
-            currentHealth += healAmount;
+            healCounter += Time.deltaTime;
+            if (healCounter >= healRate)
+            {
+                currentHealth += healAmount;
+            }
+            healCounter = 0;
         }
         if (currentHealth > currentMaxHealth)
         {

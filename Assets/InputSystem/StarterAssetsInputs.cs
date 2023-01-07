@@ -20,8 +20,18 @@ namespace StarterAssets
 		[SerializeField] private bool cursorLocked = true;
 		[SerializeField] private bool cursorInputForLook = true;
 
+        void OnEnable()
+        {
+			CharacterNeeds.OnExhausted += SprintInput;
+        }
+
+        void OnDisable()
+        {
+            CharacterNeeds.OnExhausted -= SprintInput;
+        }
+
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-		public void OnMove(InputAction.CallbackContext context)
+        public void OnMove(InputAction.CallbackContext context)
 		{
 			MoveInput(context.ReadValue<Vector2>());
 		}
