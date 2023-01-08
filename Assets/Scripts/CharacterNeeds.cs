@@ -1,8 +1,5 @@
 using StarterAssets;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class CharacterNeeds : MonoBehaviour
 {
@@ -29,10 +26,13 @@ public class CharacterNeeds : MonoBehaviour
     [SerializeField] float currentStamina;
     [SerializeField] float currentStaminaDelayCounter;
     [SerializeField] bool HasStamina = true;
-    public float Stamina => currentStamina / maxStamina;
+    public float StaminaPercent => currentStamina / maxStamina;
 
-    public delegate void CharacterNeedsAction(bool HasStamina);
-    public static event CharacterNeedsAction OnExhausted;
+    public delegate void CharacterStaminaAction(bool HasStamina);
+    public static event CharacterStaminaAction OnExhausted;
+
+    public delegate void CharacterNeedsAction(float Hunger, float Thirst, float Stamina);
+    public static event CharacterNeedsAction OnNeedsChanged;
 
     [Header("Player Refernces")]
     StarterAssetsInputs playerInputs;
@@ -51,6 +51,13 @@ public class CharacterNeeds : MonoBehaviour
 
     void Update()
     {
+        HandleStarvingAndThirst();
+        HandleStamina();
+        OnNeedsChanged(HungerPercent, ThirstPercent, StaminaPercent);
+    }
+
+    private void HandleStarvingAndThirst()
+    {
         currentHunger -= decreaseHungerRate * Time.deltaTime;
         currentThirst -= decreaseThirstRate * Time.deltaTime;
 
@@ -62,7 +69,10 @@ public class CharacterNeeds : MonoBehaviour
             currentHunger = Mathf.Clamp(currentHunger, 0f, maxHunger);
             currentThirst = Mathf.Clamp(currentThirst, 0f, maxThirst);
         }
+    }
 
+    private void HandleStamina()
+    {
         if (playerInputs.IsSprinting())
         {
             currentStamina -= decreaseStaminaRate * Time.deltaTime;
