@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 1978471637655604388}
   - component: {fileID: 5420857361349278248}
   - component: {fileID: 5393215579111688473}
+  - component: {fileID: 987077048351491925}
   - component: {fileID: 8616685848737228376}
   m_Layer: 8
   m_Name: PlayerCapsule
@@ -248,6 +249,7 @@ MonoBehaviour:
   look: {x: 0, y: 0}
   jump: 0
   sprint: 0
+  pickup: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -265,12 +267,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHunger: 100
   decreaseHungerRate: 0.1
+  currentHunger: 0
   maxThirst: 100
   decreaseThirstRate: 0.1
+  currentThirst: 0
   maxStamina: 100
   decreaseStaminaRate: 0.1
   rechargeStaminaRate: 1.5
   rechargeStaminaDelay: 1
+  currentStamina: 0
+  currentStaminaDelayCounter: 0
+  HasStamina: 1
+--- !u!114 &987077048351491925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1ec76d02b6700438353aef9d35fc31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCameraTransform: {fileID: 0}
+  pickUpLayerMask:
+    serializedVersion: 2
+    m_Bits: 567
+  pickupDistance: 2
 --- !u!114 &8616685848737228376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,6 +385,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 980e881e-182c-404c-8cbf-3d09fdb48fef
     m_ActionName: Player/Sprint[/Keyboard/leftShift,/XInputControllerWindows/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 88491b50-63bc-4db6-a21f-35f6bc65370f
+    m_ActionName: Player/Pickup[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

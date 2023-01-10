@@ -12,6 +12,7 @@ namespace StarterAssets
 		[SerializeField] private Vector2 look;
 		[SerializeField] private bool jump;
 		[SerializeField] private bool sprint;
+		[SerializeField] private bool pickup;
 
         [Header("Movement Settings")]
 		[SerializeField] private bool analogMovement;
@@ -54,9 +55,14 @@ namespace StarterAssets
 			SprintInput(context.action.ReadValue<float>() == 1);
 		}
 
+		public void OnPickup(InputAction.CallbackContext context)
+		{
+            PickupInput(context.action.triggered);
+        }
+
 
 #endif
-		public void MoveInput(Vector2 newMoveDirection)
+        public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
 		}
@@ -74,6 +80,11 @@ namespace StarterAssets
 		public void SprintInput(bool newSprintState)
 		{
 			sprint = newSprintState;
+		}
+
+		public void PickupInput(bool newPickupState)
+		{
+			pickup = newPickupState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)
@@ -109,6 +120,11 @@ namespace StarterAssets
 		public bool IsAnalog()
 		{
 			return analogMovement;
+		}
+
+		public bool IsPickingup()
+		{
+			return pickup;
 		}
 	}
 	
