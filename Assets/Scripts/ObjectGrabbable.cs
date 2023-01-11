@@ -7,6 +7,7 @@ public class ObjectGrabbable : MonoBehaviour
     [SerializeField] float lerpSpeed = 10f;
     private Rigidbody objectRigidBody;
     private Transform objectGrabPointTransform;
+    private bool isInTexture = false;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class ObjectGrabbable : MonoBehaviour
 
     public void Drop()
     {
+        if (isInTexture) return;
         this.objectGrabPointTransform = null;
         objectRigidBody.useGravity = true;
         objectRigidBody.isKinematic = false;
@@ -33,5 +35,15 @@ public class ObjectGrabbable : MonoBehaviour
             Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed);
             objectRigidBody.MovePosition(newPosition);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        isInTexture = true;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        isInTexture = false;
     }
 }

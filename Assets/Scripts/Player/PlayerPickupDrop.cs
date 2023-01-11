@@ -11,9 +11,9 @@ namespace StarterAssets
         [SerializeField] private Transform playerCameraTransform;
         [SerializeField] private Transform objectGrabPointTransform;
         [SerializeField] private LayerMask pickUpLayerMask;
+        [SerializeField] private float coolDownTimer;
 
         private float coolDown = 0.5f;
-        private float coolDownTimer;
 
         private StarterAssetsInputs playerInputs;
         private ObjectGrabbable objectGrabbable;
