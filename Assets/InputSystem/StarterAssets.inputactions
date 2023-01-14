@@ -51,9 +51,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Craft",
+                    "name": "Interact",
                     "type": "Button",
-                    "id": "fac11027-4bc7-4946-be3b-7a04d3f8d622",
+                    "id": "e56cda4c-fc36-4f30-8d34-883a49239821",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -250,12 +250,12 @@
                 },
                 {
                     "name": "",
-                    "id": "a6fa9333-6f8f-4c35-bbac-d5a2335ad581",
-                    "path": "<Mouse>/leftButton",
+                    "id": "db31697b-08db-44d0-a9d9-1563a6eb1bef",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
-                    "action": "Craft",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

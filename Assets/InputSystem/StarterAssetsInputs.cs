@@ -62,6 +62,11 @@ namespace StarterAssets
             PickupInput(context.action.triggered);
         }
 
+		public void OnInteract(InputAction.CallbackContext callback)
+		{
+			InteractInput(callback.action.triggered);
+		}
+
 
 #endif
         public void MoveInput(Vector2 newMoveDirection)
@@ -87,6 +92,11 @@ namespace StarterAssets
 		public void PickupInput(bool newPickupState)
 		{
 			pickup = newPickupState;
+		}
+
+		public void InteractInput(bool newInteractState)
+		{
+			interact = newInteractState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)
@@ -127,6 +137,11 @@ namespace StarterAssets
 		public bool IsPickingup()
 		{
 			return pickup;
+		}
+
+		public bool IsInteracting()
+		{
+            return interact;
 		}
 	}
 	
