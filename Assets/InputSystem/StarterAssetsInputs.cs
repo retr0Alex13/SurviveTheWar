@@ -14,6 +14,7 @@ namespace StarterAssets
 		[SerializeField] private bool jump;
 		[SerializeField] private bool sprint;
 		[SerializeField] private bool pickup;
+		[SerializeField] private bool interact;
 
         [Header("Movement Settings")]
 		[SerializeField] private bool analogMovement;
