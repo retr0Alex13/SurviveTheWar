@@ -6,32 +6,32 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CraftingWorkbench : MonoBehaviour
+public class CraftingStation : MonoBehaviour
 {
     [SerializeField] private Image recipieImage;
-    [SerializeField] private List<CraftingRecipieSO> craftingRecipieSOList;
+    [SerializeField] private List<CraftingRecipeSO> craftingRecipeSOList;
     [SerializeField] private BoxCollider placeItemsArea;
     [SerializeField] private Transform itemSpawnPoint;
 
-    private CraftingRecipieSO craftingRecipieSO;
+    private CraftingRecipeSO craftingRecipieSO;
 
     private void Start()
     {
-        NextRecipie();
+        NextRecipe();
     }
 
-    public void NextRecipie()
+    public void NextRecipe()
     {
         if (craftingRecipieSO == null)
         {
-            craftingRecipieSO = craftingRecipieSOList[0];
+            craftingRecipieSO = craftingRecipeSOList[0];
         }
         else
         {
-            int index = craftingRecipieSOList.IndexOf(craftingRecipieSO);
-            index = (index + 1) % craftingRecipieSOList.Count;
-            craftingRecipieSO = craftingRecipieSOList[index];
-            Debug.Log("NextRecipie");
+            int index = craftingRecipeSOList.IndexOf(craftingRecipieSO);
+            index = (index + 1) % craftingRecipeSOList.Count;
+            craftingRecipieSO = craftingRecipeSOList[index];
+            Debug.Log("NextRecipe");
 
         }
         recipieImage.sprite = craftingRecipieSO.craftingSprite;

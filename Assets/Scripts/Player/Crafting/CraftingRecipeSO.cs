@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/RecipieSO")]
-public class CraftingRecipieSO : ScriptableObject
+public class CraftingRecipeSO : ScriptableObject
 {
     public Sprite craftingSprite;
     public List<ItemSO> inputItemSOList;

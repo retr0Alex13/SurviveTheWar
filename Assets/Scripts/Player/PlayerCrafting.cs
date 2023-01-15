@@ -34,21 +34,26 @@ namespace StarterAssets
 
             if (playerInput.IsInteracting() && coolDownTimer == 0)
             {
-                if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, interactDistance, interactLayerMask))
+                HandleCrafting();
+                coolDownTimer = coolDown;
+            }
+        }
+
+        private void HandleCrafting()
+        {
+            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, interactDistance, interactLayerMask))
+            {
+                if (raycastHit.transform.TryGetComponent(out CraftingStation craftingWorkbench))
                 {
-                    if (raycastHit.transform.TryGetComponent(out CraftingWorkbench craftingWorkbench))
+                    if (playerInput.IsPickingup())
                     {
-                        if (playerInput.IsPickingup())
-                        {
-                            craftingWorkbench.NextRecipie();
-                        }
-                        if (playerInput.IsInteracting())
-                        {
-                            craftingWorkbench.Craft();
-                        }
+                        craftingWorkbench.NextRecipe();
+                    }
+                    if (playerInput.IsInteracting())
+                    {
+                        craftingWorkbench.Craft();
                     }
                 }
-                coolDownTimer = coolDown;
             }
         }
     }

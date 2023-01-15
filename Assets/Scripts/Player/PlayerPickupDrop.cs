@@ -37,22 +37,27 @@ namespace StarterAssets
 
             if (playerInputs.IsPickingup() && coolDownTimer == 0)
             {
-                if (objectGrabbable == null)
+                HandlePickup();
+                coolDownTimer = coolDown;
+            }
+        }
+
+        private void HandlePickup()
+        {
+            if (objectGrabbable == null)
+            {
+                if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance))
                 {
-                    if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance))
+                    if (raycastHit.transform.TryGetComponent(out objectGrabbable))
                     {
-                        if (raycastHit.transform.TryGetComponent(out objectGrabbable))
-                        {
-                            objectGrabbable.Grab(objectGrabPointTransform);
-                        }
+                        objectGrabbable.Grab(objectGrabPointTransform);
                     }
                 }
-                else
-                {
-                    objectGrabbable.Drop();
-                    objectGrabbable = null;
-                }
-                coolDownTimer = coolDown;
+            }
+            else
+            {
+                objectGrabbable.Drop();
+                objectGrabbable = null;
             }
         }
     }
