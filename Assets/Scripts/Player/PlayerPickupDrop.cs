@@ -34,30 +34,29 @@ namespace StarterAssets
             {
                 coolDownTimer = 0;
             }
-
-            if (playerInputs.IsPickingup() && coolDownTimer == 0)
-            {
-                HandlePickup();
-                coolDownTimer = coolDown;
-            }
+            HandlePickup();
         }
 
         private void HandlePickup()
         {
-            if (objectGrabbable == null)
+            if (playerInputs.IsPickingup() && coolDownTimer == 0)
             {
-                if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance))
+                if (objectGrabbable == null)
                 {
-                    if (raycastHit.transform.TryGetComponent(out objectGrabbable))
+                    if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance))
                     {
-                        objectGrabbable.Grab(objectGrabPointTransform);
+                        if (raycastHit.transform.TryGetComponent(out objectGrabbable))
+                        {
+                            objectGrabbable.Grab(objectGrabPointTransform);
+                        }
                     }
                 }
-            }
-            else
-            {
-                objectGrabbable.Drop();
-                objectGrabbable = null;
+                else
+                {
+                    objectGrabbable.Drop();
+                    objectGrabbable = null;
+                }
+                coolDownTimer = coolDown;
             }
         }
     }

@@ -11,7 +11,7 @@ public class DayNightSystem : MonoBehaviour
     [SerializeField, Range(0, 24)] private float TimeOfDay;
 
     [Tooltip("How long Day/Night wil be")]
-    [SerializeField] private float timerModifier = 10;
+    [SerializeField] private float timerModifier = 20;
 
     private void Start()
     {
@@ -37,7 +37,6 @@ public class DayNightSystem : MonoBehaviour
         RenderSettings.ambientLight = Preset.AmbientColor.Evaluate(timePercent);
         RenderSettings.fogColor = Preset.FogColor.Evaluate(timePercent);
 
-        //If the directional light is set then rotate and set it's color, I actually rarely use the rotation because it casts tall shadows unless you clamp the value
         if (DirectionalLight != null)
         {
             DirectionalLight.color = Preset.DirectionalColor.Evaluate(timePercent);
@@ -45,20 +44,19 @@ public class DayNightSystem : MonoBehaviour
             DirectionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
         }
 
+        Debug.Log(GetHour());
+
     }
 
-    //Try to find a directional light to use if we haven't set one
     private void OnValidate()
     {
         if (DirectionalLight != null)
             return;
 
-        //Search for lighting tab sun
         if (RenderSettings.sun != null)
         {
             DirectionalLight = RenderSettings.sun;
         }
-        //Search scene for light that fits criteria (directional)
         else
         {
             Light[] lights = GameObject.FindObjectsOfType<Light>();
@@ -71,5 +69,15 @@ public class DayNightSystem : MonoBehaviour
                 }
             }
         }
+    }
+
+    public int GetHour()
+    {
+        return Mathf.FloorToInt(TimeOfDay);
+    }
+
+    public bool IsDayTime()
+    {
+        return GetHour() > 6 && GetHour() < 18;
     }
 }

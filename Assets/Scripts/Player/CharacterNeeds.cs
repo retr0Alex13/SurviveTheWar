@@ -15,6 +15,7 @@ public class CharacterNeeds : MonoBehaviour
     [SerializeField] float currentThirst;
     public float ThirstPercent => currentThirst / maxThirst;
 
+    [SerializeField] private float interactDistance = 2f;
 
     // TODO: Make sanity
 
@@ -35,7 +36,12 @@ public class CharacterNeeds : MonoBehaviour
     public static event CharacterNeedsAction OnNeedsChanged;
 
     [Header("Player Refernces")]
+    [SerializeField] private Transform playerCameraTransform;
     StarterAssetsInputs playerInputs;
+
+    [SerializeField] private float coolDownTimer;
+
+    private float coolDown = 0.5f;
 
     void Awake()
     {
@@ -51,9 +57,35 @@ public class CharacterNeeds : MonoBehaviour
 
     void Update()
     {
+        if (coolDownTimer > 0)
+        {
+            coolDownTimer -= Time.deltaTime;
+        }
+
+        if (coolDownTimer < 0)
+        {
+            coolDownTimer = 0;
+        }
         HandleStarvingAndThirst();
         HandleStamina();
+        HandleEatingOrDrinking();
         OnNeedsChanged(HungerPercent, ThirstPercent, StaminaPercent);
+    }
+
+    private void HandleEatingOrDrinking()
+    {
+        if (playerInputs.IsInteracting() && coolDownTimer == 0)
+        {
+            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, interactDistance))
+            {
+                if (raycastHit.transform.TryGetComponent(out ItemEatable itemEatable))
+                {
+                    AddHungerAndThirst(itemEatable.FoodToRestore, itemEatable.ThirstToRestore);
+                    Destroy(itemEatable.gameObject);
+                }
+            }
+            coolDownTimer = coolDown;
+        }
     }
 
     private void HandleStarvingAndThirst()
