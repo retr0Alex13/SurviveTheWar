@@ -15,7 +15,7 @@ public class DayNightSystem : MonoBehaviour
 
     private void Start()
     {
-        TimeOfDay = 10f;
+        TimeOfDay = 7f;
     }
 
 

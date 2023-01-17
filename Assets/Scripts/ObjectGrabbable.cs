@@ -37,6 +37,14 @@ public class ObjectGrabbable : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (objectGrabPointTransform != null)
+        {
+            transform.rotation = Quaternion.Euler(0f, objectGrabPointTransform.eulerAngles.y, 0f);
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         isInTexture = true;
