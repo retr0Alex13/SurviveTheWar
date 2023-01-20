@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager { get; private set; }
-
     public HealthSystem playerHealth = new HealthSystem(100, 100);
+    
 
     void Awake()
     {
@@ -25,4 +25,8 @@ public class GameManager : MonoBehaviour
         
     }
 
+    private void EndDay()
+    {
+        Debug.Log("DayEnded");
+    }
 }

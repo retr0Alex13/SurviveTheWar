@@ -5,31 +5,58 @@ using UnityEngine;
 public class DayNightSystem : MonoBehaviour
 {
     //Scene References
+    [Header("Lights")]
     [SerializeField] private Light DirectionalLight;
     [SerializeField] private DayNightPreset Preset;
     //Variables
-    [SerializeField, Range(0, 24)] private float TimeOfDay;
-
+    [Header("Day cycle settings")]
+    [SerializeField] private int dayCount = 0;
+    [SerializeField, Tooltip("Current time of day"), Range(0, 24)]
+    private float timeOfDay;
+    [SerializeField, Tooltip("At what o'clock player will start day")] 
+    private float startDayHour = 9;
+    [SerializeField, Tooltip("At what o'clock player will end day")] 
+    private float endDayHour = 21;
     [Tooltip("How long Day/Night wil be")]
-    [SerializeField] private float timerModifier = 20;
+    [SerializeField] private float dayNightTimerModifier = 20;
+    [SerializeField] private float fogDencity = 0.05f;
+    private float lightIntencityLerp = 1f;
+    private float fogIntencityLerp = 0.5f;
 
     private void Start()
     {
-        TimeOfDay = 13f;
+        timeOfDay = startDayHour;
     }
 
 
     private void Update()
     {
-        if (Preset == null)
-            return;
-
-        //(Replace with a reference to the game time)
-        TimeOfDay += Time.deltaTime / timerModifier;
-        TimeOfDay %= 24; //Modulus to ensure always between 0-24
-        UpdateLighting(TimeOfDay / 24f);
+        HandleDayCycle();
     }
 
+    private void SetDayHour(float startDayHour)
+    {
+        timeOfDay = startDayHour;
+    }    
+
+    private void NextDay()
+    {
+        dayCount++;
+        SetDayHour(startDayHour);
+    }
+
+    private void HandleDayCycle()
+    {
+        if (Preset == null)
+            return;
+        if (timeOfDay >= endDayHour)
+        {
+            NextDay();
+        }
+        timeOfDay += Time.deltaTime / dayNightTimerModifier;
+        timeOfDay %= 24; //Modulus to ensure always between 0-24
+        UpdateLighting(timeOfDay / 24f);
+    }
 
     private void UpdateLighting(float timePercent)
     {
@@ -44,7 +71,18 @@ public class DayNightSystem : MonoBehaviour
             DirectionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
         }
 
-        Debug.Log(GetHour());
+        if (!IsDayTime())
+        {
+            DirectionalLight.intensity = Mathf.Lerp(DirectionalLight.intensity, 0, Time.deltaTime * lightIntencityLerp);
+            RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, fogDencity, Time.deltaTime * fogIntencityLerp);
+        }
+        else
+        {
+            DirectionalLight.intensity = Mathf.Lerp(DirectionalLight.intensity, 1f, Time.deltaTime * lightIntencityLerp);
+            RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, 0, Time.deltaTime * fogIntencityLerp);
+        }
+
+        //Debug.Log(GetHour());
 
     }
 
@@ -73,11 +111,11 @@ public class DayNightSystem : MonoBehaviour
 
     public int GetHour()
     {
-        return Mathf.FloorToInt(TimeOfDay);
+        return Mathf.FloorToInt(timeOfDay);
     }
 
     public bool IsDayTime()
     {
-        return GetHour() > 6 && GetHour() < 18;
+        return GetHour() > 6 && GetHour() < 19;
     }
 }

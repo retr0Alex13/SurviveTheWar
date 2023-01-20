@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.025
+  m_FogDensity: 0.05
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.8584906, g: 0.79214835, b: 0.68436277, a: 1}
@@ -2827,12 +2827,32 @@ PrefabInstance:
     - target: {fileID: 866840399170264344, guid: a9b65119651e8d944a705bcaad549512,
         type: 3}
       propertyPath: m_Name
-      value: DayNIghtSystem
+      value: DayNightSystem
       objectReference: {fileID: 0}
     - target: {fileID: 866840399170264345, guid: a9b65119651e8d944a705bcaad549512,
         type: 3}
       propertyPath: TimeOfDay
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866840399170264345, guid: a9b65119651e8d944a705bcaad549512,
+        type: 3}
+      propertyPath: timeOfDay
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 866840399170264345, guid: a9b65119651e8d944a705bcaad549512,
+        type: 3}
+      propertyPath: fogDencity
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 866840399170264345, guid: a9b65119651e8d944a705bcaad549512,
+        type: 3}
+      propertyPath: timerModifier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 866840399170264345, guid: a9b65119651e8d944a705bcaad549512,
+        type: 3}
+      propertyPath: lightIntencityLerp
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9b65119651e8d944a705bcaad549512, type: 3}
