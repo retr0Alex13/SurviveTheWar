@@ -1441,17 +1441,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
+  m_Script: {fileID: 0}
   m_Name: MainSurvivalNightProfile
   m_EditorClassIdentifier: 
-  settings:
-  - {fileID: -5730453294979453278}
-  - {fileID: -1129501935589494174}
-  - {fileID: -5514422523629553189}
-  - {fileID: 7267097136809410605}
-  - {fileID: 4161184785604248058}
-  - {fileID: 8293814223660071726}
-  - {fileID: -6584517127504448537}
 --- !u!114 &4161184785604248058
 MonoBehaviour:
   m_ObjectHideFlags: 3

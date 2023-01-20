@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class HealthSystem
 {
-    int currentHealth;
-    int currentMaxHealth;
-    public int CurrentMaxHealth => currentMaxHealth;
-    public int CurrentHealth => currentHealth;
+    private int currentHealth;
+    private int currentMaxHealth;
+    public int CurrentMaxHealth
+    {
+        get { return currentMaxHealth; }
+    }
+    public int CurrentHealth
+    {
+        get { return currentHealth;  }
+    }
 
     public delegate void OnHealthChange(float currentMaxHealth, float currentHealth);
     public static event OnHealthChange OnHealthChanged;
 
-    float damageCounter;
-    float damageRate = 5f;
+    private float damageCounter;
+    private float damageRate = 5f;
 
-    float healCounter;
-    float healRate = 5f;
+    private float healCounter;
+    private float healRate = 5f;
 
 
     public HealthSystem(int health, int maxHealth)

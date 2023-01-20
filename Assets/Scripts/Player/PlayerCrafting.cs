@@ -11,9 +11,6 @@ namespace StarterAssets
         [SerializeField] private float interactDistance = 2f;
         [SerializeField] private LayerMask interactLayerMask;
         [SerializeField] private Transform playerCameraTransform;
-        [SerializeField] private float coolDownTimer;
-
-        private float coolDown = 0.5f;
 
         private void Awake()
         {
@@ -22,20 +19,10 @@ namespace StarterAssets
 
         private void Update()
         {
-            if (coolDownTimer > 0)
-            {
-                coolDownTimer -= Time.deltaTime;
-            }
 
-            if (coolDownTimer < 0)
-            {
-                coolDownTimer = 0;
-            }
-
-            if (playerInput.IsInteracting() && coolDownTimer == 0)
+            if (playerInput.IsInteracting())
             {
                 HandleCrafting();
-                coolDownTimer = coolDown;
             }
         }
 

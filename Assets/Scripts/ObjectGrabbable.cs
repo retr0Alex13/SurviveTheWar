@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class ObjectGrabbable : MonoBehaviour
 {
-    [SerializeField] float lerpSpeed = 10f;
+    [SerializeField] private float lerpSpeed = 10f;
     private Rigidbody objectRigidBody;
     private Transform objectGrabPointTransform;
     private bool isInTexture = false;
+    private bool isInteractable;
 
     private void Awake()
     {
         objectRigidBody = GetComponent<Rigidbody>();
     }
+
     public void Grab(Transform objectGrabPointTransform)
     {
         this.objectGrabPointTransform = objectGrabPointTransform;
@@ -32,6 +34,7 @@ public class ObjectGrabbable : MonoBehaviour
     {
         if (objectGrabPointTransform != null)
         {
+
             Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed);
             objectRigidBody.MovePosition(newPosition);
         }

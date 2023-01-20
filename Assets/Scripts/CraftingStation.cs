@@ -49,9 +49,9 @@ public class CraftingStation : MonoBehaviour
         {
             if (collider.TryGetComponent(out ItemSOHolder itemSOHolder))
             {
-                if (inputItemList.Contains(itemSOHolder.itemSO))
+                if (inputItemList.Contains(itemSOHolder.ItemSO))
                 {
-                    inputItemList.Remove(itemSOHolder.itemSO);
+                    inputItemList.Remove(itemSOHolder.ItemSO);
                     consumeItemGOList.Add(collider.gameObject);
                 }
                     
@@ -62,7 +62,7 @@ public class CraftingStation : MonoBehaviour
         {
             //Have all required items to craft
             Debug.Log("Crafted!");
-            Instantiate(craftingRecipieSO.outputItemSO.prefab, itemSpawnPoint.position, itemSpawnPoint.rotation);
+            Instantiate(craftingRecipieSO.outputItemSO.Prefab, itemSpawnPoint.position, itemSpawnPoint.rotation);
 
             foreach(GameObject consumeItemGO in consumeItemGOList)
             {

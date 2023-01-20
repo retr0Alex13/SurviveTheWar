@@ -25,12 +25,12 @@ namespace StarterAssets
 
         void OnEnable()
         {
-			CharacterNeeds.OnExhausted += SprintInput;
+			PlayerNeeds.OnExhausted += SprintInput;
         }
 
         void OnDisable()
         {
-            CharacterNeeds.OnExhausted -= SprintInput;
+            PlayerNeeds.OnExhausted -= SprintInput;
         }
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
@@ -49,7 +49,7 @@ namespace StarterAssets
 
 		public void OnJump(InputAction.CallbackContext context)
 		{
-			JumpInput(context.action.triggered);
+			JumpInput(context.ReadValueAsButton());
 		}
 
 		public void OnSprint(InputAction.CallbackContext context)
@@ -59,12 +59,12 @@ namespace StarterAssets
 
 		public void OnPickup(InputAction.CallbackContext context)
 		{
-            PickupInput(context.action.triggered);
+            PickupInput(context.ReadValueAsButton());
         }
 
 		public void OnInteract(InputAction.CallbackContext callback)
 		{
-			InteractInput(callback.action.triggered);
+			InteractInput(callback.ReadValueAsButton());
 		}
 
 

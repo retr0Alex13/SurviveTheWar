@@ -8,12 +8,12 @@ public class CharacterNeedsUI : MonoBehaviour
     [SerializeField] Image hungerMeter, thirstMeter, staminaBar;
     void OnEnable()
     {
-        CharacterNeeds.OnNeedsChanged += ChangeCharacterNeedsUI;
+        PlayerNeeds.OnNeedsChanged += ChangeCharacterNeedsUI;
     }
 
     void OnDisable()
     {
-        CharacterNeeds.OnNeedsChanged -= ChangeCharacterNeedsUI;
+        PlayerNeeds.OnNeedsChanged -= ChangeCharacterNeedsUI;
     }
 
     private void ChangeCharacterNeedsUI(float hungerPercent, float thirstPercent, float staminaPercent)

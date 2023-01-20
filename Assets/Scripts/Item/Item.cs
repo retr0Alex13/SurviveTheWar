@@ -20,8 +20,7 @@ public class Item
         LightBulb,
     }
 
-
-    public ItemSO itemScriptableObject;
+    [SerializeField] private ItemSO itemScriptableObject;
 
     //public bool IsStackable() {
     //    return true;// IsStackable(itemType);

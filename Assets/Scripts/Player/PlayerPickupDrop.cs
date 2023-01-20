@@ -11,9 +11,6 @@ namespace StarterAssets
         [SerializeField] private Transform playerCameraTransform;
         [SerializeField] private Transform objectGrabPointTransform;
         [SerializeField] private LayerMask pickUpLayerMask;
-        [SerializeField] private float coolDownTimer;
-
-        private float coolDown = 0.5f;
 
         private StarterAssetsInputs playerInputs;
         private ObjectGrabbable objectGrabbable;
@@ -25,21 +22,12 @@ namespace StarterAssets
 
         void Update()
         {
-            if (coolDownTimer > 0)
-            {
-                coolDownTimer -= Time.deltaTime;
-            }
-
-            if (coolDownTimer < 0)
-            {
-                coolDownTimer = 0;
-            }
             HandlePickup();
         }
 
         private void HandlePickup()
         {
-            if (playerInputs.IsPickingup() && coolDownTimer == 0)
+            if (playerInputs.IsPickingup())
             {
                 if (objectGrabbable == null)
                 {
@@ -56,7 +44,6 @@ namespace StarterAssets
                     objectGrabbable.Drop();
                     objectGrabbable = null;
                 }
-                coolDownTimer = coolDown;
             }
         }
     }

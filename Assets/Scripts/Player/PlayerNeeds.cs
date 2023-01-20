@@ -1,7 +1,7 @@
 using StarterAssets;
 using UnityEngine;
 
-public class CharacterNeeds : MonoBehaviour
+public class PlayerNeeds : MonoBehaviour
 {
     [Header("Hunger")]
     [SerializeField] float maxHunger = 100f;
@@ -37,11 +37,8 @@ public class CharacterNeeds : MonoBehaviour
 
     [Header("Player Refernces")]
     [SerializeField] private Transform playerCameraTransform;
-    StarterAssetsInputs playerInputs;
+    private StarterAssetsInputs playerInputs;
 
-    [SerializeField] private float coolDownTimer;
-
-    private float coolDown = 0.5f;
 
     void Awake()
     {
@@ -57,15 +54,6 @@ public class CharacterNeeds : MonoBehaviour
 
     void Update()
     {
-        if (coolDownTimer > 0)
-        {
-            coolDownTimer -= Time.deltaTime;
-        }
-
-        if (coolDownTimer < 0)
-        {
-            coolDownTimer = 0;
-        }
         HandleStarvingAndThirst();
         HandleStamina();
         HandleEatingOrDrinking();
@@ -74,17 +62,16 @@ public class CharacterNeeds : MonoBehaviour
 
     private void HandleEatingOrDrinking()
     {
-        if (playerInputs.IsInteracting() && coolDownTimer == 0)
+        if (playerInputs.IsInteracting())
         {
             if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, interactDistance))
             {
-                if (raycastHit.transform.TryGetComponent(out ItemEatable itemEatable))
+                if (raycastHit.transform.TryGetComponent(out ObjectEatable itemEatable))
                 {
                     AddHungerAndThirst(itemEatable.FoodToRestore, itemEatable.ThirstToRestore);
                     Destroy(itemEatable.gameObject);
                 }
             }
-            coolDownTimer = coolDown;
         }
     }
 
