@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSOHolder : MonoBehaviour
+namespace OM
 {
-    [SerializeField] private ItemSO itemSO;
+    public class ItemSOHolder : MonoBehaviour
+    {
+        [SerializeField] private ItemSO itemSO;
 
-    public ItemSO ItemSO { get { return itemSO; } }
+        public ItemSO ItemSO { get { return itemSO; } }
+    }
 }

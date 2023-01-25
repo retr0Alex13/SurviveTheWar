@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using StarterAssets;
 
-namespace StarterAssets
+namespace OM
 {
+
     public class PlayerPickupDrop : MonoBehaviour
     {
         [SerializeField] private float pickUpDistance = 2f;

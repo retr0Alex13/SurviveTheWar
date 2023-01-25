@@ -115,8 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipieImage: {fileID: 6881541438809773145}
-  craftingRecipieSOList:
-  - {fileID: 11400000, guid: 8f65774eacc18684ab5eb423f2983643, type: 2}
+  craftingRecipeSOList: []
   placeItemsArea: {fileID: 6881541439881717429}
   itemSpawnPoint: {fileID: 6881541439163506166}
 --- !u!1 &6881541438785671973

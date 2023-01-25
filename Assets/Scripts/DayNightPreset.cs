@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[System.Serializable]
-[CreateAssetMenu(fileName = "Daynight Preset", menuName = "ScriptableObjects/Lighting Preset", order = 1)]
-public class DayNightPreset : ScriptableObject
+namespace OM
 {
-    public Gradient AmbientColor;
-    public Gradient DirectionalColor;
-    public Gradient FogColor;
+    [System.Serializable]
+    [CreateAssetMenu(fileName = "Daynight Preset", menuName = "ScriptableObjects/Lighting Preset", order = 1)]
+    public class DayNightPreset : ScriptableObject
+    {
+        public Gradient AmbientColor;
+        public Gradient DirectionalColor;
+        public Gradient FogColor;
+    }
 }
