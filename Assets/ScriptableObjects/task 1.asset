@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4752343191440404417
+--- !u!114 &-4050464128721284801
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71a85aa431ef5345a5ee7b975f17829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredAmount: 2
+  requiredAmount: 5
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
-  item: Apple
+  item: Metal Scrap
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27,31 +27,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e997666782664e3479ac7abc0eac4e1c, type: 3}
-  m_Name: task
+  m_Name: task 1
   m_EditorClassIdentifier: 
   information:
-    name: 'Beginnings '
-    description: The beginning of all beginnings
+    name: On your own
+    description: Carry on
   reward:
     money: 10
     sanity: 10
   goals:
-  - {fileID: -4752343191440404417}
-  - {fileID: 2803497468242492486}
---- !u!114 &2803497468242492486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c71a85aa431ef5345a5ee7b975f17829, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  requiredAmount: 1
-  goalCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-  item: Water
+  - {fileID: -4050464128721284801}

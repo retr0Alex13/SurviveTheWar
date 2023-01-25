@@ -45,6 +45,7 @@ public class Task : ScriptableObject
         public virtual void Initialize()
         {
             Completed = false;
+            CurrentAmount = 0;
             goalCompleted = new UnityEvent();
         }
 

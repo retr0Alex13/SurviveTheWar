@@ -25,7 +25,9 @@ public class TaskWindow : MonoBehaviour
             
             if(goal.Completed)
             {
-                countObj.SetActive(false);
+                countObj.GetComponent<TextMeshProUGUI>().text = "Done";
+                countObj.GetComponent<TextMeshProUGUI>().color = Color.green;
+                //countObj.SetActive(false);
             }
             else
             {
