@@ -63,14 +63,22 @@ namespace OM
             if (inputItemList.Count == 0)
             {
                 //Have all required items to craft
+                //Craft needed item
                 Debug.Log("Crafted!");
+                EvaluateCraftingGoal(craftingRecipieSO.outputItemSO.name);
                 Instantiate(craftingRecipieSO.outputItemSO.Prefab, itemSpawnPoint.position, itemSpawnPoint.rotation);
+
 
                 foreach (GameObject consumeItemGO in consumeItemGOList)
                 {
                     Destroy(consumeItemGO);
                 }
             }
+        }
+
+        public void EvaluateCraftingGoal(string itemName)
+        {
+            EventManager.Instance.QueueEvent(new CraftingGameEvent(itemName));
         }
     }
 }

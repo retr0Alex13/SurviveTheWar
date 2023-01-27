@@ -15,3 +15,12 @@ public class GatheringGameEvent : GameEvent
         this.itemName = name;
     }
 }
+
+public class CraftingGameEvent : GameEvent
+{
+    public string itemName;
+    public CraftingGameEvent(string name)
+    {
+        this.itemName = name;
+    }
+}

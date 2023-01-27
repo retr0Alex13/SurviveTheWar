@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4050464128721284801
+--- !u!114 &-486259671536778632
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c71a85aa431ef5345a5ee7b975f17829, type: 3}
+  m_Script: {fileID: 11500000, guid: d7199b41565500a479f60d3975207ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredAmount: 5
+  requiredAmount: 1
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
-  item: Metal Scrap
+  item: Flashlight
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27,13 +27,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e997666782664e3479ac7abc0eac4e1c, type: 3}
-  m_Name: task 1
+  m_Name: Beginnings
   m_EditorClassIdentifier: 
   information:
-    name: On your own
-    description: Carry on
+    name: Beginnings
+    description: 
   reward:
     money: 10
     sanity: 10
   goals:
-  - {fileID: -4050464128721284801}
+  - {fileID: -486259671536778632}

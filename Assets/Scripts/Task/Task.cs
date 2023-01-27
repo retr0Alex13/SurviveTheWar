@@ -104,12 +104,12 @@ public class TaskEditor : Editor
     List<string> m_TaskGoalType;
     SerializedProperty m_TaskGoalListProperty;
 
-    [MenuItem("Assets/New Task", priority = 0)]
+    [MenuItem("Assets/Create/ScriptableObjects/NewTask", priority = 0)]
     public static void CreateTask()
     {
         var newTask = CreateInstance<Task>();
 
-        ProjectWindowUtil.CreateAsset(newTask, "task.asset");
+        ProjectWindowUtil.CreateAsset(newTask, "NewTask.asset");
     }
 
     private void OnEnable()
