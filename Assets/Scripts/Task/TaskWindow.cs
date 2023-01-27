@@ -9,6 +9,7 @@ public class TaskWindow : MonoBehaviour
     [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private GameObject goalPrefab;
     [SerializeField] private Transform goalContent;
+    [SerializeField] private GameObject tasks;
 
     public void Initialize(Task task)
     {
@@ -35,6 +36,7 @@ public class TaskWindow : MonoBehaviour
             }
         }
     }
+
     public void CloseWindow()
     {
         gameObject.SetActive(false);

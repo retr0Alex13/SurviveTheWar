@@ -530,7 +530,7 @@ MonoBehaviour:
   taskWindow: {fileID: 471510127}
   currentTasks:
   - {fileID: 11400000, guid: 7bd6c9b51bbceb445ab4eb37ea40f280, type: 2}
-  - {fileID: 11400000, guid: 7bd6c9b51bbceb445ab4eb37ea40f280, type: 2}
+  - {fileID: 11400000, guid: 51974e8b191ae1f4bac0b1b2c7eef478, type: 2}
 --- !u!114 &403660000
 MonoBehaviour:
   m_ObjectHideFlags: 0

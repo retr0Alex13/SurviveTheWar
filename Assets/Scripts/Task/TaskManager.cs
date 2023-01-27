@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -41,5 +42,7 @@ public class TaskManager : MonoBehaviour
     {
         //Sets Checkmark to true
         //taskContent.GetChild(currentTasks.IndexOf(task)).Find("Done").gameObject.SetActive(true);
+        Destroy(taskContent.GetChild(currentTasks.IndexOf(task)).gameObject);
+        currentTasks.Remove(task);
     }
 }
