@@ -19,7 +19,6 @@ namespace OM
 
         private void Update()
         {
-
             if (playerInput.IsInteracting())
             {
                 HandleCrafting();

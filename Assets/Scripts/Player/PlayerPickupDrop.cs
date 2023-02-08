@@ -6,7 +6,6 @@ using StarterAssets;
 
 namespace OM
 {
-
     public class PlayerPickupDrop : MonoBehaviour
     {
         [SerializeField] private float pickUpDistance = 2f;
@@ -43,10 +42,19 @@ namespace OM
                 }
                 else
                 {
-                    objectGrabbable.Drop();
-                    objectGrabbable = null;
+                    Drop();
                 }
             }
+            else if (objectGrabbable != null)
+            {
+                Drop();
+            }
+        }
+
+        private void Drop()
+        {
+            objectGrabbable.Drop();
+            objectGrabbable = null;
         }
     }
 }

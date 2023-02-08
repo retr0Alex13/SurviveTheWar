@@ -60,14 +60,14 @@ namespace StarterAssets
 
         public void OnPickup(InputAction.CallbackContext context)
         {
-            PickupInput(context.ReadValueAsButton());
+            PickupInput(context.performed);
         }
 
         public void OnInteract(InputAction.CallbackContext context)
         {
-            InteractInput(context.ReadValueAsButton());
-        }
 
+            InteractInput(context.performed);
+        }
 
 #endif
         public void MoveInput(Vector2 newMoveDirection)

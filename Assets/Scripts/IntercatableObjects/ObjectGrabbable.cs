@@ -10,7 +10,6 @@ namespace OM
         private Rigidbody objectRigidBody;
         private Transform objectGrabPointTransform;
         private bool isInTexture = false;
-        private bool isInteractable;
 
         private void Awake()
         {

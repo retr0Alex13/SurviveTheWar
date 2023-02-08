@@ -6,11 +6,10 @@ namespace OM
 {
     public class DayNightSystem : MonoBehaviour
     {
-        //Scene References
         [Header("Lights")]
         [SerializeField] private Light DirectionalLight;
         [SerializeField] private DayNightPreset Preset;
-        //Variables
+
         [Header("Day cycle settings")]
         [SerializeField] private int dayCount = 0;
         [SerializeField, Tooltip("Current time of day"), Range(0, 24)]
@@ -21,9 +20,14 @@ namespace OM
         private float endDayHour = 21;
         [Tooltip("How long Day/Night wil be")]
         [SerializeField] private float dayNightTimerModifier = 20;
-        [SerializeField] private float fogDencity = 0.05f;
+        //[SerializeField] private float fogDencity = 0.05f;
         private float lightIntencityLerp = 1f;
-        private float fogIntencityLerp = 0.5f;
+        //private float fogIntencityLerp = 0.5f;
+
+        private bool newHourStarted = false;
+
+        public delegate void DayNightAction();
+        public static event DayNightAction OnNewHour;
 
         private void Start()
         {
@@ -51,6 +55,9 @@ namespace OM
         {
             if (Preset == null)
                 return;
+
+            CheckForNextHour();
+
             if (timeOfDay >= endDayHour)
             {
                 NextDay();
@@ -58,6 +65,22 @@ namespace OM
             timeOfDay += Time.deltaTime / dayNightTimerModifier;
             timeOfDay %= 24; //Modulus to ensure always between 0-24
             UpdateLighting(timeOfDay / 24f);
+        }
+
+        private void CheckForNextHour()
+        {
+            int currentHour = GetHour();
+            int nextHour = Mathf.FloorToInt((timeOfDay + Time.deltaTime / dayNightTimerModifier) % 24);
+            if (currentHour != nextHour)
+            {
+                newHourStarted = true;
+                OnNewHour();
+                Debug.Log(newHourStarted);
+            }
+            else
+            {
+                newHourStarted = false;
+            }
         }
 
         private void UpdateLighting(float timePercent)
@@ -76,16 +99,13 @@ namespace OM
             if (!IsDayTime())
             {
                 DirectionalLight.intensity = Mathf.Lerp(DirectionalLight.intensity, 0, Time.deltaTime * lightIntencityLerp);
-                RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, fogDencity, Time.deltaTime * fogIntencityLerp);
+                //RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, fogDencity, Time.deltaTime * fogIntencityLerp);
             }
             else
             {
                 DirectionalLight.intensity = Mathf.Lerp(DirectionalLight.intensity, 1f, Time.deltaTime * lightIntencityLerp);
-                RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, 0, Time.deltaTime * fogIntencityLerp);
+                //RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, 0, Time.deltaTime * fogIntencityLerp);
             }
-
-            //Debug.Log(GetHour());
-
         }
 
         private void OnValidate()
@@ -99,7 +119,7 @@ namespace OM
             }
             else
             {
-                Light[] lights = GameObject.FindObjectsOfType<Light>();
+                Light[] lights = FindObjectsOfType<Light>();
                 foreach (Light light in lights)
                 {
                     if (light.type == LightType.Directional)
