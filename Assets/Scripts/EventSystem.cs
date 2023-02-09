@@ -1,19 +1,19 @@
 using OM;
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EventSystem : MonoBehaviour
 {
-    //public float minTimeBetweenEvent = 5f;
-    //public float maxTimeBetweenEvent = 10f;
-    [Range(0,1)]public float probabilityOfEvent = 0.1f;
+    [Range(0, 1), SerializeField] private float probabilityOfEvent = 0.1f;
+    [SerializeField] private float timeToGetToSafe = 10f;
+    [SerializeField] private float currentTimeToGetSafe;
     [SerializeField] private bool isEventActive = false;
     private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
-
-    //[SerializeField] private float timeUntilNextEvent;
-
+    [SerializeField] private bool isInSafeZone = false;
+    [SerializeField] private BoxCollider safeZoneCollider;
 
     private void OnEnable()
     {
@@ -27,17 +27,34 @@ public class EventSystem : MonoBehaviour
 
     private void Start()
     {
-        //timeUntilNextEvent = Random.Range(minTimeBetweenEvent, maxTimeBetweenEvent);
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = audioClip;
     }
 
     private void Update()
     {
-        //HandleEvent();
         if (isEventActive && !audioSource.isPlaying)
         {
             isEventActive = false;
+        }
+        if(isEventActive)
+        {
+            CheckIfInSafeZone();
+            StartEventTimer();
+        }
+    }
+
+    private void StartEventTimer()
+    {
+        currentTimeToGetSafe -= Time.deltaTime;
+        if (currentTimeToGetSafe <= 0)
+        {
+            currentTimeToGetSafe = 0;
+            if(!isInSafeZone)
+            {
+                GameManager.gameManager.playerHealth.DamageEntity(100);
+                return;
+            }
         }
     }
 
@@ -45,17 +62,30 @@ public class EventSystem : MonoBehaviour
     {
         if (!isEventActive)
         {
-            //timeUntilNextEvent -= Time.deltaTime / 20f;
-            //if (timeUntilNextEvent <= 0f)
-            //{
-                if (Random.value < probabilityOfEvent)
-                {
-                    TriggerEvent();
-                }
-                //timeUntilNextEvent = Random.Range(minTimeBetweenEvent, maxTimeBetweenEvent);
-            //}
+            if (Random.value < probabilityOfEvent)
+            {
+                TriggerEvent();
+            }
         }
     }
+
+    private void CheckIfInSafeZone()
+    {
+        Collider[] colliderArray = Physics.OverlapBox(safeZoneCollider.transform.position, safeZoneCollider.size,
+            safeZoneCollider.transform.rotation);
+        foreach (Collider collider in colliderArray)
+        {
+            if (collider.TryGetComponent(out FirstPersonController player))
+            {
+                isInSafeZone = true;
+            }
+            else
+            {
+                isInSafeZone = false;
+            }
+        }
+    }
+
 
     private void TriggerEvent()
     {
@@ -64,6 +94,7 @@ public class EventSystem : MonoBehaviour
             isEventActive = true;
             audioSource.Play();
         }
+        currentTimeToGetSafe = timeToGetToSafe;
         Debug.Log("Air Raid Alert!");
     }
 }
