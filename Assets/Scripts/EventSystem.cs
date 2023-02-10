@@ -8,6 +8,7 @@ public class EventSystem : MonoBehaviour
 {
     [Range(0, 1), SerializeField] private float probabilityOfEvent = 0.1f;
     [SerializeField] private float timeToGetToSafe = 10f;
+    [SerializeField] private int damagePlayerByEvent = 50;
     [SerializeField] private float currentTimeToGetSafe;
     [SerializeField] private bool isEventActive = false;
     private AudioSource audioSource;
@@ -52,8 +53,8 @@ public class EventSystem : MonoBehaviour
             currentTimeToGetSafe = 0;
             if(!isInSafeZone)
             {
-                GameManager.gameManager.playerHealth.DamageEntity(100);
-                return;
+                GameManager.gameManager.playerHealth.DamageEntity(damagePlayerByEvent);
+                //return;
             }
         }
     }
