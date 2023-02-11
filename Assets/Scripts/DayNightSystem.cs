@@ -12,6 +12,7 @@ namespace OM
 
         [Header("Day cycle settings")]
         [SerializeField] private int dayCount = 0;
+        public int DayCount => dayCount;
         [SerializeField, Tooltip("Current time of day"), Range(0, 24)]
         private float timeOfDay;
         [SerializeField, Tooltip("At what o'clock player will start day")]
@@ -28,6 +29,7 @@ namespace OM
 
         public delegate void DayNightAction();
         public static event DayNightAction OnNewHour;
+        public static event DayNightAction OnNewDay;
 
         private void Start()
         {
@@ -56,6 +58,7 @@ namespace OM
 
         private void NextDay()
         {
+            OnNewDay();
             dayCount++;
             SetDayHour(startDayHour);
         }
@@ -67,7 +70,7 @@ namespace OM
 
             CheckForNextHour();
 
-            if (timeOfDay >= endDayHour)
+            if (GetHour() >= endDayHour)
             {
                 NextDay();
             }
@@ -84,7 +87,6 @@ namespace OM
             {
                 newHourStarted = true;
                 OnNewHour();
-                Debug.Log(newHourStarted);
             }
             else
             {
@@ -101,7 +103,6 @@ namespace OM
             if (DirectionalLight != null)
             {
                 DirectionalLight.color = Preset.DirectionalColor.Evaluate(timePercent);
-
                 DirectionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
             }
 

@@ -24,11 +24,21 @@ public class DeathScreenUI : MonoBehaviour
     }
     private void SetVisibleDeathGroupUI()
     {
-        deathGroupUI.alpha += Mathf.Lerp(deathGroupUI.alpha, 1, alphaLerp * Time.deltaTime);
+        StartCoroutine(AnimateDeathScreen());
     }
 
-    private void SetUnvisibleDeathGroupUI()
+    private IEnumerator AnimateDeathScreen()
     {
-        deathGroupUI.alpha = 0;
+        float targetAlpha = 1;
+        float currentAlpha = deathGroupUI.alpha;
+
+        float elapsedTime = 0;
+        while (elapsedTime < 1)
+        {
+            deathGroupUI.alpha = Mathf.Lerp(currentAlpha, targetAlpha, elapsedTime);
+            elapsedTime += Time.deltaTime * alphaLerp;
+            yield return null;
+        }
+        deathGroupUI.alpha = targetAlpha;
     }
 }
