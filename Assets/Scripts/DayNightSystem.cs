@@ -44,7 +44,7 @@ namespace OM
 
         private void SetDay(int day)
         {
-            if(day < 0)
+            if (day < 0)
             {
                 return;
             }
@@ -58,7 +58,6 @@ namespace OM
 
         private void NextDay()
         {
-            OnNewDay();
             dayCount++;
             SetDayHour(startDayHour);
         }
@@ -70,9 +69,13 @@ namespace OM
 
             CheckForNextHour();
 
-            if (GetHour() >= endDayHour)
+            if (timeOfDay >= endDayHour)
             {
                 NextDay();
+            }
+            else if (timeOfDay >= endDayHour - 0.2f)
+            {
+                OnNewDay();
             }
             timeOfDay += Time.deltaTime / dayNightTimerModifier;
             timeOfDay %= 24; //Modulus to ensure always between 0-24

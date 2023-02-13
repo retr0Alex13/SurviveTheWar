@@ -1,3 +1,4 @@
+using OM;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,15 @@ public class TaskManager : MonoBehaviour
 
     public List<Task> currentTasks;
 
+    private void OnEnable()
+    {
+        GameManager.OnPlayerDead += CloseTasksList;
+    }
+    private void OnDisable()
+    {
+        GameManager.OnPlayerDead -= CloseTasksList;
+
+    }
     private void Start()
     {
         foreach (var task in currentTasks)
@@ -44,5 +54,14 @@ public class TaskManager : MonoBehaviour
         //taskContent.GetChild(currentTasks.IndexOf(task)).Find("Done").gameObject.SetActive(true);
         Destroy(taskContent.GetChild(currentTasks.IndexOf(task)).gameObject);
         currentTasks.Remove(task);
+    }
+
+    public void CloseTasksList()
+    {
+        gameObject.SetActive(false);
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            Destroy(gameObject.transform.GetChild(i).gameObject);
+        }
     }
 }

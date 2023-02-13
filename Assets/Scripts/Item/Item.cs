@@ -21,6 +21,9 @@ namespace OM
             Batteries,
             Flashlight,
             LightBulb,
+            Torch,
+            Paper,
+            Firewood,
         }
 
         [SerializeField] private ItemSO itemScriptableObject;

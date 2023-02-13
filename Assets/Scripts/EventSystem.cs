@@ -6,15 +6,19 @@ using UnityEngine;
 
 public class EventSystem : MonoBehaviour
 {
+    [Header("Event")]
     [Range(0, 1), SerializeField] private float probabilityOfEvent = 0.1f;
-    [SerializeField] private float timeToGetToSafe = 10f;
-    [SerializeField] private int damagePlayerByEvent = 50;
-    [SerializeField] private float currentTimeToGetSafe;
     [SerializeField] private bool isEventActive = false;
+    public bool isInSafeZone = false;
+    [SerializeField] private int damagePlayerByEvent = 50;
+
+    [Header("Timer")]
+    [SerializeField] private float timeToGetToSafe = 10f;
+    [SerializeField] private float currentTimeToGetSafe;
+
+    [Header("Audio of Event")]
     private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
-    [SerializeField] private bool isInSafeZone = false;
-    [SerializeField] private BoxCollider safeZoneCollider;
 
     private void OnEnable()
     {
@@ -31,16 +35,14 @@ public class EventSystem : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = audioClip;
     }
-
     private void Update()
     {
         if (isEventActive && !audioSource.isPlaying)
         {
             isEventActive = false;
         }
-        if(isEventActive)
+        if (isEventActive)
         {
-            CheckIfInSafeZone();
             StartEventTimer();
         }
     }
@@ -51,10 +53,9 @@ public class EventSystem : MonoBehaviour
         if (currentTimeToGetSafe <= 0)
         {
             currentTimeToGetSafe = 0;
-            if(!isInSafeZone)
+            if (!isInSafeZone)
             {
                 GameManager.gameManager.playerHealth.DamageEntity(damagePlayerByEvent);
-                //return;
             }
         }
     }
@@ -69,24 +70,6 @@ public class EventSystem : MonoBehaviour
             }
         }
     }
-
-    private void CheckIfInSafeZone()
-    {
-        Collider[] colliderArray = Physics.OverlapBox(safeZoneCollider.transform.position, safeZoneCollider.size,
-            safeZoneCollider.transform.rotation);
-        foreach (Collider collider in colliderArray)
-        {
-            if (collider.TryGetComponent(out FirstPersonController player))
-            {
-                isInSafeZone = true;
-            }
-            else
-            {
-                isInSafeZone = false;
-            }
-        }
-    }
-
 
     private void TriggerEvent()
     {

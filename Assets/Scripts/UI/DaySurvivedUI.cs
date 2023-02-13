@@ -11,7 +11,7 @@ public class DaySurvivedUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI daysSurvivedText;
     [SerializeField] private float secondsToShowScreen = 2f;
     [SerializeField, Tooltip("How smooth screen wiil fade in/out")]
-    private float alphaLerp = 0.05f;
+    private float alphaLerp = 0.5f;
 
     private void OnEnable()
     {

@@ -62,7 +62,6 @@ namespace OM
 
             if (inputItemList.Count == 0)
             {
-                //Have all required items to craft
                 //Craft needed item
                 Debug.Log("Crafted!");
                 EvaluateCraftingGoal(craftingRecipieSO.outputItemSO.name);
