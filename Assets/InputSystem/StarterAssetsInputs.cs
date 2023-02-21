@@ -62,13 +62,12 @@ namespace StarterAssets
 
         public void OnPickup(InputAction.CallbackContext context)
         {
-            PickupInput(context.performed);
+            PickupInput(context.ReadValueAsButton());
         }
 
         public void OnInteract(InputAction.CallbackContext context)
         {
-
-            InteractInput(context.performed);
+            InteractInput(context.ReadValueAsButton());
         }
 
         public void OnInventoryOpen(InputAction.CallbackContext context)

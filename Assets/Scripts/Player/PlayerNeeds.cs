@@ -20,6 +20,11 @@ namespace OM
         [SerializeField] private float interactDistance = 2f;
 
         // TODO: Make sanity
+        [Header("Sanity")]
+        [SerializeField] private float maxSanity = 100f;
+        [SerializeField] private float decreaseSanityRate = 1f;
+        [SerializeField] float currentSanity;
+        public float SanityPercent => currentSanity / maxSanity;
 
         [Header("Stamina")]
         [SerializeField] float maxStamina = 100f;

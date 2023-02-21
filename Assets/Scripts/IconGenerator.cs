@@ -2,7 +2,9 @@ using OM;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 public class IconGenerator : MonoBehaviour
@@ -26,7 +28,7 @@ public class IconGenerator : MonoBehaviour
 
     private IEnumerator Screenshot()
     {
-        for(int i = 0; i < sceneObjects.Count; i++)
+        for (int i = 0; i < sceneObjects.Count; i++)
         {
             GameObject obj = sceneObjects[i];
             ItemSO data = dataObjects[i];
@@ -40,20 +42,21 @@ public class IconGenerator : MonoBehaviour
             yield return null;
             obj.gameObject.SetActive(false);
 
+#if UNITY_EDITOR
             Sprite s = AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/{pathFolder}/{data.itemName}_Icon.png");
-            if (s!=null)
+            if (s != null)
             {
                 data.icon = s;
                 EditorUtility.SetDirty(data);
             }
-
+#endif
             yield return null;
         }
     }
 
     private void TakeScreenShot(string fullPath)
     {
-        if(camera == null)
+        if (camera == null)
         {
             camera = GetComponent<Camera>();
         }
@@ -66,7 +69,7 @@ public class IconGenerator : MonoBehaviour
         camera.targetTexture = null;
         RenderTexture.active = null;
 
-        if(Application.isEditor)
+        if (Application.isEditor)
         {
             DestroyImmediate(rt);
         }

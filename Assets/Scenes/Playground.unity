@@ -1094,6 +1094,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TaskWindow
       objectReference: {fileID: 0}
+    - target: {fileID: 2996711445137857776, guid: 03510d5a279f0514b859af6e9745306b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2996711445137857777, guid: 03510d5a279f0514b859af6e9745306b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2602,6 +2607,11 @@ PrefabInstance:
       propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3380590349765034016, guid: b70da131ded05f04c959fe2cf413563a,
+        type: 3}
+      propertyPath: m_BlocksRaycasts
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3380590349765034017, guid: b70da131ded05f04c959fe2cf413563a,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3187,6 +3197,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Workbench
       objectReference: {fileID: 0}
+    - target: {fileID: 6881541438809773145, guid: b2bf62d29a84e6546bcb3721cefac6d9,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e5dcbbf415994f54fb53ae61cf39882f,
+        type: 3}
+    - target: {fileID: 6881541440314152689, guid: b2bf62d29a84e6546bcb3721cefac6d9,
+        type: 3}
+      propertyPath: craftingRecipeSOList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 18b583e28ff75dd4095b5f2f39ccd46b,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2bf62d29a84e6546bcb3721cefac6d9, type: 3}
 --- !u!1001 &7288094137546172433

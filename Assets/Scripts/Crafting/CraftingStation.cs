@@ -16,6 +16,8 @@ namespace OM
         [SerializeField] private Transform itemSpawnPoint;
 
         private CraftingRecipeSO craftingRecipieSO;
+        private bool recipeChanged = false;
+
 
         private void Start()
         {
@@ -24,19 +26,24 @@ namespace OM
 
         public void NextRecipe()
         {
-            if (craftingRecipieSO == null)
+            if(!recipeChanged)
             {
-                craftingRecipieSO = craftingRecipeSOList[0];
-            }
-            else
-            {
-                int index = craftingRecipeSOList.IndexOf(craftingRecipieSO);
-                index = (index + 1) % craftingRecipeSOList.Count;
-                craftingRecipieSO = craftingRecipeSOList[index];
-                Debug.Log("NextRecipe");
+                if (craftingRecipieSO == null)
+                {
+                    craftingRecipieSO = craftingRecipeSOList[0];
+                }
+                else
+                {
+                    int index = craftingRecipeSOList.IndexOf(craftingRecipieSO);
+                    index = (index + 1) % craftingRecipeSOList.Count;
+                    craftingRecipieSO = craftingRecipeSOList[index];
+                    Debug.Log("NextRecipe");
 
+                }
+                recipeChanged = true;
+                recipieImage.sprite = craftingRecipieSO.craftingSprite;
             }
-            recipieImage.sprite = craftingRecipieSO.craftingSprite;
+            recipeChanged = false;
         }
 
         public void Craft()

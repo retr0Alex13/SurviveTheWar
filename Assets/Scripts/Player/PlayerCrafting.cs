@@ -7,10 +7,12 @@ namespace OM
 {
     public class PlayerCrafting : MonoBehaviour
     {
-        StarterAssetsInputs playerInput;
         [SerializeField] private float interactDistance = 2f;
+        [SerializeField] private float interactionCooldown = 0.5f; // Set the cooldown time here
         [SerializeField] private LayerMask interactLayerMask;
         [SerializeField] private Transform playerCameraTransform;
+        StarterAssetsInputs playerInput;
+        private bool canInteract = true; // Use this to disable the input while the coroutine is running
 
         private void Awake()
         {
@@ -19,28 +21,31 @@ namespace OM
 
         private void Update()
         {
-            if (playerInput.IsInteracting())
+            if (canInteract && playerInput.IsInteracting())
             {
-                HandleCrafting();
+                StartCoroutine(HandleCrafting());
             }
         }
 
-        private void HandleCrafting()
+        private IEnumerator HandleCrafting()
         {
+            canInteract = false;
             if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, interactDistance, interactLayerMask))
             {
                 if (raycastHit.transform.TryGetComponent(out CraftingStation craftingWorkbench))
                 {
-                    if (playerInput.IsPickingup())
+                    if (playerInput.IsInteracting())
                     {
                         craftingWorkbench.NextRecipe();
+                        yield return new WaitForSeconds(interactionCooldown); // Wait for the cooldown time
                     }
-                    if (playerInput.IsInteracting())
+                    if (playerInput.IsPickingup())
                     {
                         craftingWorkbench.Craft();
                     }
                 }
             }
+            canInteract = true; // Enable input again
         }
     }
 }
