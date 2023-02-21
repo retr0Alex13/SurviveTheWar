@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a707cb3d5b390544db74a4794f858e42, type: 3}
   m_Name: Firewood
   m_EditorClassIdentifier: 
-  itemType: 12
+  itemType: 7
   itemName: Firewood
   prefab: {fileID: 1755127807388825079, guid: d2b3063c31702d241948f91f18de2161, type: 3}

@@ -9,8 +9,10 @@ namespace OM
     {
 
         [SerializeField] private Item.ItemType itemType;
-        [SerializeField] private string itemName;
+        [SerializeField] public string itemName;
+        [SerializeField] private int amount = 1;
         [SerializeField] private GameObject prefab;
+        [SerializeField] public Sprite icon;
 
         public GameObject Prefab { get { return prefab; } }
     }
