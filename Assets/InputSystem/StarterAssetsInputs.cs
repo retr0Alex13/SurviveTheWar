@@ -16,8 +16,7 @@ namespace StarterAssets
         [SerializeField] private bool sprint;
         [SerializeField] private bool pickup;
         [SerializeField] private bool interact;
-        [SerializeField] private bool openInventory;
-        [SerializeField] private bool escapeKey;
+        [SerializeField] private bool inventory;
 
         [Header("Movement Settings")]
         [SerializeField] private bool analogMovement;
@@ -70,15 +69,10 @@ namespace StarterAssets
             InteractInput(context.ReadValueAsButton());
         }
 
-        public void OnInventoryOpen(InputAction.CallbackContext context)
+        public void OnInventory(InputAction.CallbackContext context)
         {
-            InventoryOpenInput(context.performed);
+            InventoryInput(context.performed);
             SetCursorState(!context.performed);
-        }
-
-        public void OnEscapeKeyDown(InputAction.CallbackContext context)
-        {
-            EscapeKeyInput(context.performed);
         }
 
 #endif
@@ -112,14 +106,9 @@ namespace StarterAssets
             interact = newInteractState;
         }
 
-        public void InventoryOpenInput(bool newInventoryState)
+        public void InventoryInput(bool newInventoryState)
         {
-            openInventory = newInventoryState;
-        }
-
-        private void EscapeKeyInput(bool newEscapeKeyState)
-        {
-            escapeKey = newEscapeKeyState;
+            inventory = newInventoryState;
         }
 
         private void OnApplicationFocus(bool hasFocus)
@@ -167,14 +156,9 @@ namespace StarterAssets
             return interact;
         }
 
-        public bool IsOpeningInventory()
+        public bool IsInInventory()
         {
-            return openInventory;
-        }
-
-        public bool IsEscapeButtonDown()
-        {
-            return escapeKey;
+            return inventory;
         }
     }
 
