@@ -21,6 +21,7 @@ public class DeathScreenUI : MonoBehaviour
     private void Start()
     {
         deathGroupUI = gameObject.GetComponent<CanvasGroup>();
+        deathGroupUI.blocksRaycasts = false;
     }
     private void SetVisibleDeathGroupUI()
     {
@@ -40,5 +41,6 @@ public class DeathScreenUI : MonoBehaviour
             yield return null;
         }
         deathGroupUI.alpha = targetAlpha;
+        deathGroupUI.blocksRaycasts = true;
     }
 }
