@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   itemName: Flashlight
+  amount: 1
   prefab: {fileID: 5536169397484924378, guid: 90e75f8ab0b6c254792051b148e0dedf, type: 3}
+  icon: {fileID: 21300000, guid: 326f4ede85ef48942887b79e10241e09, type: 3}

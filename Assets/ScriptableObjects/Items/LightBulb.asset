@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 3
   itemName: Light Bulb
+  amount: 1
   prefab: {fileID: 8149932189074464859, guid: 7824e1d369b7fc947aafcb0db3c22ca6, type: 3}
+  icon: {fileID: 21300000, guid: d483528c73b430347b2b4a516aa96bc6, type: 3}

@@ -1,4 +1,5 @@
 using OM;
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,7 @@ public class TaskManager : MonoBehaviour
 
             GameObject taskObject = Instantiate(taskPrefab, taskContent);
             taskObject.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = task.information.name;
-            
+
 
             taskObject.GetComponent<Button>().onClick.AddListener(delegate
             {

@@ -1204,6 +1204,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2996711445137857780, guid: 03510d5a279f0514b859af6e9745306b,
+        type: 3}
+      propertyPath: tasks
+      value: 
+      objectReference: {fileID: 403659997}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03510d5a279f0514b859af6e9745306b, type: 3}
 --- !u!224 &1754304173 stripped
@@ -1287,6 +1292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1922493778}
   - component: {fileID: 1922493777}
+  - component: {fileID: 1922493779}
   m_Layer: 0
   m_Name: SafeZone
   m_TagString: Untagged
@@ -1322,6 +1328,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1922493779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922493776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1c6981ce8de4ce4783b1f166be3e75d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSystem: {fileID: 1210513284642355601}
 --- !u!114 &1978148230 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4028506123923604851, guid: 4f3fa90d522997f489d8ad2f1a920427,
@@ -2099,6 +2118,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc78d0cfc7e712346af4a21c6a1d61db, type: 3}
+--- !u!114 &1210513284642355601 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1210513285198060233, guid: dc78d0cfc7e712346af4a21c6a1d61db,
+    type: 3}
+  m_PrefabInstance: {fileID: 1210513284642355600}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073e2934968478145badc2e5ceec5829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1584783794962704138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2610,7 +2641,7 @@ PrefabInstance:
     - target: {fileID: 3380590349765034016, guid: b70da131ded05f04c959fe2cf413563a,
         type: 3}
       propertyPath: m_BlocksRaycasts
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3380590349765034017, guid: b70da131ded05f04c959fe2cf413563a,
         type: 3}
@@ -2874,6 +2905,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerCapsule
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616685848737228376, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616685848737228376, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionId
+      value: 6934bca2-bca1-4728-b4eb-32cb56ecf4d1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616685848737228376, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionName
+      value: Player/EscapeKey[/Keyboard/escape]
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616685848737228376, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnInventory
       objectReference: {fileID: 0}
     - target: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
