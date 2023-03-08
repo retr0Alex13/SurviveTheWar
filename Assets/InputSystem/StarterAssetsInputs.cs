@@ -14,9 +14,6 @@ namespace StarterAssets
         [SerializeField] private Vector2 look;
         [SerializeField] private bool jump;
         [SerializeField] private bool sprint;
-        [SerializeField] private bool pickup;
-        [SerializeField] private bool interact;
-        [SerializeField] private bool inventory;
 
         [Header("Movement Settings")]
         [SerializeField] private bool analogMovement;
@@ -59,22 +56,6 @@ namespace StarterAssets
             SprintInput(context.action.ReadValue<float>() == 1);
         }
 
-        public void OnPickup(InputAction.CallbackContext context)
-        {
-            PickupInput(context.ReadValueAsButton());
-        }
-
-        public void OnInteract(InputAction.CallbackContext context)
-        {
-            InteractInput(context.ReadValueAsButton());
-        }
-
-        public void OnInventory(InputAction.CallbackContext context)
-        {
-            InventoryInput(context.performed);
-            SetCursorState(!context.performed);
-        }
-
 #endif
         public void MoveInput(Vector2 newMoveDirection)
         {
@@ -94,21 +75,6 @@ namespace StarterAssets
         public void SprintInput(bool newSprintState)
         {
             sprint = newSprintState;
-        }
-
-        public void PickupInput(bool newPickupState)
-        {
-            pickup = newPickupState;
-        }
-
-        public void InteractInput(bool newInteractState)
-        {
-            interact = newInteractState;
-        }
-
-        public void InventoryInput(bool newInventoryState)
-        {
-            inventory = newInventoryState;
         }
 
         private void OnApplicationFocus(bool hasFocus)
@@ -144,21 +110,6 @@ namespace StarterAssets
         public bool IsAnalog()
         {
             return analogMovement;
-        }
-
-        public bool IsPickingup()
-        {
-            return pickup;
-        }
-
-        public bool IsInteracting()
-        {
-            return interact;
-        }
-
-        public bool IsInInventory()
-        {
-            return inventory;
         }
     }
 
