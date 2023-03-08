@@ -13,22 +13,17 @@ namespace OM
         [SerializeField] private Transform objectGrabPointTransform;
         [SerializeField] private LayerMask pickUpLayerMask;
 
-        private StarterAssetsInputs playerInputs;
+        private Inventory playerInventory;
         private ObjectGrabbable objectGrabbable;
 
-        void Awake()
+        private void Start()
         {
-            playerInputs = GetComponent<StarterAssetsInputs>();
+            playerInventory = GetComponent<Inventory>();
         }
 
-        void Update()
+        public void HandlePickup(InputAction.CallbackContext ctx)
         {
-            HandlePickup();
-        }
-
-        private void HandlePickup()
-        {
-            if (playerInputs.IsPickingup())
+            if (ctx.performed)
             {
                 if (objectGrabbable == null)
                 {
@@ -49,6 +44,20 @@ namespace OM
             {
                 Drop();
             }
+            //if (ctx.canceled)
+            //{
+            //    if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit2, pickUpDistance))
+            //    {
+            //        if (raycastHit2.transform.TryGetComponent(out ItemSOHolder itemSOHolder))
+            //        {
+            //            if (itemSOHolder != null)
+            //            {
+            //                playerInventory.AddItem(itemSOHolder.ItemSO);
+            //                Destroy(raycastHit2.transform.gameObject);
+            //            }
+            //        }
+            //    }
+            //}
         }
 
         private void Drop()

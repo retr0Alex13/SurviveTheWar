@@ -13,7 +13,7 @@ public class IconGenerator : MonoBehaviour
     public List<ItemSO> dataObjects;
     [SerializeField] private string pathFolder;
 
-    private Camera camera;
+    private new Camera camera;
 
     private void Start()
     {

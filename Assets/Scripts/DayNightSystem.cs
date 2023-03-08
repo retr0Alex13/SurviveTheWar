@@ -25,8 +25,6 @@ namespace OM
         private float lightIntencityLerp = 1f;
         //private float fogIntencityLerp = 0.5f;
 
-        private bool newHourStarted = false;
-
         public delegate void DayNightAction();
         public static event DayNightAction OnNewHour;
         public static event DayNightAction OnNewDay;
@@ -75,7 +73,7 @@ namespace OM
             }
             else if (timeOfDay >= endDayHour - 0.2f)
             {
-                OnNewDay();
+                OnNewDay?.Invoke();
             }
             timeOfDay += Time.deltaTime / dayNightTimerModifier;
             timeOfDay %= 24; //Modulus to ensure always between 0-24
@@ -88,12 +86,12 @@ namespace OM
             int nextHour = Mathf.FloorToInt((timeOfDay + Time.deltaTime / dayNightTimerModifier) % 24);
             if (currentHour != nextHour)
             {
-                newHourStarted = true;
-                OnNewHour();
+                //New hour started
+                OnNewHour?.Invoke();
             }
             else
             {
-                newHourStarted = false;
+                //New hour not yet started
             }
         }
 

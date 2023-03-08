@@ -261,7 +261,7 @@
                     "name": "",
                     "id": "db31697b-08db-44d0-a9d9-1563a6eb1bef",
                     "path": "<Keyboard>/f",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "Interact",

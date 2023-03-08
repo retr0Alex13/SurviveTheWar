@@ -1,5 +1,7 @@
 using StarterAssets;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace OM
 {
@@ -28,11 +30,16 @@ namespace OM
 
         [Header("Stamina")]
         [SerializeField] float maxStamina = 100f;
+
         [SerializeField] float decreaseStaminaRate = 1f;
+
         [SerializeField] float rechargeStaminaRate = 2f;
         [SerializeField] float rechargeStaminaDelay = 1f;
+
         [SerializeField] float currentStamina;
         [SerializeField] float currentStaminaDelayCounter;
+
+        [SerializeField] bool isSprinting = false;
         [SerializeField] bool HasStamina = true;
         public float StaminaPercent => currentStamina / maxStamina;
 
@@ -44,13 +51,6 @@ namespace OM
 
         [Header("Player Refernces")]
         [SerializeField] private Transform playerCameraTransform;
-        private StarterAssetsInputs playerInputs;
-
-
-        void Awake()
-        {
-            playerInputs = GetComponent<StarterAssetsInputs>();
-        }
 
         void Start()
         {
@@ -63,13 +63,12 @@ namespace OM
         {
             HandleStarvingAndThirst();
             HandleStamina();
-            HandleEatingOrDrinking();
-            OnNeedsChanged(HungerPercent, ThirstPercent, StaminaPercent);
+            OnNeedsChanged?.Invoke(HungerPercent, ThirstPercent, StaminaPercent);
         }
 
-        private void HandleEatingOrDrinking()
+        public void HandleEatingOrDrinking(InputAction.CallbackContext ctx)
         {
-            if (playerInputs.IsInteracting())
+            if (ctx.performed)
             {
                 if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, interactDistance))
                 {
@@ -99,7 +98,7 @@ namespace OM
 
         private void HandleStamina()
         {
-            if (playerInputs.IsSprinting())
+            if (isSprinting)
             {
                 currentStamina -= decreaseStaminaRate * Time.deltaTime;
                 if (currentStamina <= 0)
@@ -116,8 +115,9 @@ namespace OM
                 currentStaminaDelayCounter = 0;
             }
 
-            if (!playerInputs.IsSprinting() && currentStamina < maxStamina)
+            if (!isSprinting && currentStamina < maxStamina)
             {
+                Debug.Log("not sprinting and stamina is low");
                 if (currentStaminaDelayCounter < rechargeStaminaDelay)
                 {
                     currentStaminaDelayCounter += Time.deltaTime;
@@ -128,6 +128,11 @@ namespace OM
                 }
             }
             currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+        }
+
+        public void SprintInput(InputAction.CallbackContext ctx)
+        {
+            isSprinting = ctx.ReadValueAsButton();
         }
 
         void AddHungerAndThirst(float hungerAmount, float thirstAmount)

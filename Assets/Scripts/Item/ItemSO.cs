@@ -8,9 +8,17 @@ namespace OM
     public class ItemSO : ScriptableObject
     {
 
-        [SerializeField] private Item.ItemType itemType;
+        public enum ItemType
+        {
+            None,
+            CraftingMaterial,
+            Usable
+        }
+
+
+        [SerializeField] private ItemType itemType;
         [SerializeField] public string itemName;
-        [SerializeField] private int amount = 1;
+        [SerializeField] public int quantity;
         [SerializeField] private GameObject prefab;
         [SerializeField] public Sprite icon;
 

@@ -117,7 +117,7 @@ MonoBehaviour:
   recipieImage: {fileID: 6881541438809773145}
   craftingRecipeSOList:
   - {fileID: 11400000, guid: 8f65774eacc18684ab5eb423f2983643, type: 2}
-  - {fileID: 11400000, guid: 4d0485821ee141d44837fa49c3be98f3, type: 2}
+  - {fileID: 11400000, guid: 18b583e28ff75dd4095b5f2f39ccd46b, type: 2}
   placeItemsArea: {fileID: 6881541439881717429}
   itemSpawnPoint: {fileID: 6881541439163506166}
 --- !u!1 &6881541438785671973
@@ -223,7 +223,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6881541438809773151}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0.367}
+  m_LocalPosition: {x: 0, y: 0, z: 0.381}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -232,8 +232,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.545, y: 0.8999}
-  m_SizeDelta: {x: 0.1387, y: 0.1387}
+  m_AnchoredPosition: {x: -0.5776, y: 0.8999}
+  m_SizeDelta: {x: 0.22314, y: 0.22314}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6881541438809773146
 CanvasRenderer:
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 26550e6590f71a440a424da405c5e2d9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e5dcbbf415994f54fb53ae61cf39882f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

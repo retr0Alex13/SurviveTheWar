@@ -14,9 +14,9 @@ namespace OM
         [SerializeField] private List<CraftingRecipeSO> craftingRecipeSOList;
         [SerializeField] private BoxCollider placeItemsArea;
         [SerializeField] private Transform itemSpawnPoint;
+        //private bool isItemCrafted = false;
 
         private CraftingRecipeSO craftingRecipieSO;
-        private bool recipeChanged = false;
 
 
         private void Start()
@@ -26,28 +26,26 @@ namespace OM
 
         public void NextRecipe()
         {
-            if(!recipeChanged)
+            //if(isItemCrafted)
+            //{
+            //    return;
+            //}
+            if (craftingRecipieSO == null)
             {
-                if (craftingRecipieSO == null)
-                {
-                    craftingRecipieSO = craftingRecipeSOList[0];
-                }
-                else
-                {
-                    int index = craftingRecipeSOList.IndexOf(craftingRecipieSO);
-                    index = (index + 1) % craftingRecipeSOList.Count;
-                    craftingRecipieSO = craftingRecipeSOList[index];
-                    Debug.Log("NextRecipe");
-
-                }
-                recipeChanged = true;
-                recipieImage.sprite = craftingRecipieSO.craftingSprite;
+                craftingRecipieSO = craftingRecipeSOList[0];
             }
-            recipeChanged = false;
+            else
+            {
+                int index = craftingRecipeSOList.IndexOf(craftingRecipieSO);
+                index = (index + 1) % craftingRecipeSOList.Count;
+                craftingRecipieSO = craftingRecipeSOList[index];
+            }
+            recipieImage.sprite = craftingRecipieSO.craftingSprite;
         }
 
         public void Craft()
         {
+            //isItemCrafted = false;
             Collider[] colliderArray = Physics.OverlapBox(
                 transform.position + placeItemsArea.center, placeItemsArea.size,
                 placeItemsArea.transform.rotation);
@@ -70,6 +68,7 @@ namespace OM
             if (inputItemList.Count == 0)
             {
                 //Craft needed item
+                //isItemCrafted = true;
                 Debug.Log("Crafted!");
                 EvaluateCraftingGoal(craftingRecipieSO.outputItemSO.name);
                 Instantiate(craftingRecipieSO.outputItemSO.Prefab, itemSpawnPoint.position, itemSpawnPoint.rotation);

@@ -45,14 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073e2934968478145badc2e5ceec5829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  probabilityOfEvent: 0.5
-  timeToGetToSafe: 10
-  damagePlayerByEvent: 50
-  currentTimeToGetSafe: 0
+  probabilityOfEvent: 0.1
   isEventActive: 0
-  audioClip: {fileID: 8300000, guid: ea16f70167403f8458f6ec42a9a6bd36, type: 3}
   isInSafeZone: 0
-  safeZoneCollider: {fileID: 0}
+  damagePlayerByEvent: 50
+  timeToGetToSafe: 10
+  currentTimeToGetSafe: 0
+  audioClip: {fileID: 8300000, guid: ea16f70167403f8458f6ec42a9a6bd36, type: 3}
 --- !u!82 &1210513285198060235
 AudioSource:
   m_ObjectHideFlags: 0
