@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 96672873}
   - component: {fileID: 96672867}
   - component: {fileID: 96672872}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Apple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,6 +287,30 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3380590349549172251}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &390081256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2193305780475797518, guid: b2bf62d29a84e6546bcb3721cefac6d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6881541440128335492}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &390081262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390081256}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &403659997 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6479931070745651176, guid: 75a4646e7e3c0d04b90d199a88d77477,
@@ -1426,7 +1450,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
+  m_CellSize: {x: 130, y: 130}
   m_Spacing: {x: 10, y: 15}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -2394,6 +2418,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Battery_01
       objectReference: {fileID: 0}
+    - target: {fileID: 5766109493797294353, guid: a9a7639d4c9c3c949931d18c8e449768,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6579344145834036139, guid: a9a7639d4c9c3c949931d18c8e449768,
         type: 3}
       propertyPath: m_RootOrder
@@ -2524,6 +2553,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Scrap_Metal_01
       objectReference: {fileID: 0}
+    - target: {fileID: 6897142107613896957, guid: bb8bc69ad66ef3248bece0a3b20b37f6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb8bc69ad66ef3248bece0a3b20b37f6, type: 3}
 --- !u!4 &1777746895595987455 stripped
@@ -2598,6 +2632,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Flashlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536169397484924378, guid: 90e75f8ab0b6c254792051b148e0dedf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90e75f8ab0b6c254792051b148e0dedf, type: 3}
@@ -2844,6 +2883,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Bulb
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149932189074464859, guid: 7824e1d369b7fc947aafcb0db3c22ca6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8814020051620231905, guid: 7824e1d369b7fc947aafcb0db3c22ca6,
         type: 3}
@@ -3168,30 +3212,40 @@ PrefabInstance:
       propertyPath: playerCameraTransform
       value: 
       objectReference: {fileID: 1405640147}
+    - target: {fileID: 2406968900621234481, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: items.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5393215579111688473, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: playerCameraTransform
       value: 
       objectReference: {fileID: 1405640147}
+    - target: {fileID: 5420857361349278248, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: cursorLocked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: walkBobSpeed
-      value: 14
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: walkBobAmount
-      value: 0.06
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: sprintBobSpeed
-      value: 18
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: sprintBobAmount
-      value: 0.11
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
@@ -3780,6 +3834,11 @@ PrefabInstance:
     - target: {fileID: 8099239053183639512, guid: 2fced7a6feb1b3744abffbf22829d3f5,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099239053183639513, guid: 2fced7a6feb1b3744abffbf22829d3f5,
+        type: 3}
+      propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8099239053183639515, guid: 2fced7a6feb1b3744abffbf22829d3f5,

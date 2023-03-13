@@ -1,6 +1,5 @@
 using OM;
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +26,11 @@ public class InventoryUI : MonoBehaviour
         UpdateInventoryUI();
     }
 
+    private void Update()
+    {
+
+    }
+
     public void UpdateInventoryUI()
     {
         // Remove any existing inventory items from the panel
@@ -44,7 +48,7 @@ public class InventoryUI : MonoBehaviour
             newItem.transform.GetComponentInChildren<Image>().sprite = item.icon;
             newItem.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = item.itemName;
         }
-
     }
+
 
 }
