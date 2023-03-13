@@ -8,28 +8,36 @@ using UnityEngine.UI;
 
 namespace OM
 {
-    public class CraftingStation : MonoBehaviour
+    public class CraftingStation : MonoBehaviour, IInteractable
     {
         [SerializeField] private Image recipieImage;
         [SerializeField] private List<CraftingRecipeSO> craftingRecipeSOList;
         [SerializeField] private BoxCollider placeItemsArea;
         [SerializeField] private Transform itemSpawnPoint;
-        //private bool isItemCrafted = false;
 
         private CraftingRecipeSO craftingRecipieSO;
-
+        private Outline outline;
 
         private void Start()
         {
+            outline = GetComponent<Outline>();
             NextRecipe();
+        }
+
+        public void Highlight()
+        {
+            if (outline == null) return;
+            outline.enabled = true;
+        }
+
+        public void Dehighlight()
+        {
+            if (outline == null) return;
+            outline.enabled = false;
         }
 
         public void NextRecipe()
         {
-            //if(isItemCrafted)
-            //{
-            //    return;
-            //}
             if (craftingRecipieSO == null)
             {
                 craftingRecipieSO = craftingRecipeSOList[0];
@@ -45,7 +53,6 @@ namespace OM
 
         public void Craft()
         {
-            //isItemCrafted = false;
             Collider[] colliderArray = Physics.OverlapBox(
                 transform.position + placeItemsArea.center, placeItemsArea.size,
                 placeItemsArea.transform.rotation);
@@ -68,7 +75,6 @@ namespace OM
             if (inputItemList.Count == 0)
             {
                 //Craft needed item
-                //isItemCrafted = true;
                 Debug.Log("Crafted!");
                 EvaluateCraftingGoal(craftingRecipieSO.outputItemSO.name);
                 Instantiate(craftingRecipieSO.outputItemSO.Prefab, itemSpawnPoint.position, itemSpawnPoint.rotation);
