@@ -24,13 +24,20 @@ namespace StarterAssets
         [SerializeField, Tooltip("Acceleration and deceleration")]
         private float speedChangeRate = 10.0f;
 
+        [Header("Interaction settings")]
+        [SerializeField, Tooltip("Distance for player interaction")]
+        private float interactDistance = 4f;
+        private int ineteractLayerMask = 1 << 10;
+
         [Header("Headbob Settings")]
-        [SerializeField] private float walkBobSpeed = 14f;
-        [SerializeField] private float walkBobAmount = 0.05f;
-        [SerializeField] private float sprintBobSpeed = 18f;
-        [SerializeField] private float sprintBobAmount = 0.11f;
-        private float defaultYPos = 0;
-        private float headBobTimer;
+        [SerializeField, Tooltip("Walk speed of the headbob effect")] 
+        private float walkBobSpeed = 14f;
+        [SerializeField, Tooltip("Amount of the headbob effect when walking")]
+        private float walkBobAmount = 0.05f;
+        [SerializeField, Tooltip("Sprint speed of the headbob effect")]
+        private float sprintBobSpeed = 18f;
+        [SerializeField, Tooltip("Amount of the headbob effect when walking")]
+        private float sprintBobAmount = 0.11f;
 
         [Space(10)]
         [SerializeField, Tooltip("The height the player can jump")]
@@ -76,6 +83,14 @@ namespace StarterAssets
         // timeout deltatime
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
+        private float headBobTimer;
+
+        // used to reset camera position in headbob effect
+        private float defaultYPos = 0;
+
+        // for storing interactable interface
+        private Transform selection;
+
 
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
@@ -106,7 +121,8 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
-            if(playerCameraRoot == null)
+            // get a reference to our player root gameObject
+            if (playerCameraRoot == null)
             {
                 playerCameraRoot = GameObject.FindGameObjectWithTag("CinemachineTarget");
             }
@@ -134,6 +150,38 @@ namespace StarterAssets
             GroundedCheck();
             Move();
             HandleHeadBob();
+            HandleInteraction();
+        }
+
+        private void HandleInteraction()
+        {
+            // if selecttion was setted
+            if (selection != null)
+            {
+                // get component
+                if (selection.TryGetComponent(out IInteractable interactable))
+                {
+                    interactable.Dehighlight();
+                }
+                // set selection to null so we don't deselect it
+                selection = null;
+            }
+
+            var ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0f));
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, interactDistance, ineteractLayerMask))
+            {
+                // get a hit transform
+                Transform selected = hit.transform;
+                if (hit.transform.TryGetComponent(out IInteractable interactable))
+                {
+                    Debug.Log(hit.transform.name);
+                    interactable.Highlight();
+                }
+                // set selection tranform to hit interface transofm
+                selection = selected;
+            }
         }
 
         private void LateUpdate()
