@@ -1,31 +1,32 @@
 using StarterAssets;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SafeZone : MonoBehaviour
+namespace OM
 {
-    [SerializeField] private EventSystem eventSystem;
-    private BoxCollider safeZoneCollider;
-
-    private void Start()
+    public class SafeZone : MonoBehaviour
     {
-        safeZoneCollider = GetComponent<BoxCollider>();
-    }
+        [SerializeField] private EventSystem eventSystem;
+        private BoxCollider safeZoneCollider;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.TryGetComponent(out FirstPersonController player))
+        private void Start()
         {
-            eventSystem.isInSafeZone = true;
+            safeZoneCollider = GetComponent<BoxCollider>();
         }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.TryGetComponent(out FirstPersonController player))
+        private void OnTriggerEnter(Collider other)
         {
-            eventSystem.isInSafeZone = false;
+            if (other.TryGetComponent(out FirstPersonController player))
+            {
+                eventSystem.isInSafeZone = true;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.TryGetComponent(out FirstPersonController player))
+            {
+                eventSystem.isInSafeZone = false;
+            }
         }
     }
 }

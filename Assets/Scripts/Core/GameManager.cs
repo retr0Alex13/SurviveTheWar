@@ -1,6 +1,4 @@
 using StarterAssets;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace OM
@@ -33,7 +31,7 @@ namespace OM
 
         private void Update()
         {
-            if(playerHealth.CurrentHealth <= 0)
+            if (playerHealth.CurrentHealth <= 0)
             {
                 OnPlayerDead();
                 FreezePlayer();

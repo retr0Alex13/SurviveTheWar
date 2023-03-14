@@ -1,19 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace OM
 {
-    public class ObjectGrabbable : MonoBehaviour
+    public class ObjectGrabbable : MonoBehaviour, IInteractable
     {
         [SerializeField] private float lerpSpeed = 10f;
         private Rigidbody objectRigidBody;
         private Transform objectGrabPointTransform;
+        private Outline outline;
         private bool isInTexture = false;
 
         private void Awake()
         {
             objectRigidBody = GetComponent<Rigidbody>();
+            outline = GetComponent<Outline>();
         }
 
         public void Grab(Transform objectGrabPointTransform)
@@ -57,6 +57,18 @@ namespace OM
         private void OnCollisionExit(Collision collision)
         {
             isInTexture = false;
+        }
+
+        public void Highlight()
+        {
+            if (outline == null) return;
+            outline.enabled = true;
+        }
+
+        public void Dehighlight()
+        {
+            if (outline == null) return;
+            outline.enabled = false;
         }
     }
 }

@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using StarterAssets;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Interactions;
 
 namespace OM
 {
@@ -15,23 +11,21 @@ namespace OM
 
         private void Start()
         {
-            
+
         }
 
         public void HandleCrafting(InputAction.CallbackContext ctx)
         {
-            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, interactDistance, interactLayerMask))
+            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, interactDistance, interactLayerMask) 
+                && raycastHit.transform.TryGetComponent(out CraftingStation craftingWorkbench))
             {
-                if (raycastHit.transform.TryGetComponent(out CraftingStation craftingWorkbench))
+                if (ctx.performed)
                 {
-                    if (ctx.performed)
-                    {
-                        craftingWorkbench.Craft();
-                    }
-                    if(ctx.canceled)
-                    {
-                        craftingWorkbench.NextRecipe();
-                    }
+                    craftingWorkbench.Craft();
+                }
+                if (ctx.canceled)
+                {
+                    craftingWorkbench.NextRecipe();
                 }
             }
         }

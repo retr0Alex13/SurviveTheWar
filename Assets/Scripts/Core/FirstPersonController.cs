@@ -1,5 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using OM;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -30,7 +30,7 @@ namespace StarterAssets
         private int ineteractLayerMask = 1 << 10;
 
         [Header("Headbob Settings")]
-        [SerializeField, Tooltip("Walk speed of the headbob effect")] 
+        [SerializeField, Tooltip("Walk speed of the headbob effect")]
         private float walkBobSpeed = 14f;
         [SerializeField, Tooltip("Amount of the headbob effect when walking")]
         private float walkBobAmount = 0.05f;
@@ -158,7 +158,6 @@ namespace StarterAssets
             // if selecttion was setted
             if (selection != null)
             {
-                // get component
                 if (selection.TryGetComponent(out IInteractable interactable))
                 {
                     interactable.Dehighlight();

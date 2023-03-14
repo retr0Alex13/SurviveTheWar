@@ -1,9 +1,7 @@
-using OM;
-using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 
 namespace OM
@@ -12,7 +10,6 @@ namespace OM
     {
         [SerializeField] private GameObject inventoryItemPrefab;
         [SerializeField] private Inventory inventory;
-        private bool isOpened = true;
         private Transform inventoryPanel;
 
         private void OnEnable()
@@ -29,11 +26,6 @@ namespace OM
         {
             inventoryPanel = GetComponent<Transform>();
             UpdateInventoryUI();
-        }
-
-        private void Update()
-        {
-
         }
 
         public void UpdateInventoryUI()
@@ -57,7 +49,7 @@ namespace OM
 
         public void ControlInventoryWindow(InputAction.CallbackContext ctx)
         {
-            if(ctx.performed)
+            if (ctx.performed)
             {
                 gameObject.SetActive(!gameObject.activeSelf);
             }

@@ -1,84 +1,83 @@
-using OM;
-using StarterAssets;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EventSystem : MonoBehaviour
+namespace OM
 {
-    [Header("Event")]
-    [Range(0, 1), SerializeField] private float probabilityOfEvent = 0.1f;
-    [SerializeField] private bool isEventActive = false;
-    public bool isInSafeZone = false;
-    [SerializeField] private int damagePlayerByEvent = 50;
-
-    [Header("Timer")]
-    [SerializeField] private float timeToGetToSafe = 10f;
-    [SerializeField] private float currentTimeToGetSafe;
-
-    [Header("Audio of Event")]
-    private AudioSource audioSource;
-    [SerializeField] private AudioClip audioClip;
-
-    private void OnEnable()
+    public class EventSystem : MonoBehaviour
     {
-        DayNightSystem.OnNewHour += HandleEvent;
-    }
+        [Header("Event")]
+        [Range(0, 1), SerializeField] private float probabilityOfEvent = 0.1f;
+        [SerializeField] private bool isEventActive = false;
+        public bool isInSafeZone = false;
+        [SerializeField] private int damagePlayerByEvent = 50;
 
-    private void OnDisable()
-    {
-        DayNightSystem.OnNewHour -= HandleEvent;
-    }
+        [Header("Timer")]
+        [SerializeField] private float timeToGetToSafe = 10f;
+        [SerializeField] private float currentTimeToGetSafe;
 
-    private void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-        audioSource.clip = audioClip;
-    }
-    private void Update()
-    {
-        if (isEventActive && !audioSource.isPlaying)
+        [Header("Audio of Event")]
+        private AudioSource audioSource;
+        [SerializeField] private AudioClip audioClip;
+
+        private void OnEnable()
         {
-            isEventActive = false;
+            DayNightSystem.OnNewHour += HandleEvent;
         }
-        if (isEventActive)
-        {
-            StartEventTimer();
-        }
-    }
 
-    private void StartEventTimer()
-    {
-        currentTimeToGetSafe -= Time.deltaTime;
-        if (currentTimeToGetSafe <= 0)
+        private void OnDisable()
         {
-            currentTimeToGetSafe = 0;
-            if (!isInSafeZone)
+            DayNightSystem.OnNewHour -= HandleEvent;
+        }
+
+        private void Start()
+        {
+            audioSource = GetComponent<AudioSource>();
+            audioSource.clip = audioClip;
+        }
+        private void Update()
+        {
+            if (isEventActive && !audioSource.isPlaying)
             {
-                GameManager.gameManager.playerHealth.DamageEntity(damagePlayerByEvent);
+                isEventActive = false;
+            }
+            if (isEventActive)
+            {
+                StartEventTimer();
             }
         }
-    }
 
-    private void HandleEvent()
-    {
-        if (!isEventActive)
+        private void StartEventTimer()
         {
-            if (Random.value < probabilityOfEvent)
+            currentTimeToGetSafe -= Time.deltaTime;
+            if (currentTimeToGetSafe <= 0)
             {
-                TriggerEvent();
+                currentTimeToGetSafe = 0;
+                if (!isInSafeZone)
+                {
+                    GameManager.gameManager.playerHealth.DamageEntity(damagePlayerByEvent);
+                }
             }
         }
-    }
 
-    private void TriggerEvent()
-    {
-        if (!audioSource.isPlaying)
+        private void HandleEvent()
         {
-            isEventActive = true;
-            audioSource.Play();
+            if (!isEventActive)
+            {
+                if (Random.value < probabilityOfEvent)
+                {
+                    TriggerEvent();
+                }
+            }
         }
-        currentTimeToGetSafe = timeToGetToSafe;
-        Debug.Log("Air Raid Alert!");
+
+        private void TriggerEvent()
+        {
+            if (!audioSource.isPlaying)
+            {
+                isEventActive = true;
+                audioSource.Play();
+            }
+            currentTimeToGetSafe = timeToGetToSafe;
+            Debug.Log("Air Raid Alert!");
+        }
     }
 }

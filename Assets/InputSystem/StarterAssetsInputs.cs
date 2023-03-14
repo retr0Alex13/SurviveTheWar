@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using OM;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
@@ -82,7 +81,7 @@ namespace StarterAssets
             SetCursorState(cursorLocked);
         }
 
-        private void SetCursorState(bool newState)
+        public void SetCursorState(bool newState)
         {
             Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
         }

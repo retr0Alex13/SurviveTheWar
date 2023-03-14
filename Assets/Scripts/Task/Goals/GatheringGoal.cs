@@ -1,28 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class GatheringGoal : Task.TaskGoal
+namespace OM
 {
-    public string item;
-
-    public override string GetDescription()
+    public class GatheringGoal : Task.TaskGoal
     {
-        return $"Gather a {item}";
-    }
+        public string item;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        EventManager.Instance.AddListener<GatheringGameEvent>(OnGathering);
-    }
-
-    private void OnGathering(GatheringGameEvent eventInfo)
-    {
-        if (eventInfo.itemName == item)
+        public override string GetDescription()
         {
-            CurrentAmount++;
-            Evaluate();
+            return $"Gather a {item}";
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            EventManager.Instance.AddListener<GatheringGameEvent>(OnGathering);
+        }
+
+        private void OnGathering(GatheringGameEvent eventInfo)
+        {
+            if (eventInfo.itemName == item)
+            {
+                CurrentAmount++;
+                Evaluate();
+            }
         }
     }
 }
