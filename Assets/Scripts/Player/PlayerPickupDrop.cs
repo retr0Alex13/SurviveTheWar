@@ -21,45 +21,43 @@ namespace OM
 
         public void HandlePickup(InputAction.CallbackContext ctx)
         {
-            if (ctx.canceled && !isHolding)
-            {
-                if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit2, pickUpDistance))
-                {
-                    if (raycastHit2.transform.TryGetComponent(out ItemSOHolder itemSOHolder))
-                    {
-                        if (itemSOHolder != null)
-                        {
-                            playerInventory.AddItem(itemSOHolder.ItemSO);
-                            Destroy(raycastHit2.transform.gameObject);
-                        }
-                    }
-                }
-            }
+            if (!ctx.canceled || isHolding) return;
+
+            if (!Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out var raycastHit, pickUpDistance)) return;
+
+            if (!raycastHit.transform.TryGetComponent(out ItemSOHolder itemSOHolder) || itemSOHolder == null) return;
+
+            playerInventory.AddItem(itemSOHolder.ItemSO);
+            Destroy(raycastHit.transform.gameObject);
         }
 
         public void HandleGrab(InputAction.CallbackContext ctx)
         {
-            if (ctx.performed)
+            if (!ctx.performed)
             {
-                if (objectGrabbable == null)
-                {
-                    if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance))
-                    {
-                        if (raycastHit.transform.TryGetComponent(out objectGrabbable))
-                        {
-                            objectGrabbable.Grab(objectGrabPointTransform);
-                            isHolding = true;
-                        }
-                    }
-                }
-                else
+                if (objectGrabbable != null)
                 {
                     Drop();
                 }
+                return;
             }
-            else if (objectGrabbable != null)
+
+            if (objectGrabbable == null)
+            {
+                TryGrab();
+            }
+            else
             {
                 Drop();
+            }
+        }
+
+        private void TryGrab()
+        {
+            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance) && raycastHit.transform.TryGetComponent(out objectGrabbable))
+            {
+                objectGrabbable.Grab(objectGrabPointTransform);
+                isHolding = true;
             }
         }
 
