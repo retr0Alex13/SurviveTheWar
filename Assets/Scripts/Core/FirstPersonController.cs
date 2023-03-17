@@ -22,11 +22,6 @@ namespace StarterAssets
         [SerializeField, Tooltip("Acceleration and deceleration")]
         private float speedChangeRate = 10.0f;
 
-        [Header("Interaction settings")]
-        [SerializeField, Tooltip("Distance for player interaction")]
-        private float interactDistance = 4f;
-        private int ineteractLayerMask = 1 << 10;
-
         [Space(10)]
         [SerializeField, Tooltip("The height the player can jump")]
         private float jumpHeight = 1.2f;
@@ -69,9 +64,6 @@ namespace StarterAssets
         // timeout deltatime
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
-
-        // for storing interactable interface
-        private Transform selection;
 
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
@@ -124,38 +116,9 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
-            HandleInteraction();
         }
 
-        private void HandleInteraction()
-        {
-            // if selecttion was setted
-            if (selection != null)
-            {
-                if (selection.TryGetComponent(out IInteractable interactable))
-                {
-                    interactable.Dehighlight();
-                }
-                // set selection to null so we don't deselect it
-                selection = null;
-            }
-
-            var ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0f));
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, interactDistance, ineteractLayerMask))
-            {
-                // get a hit transform
-                Transform selected = hit.transform;
-                if (hit.transform.TryGetComponent(out IInteractable interactable))
-                {
-                    Debug.Log(hit.transform.name);
-                    interactable.Highlight();
-                }
-                // set selection tranform to hit interface transofm
-                selection = selected;
-            }
-        }
+        
 
         private void LateUpdate()
         {

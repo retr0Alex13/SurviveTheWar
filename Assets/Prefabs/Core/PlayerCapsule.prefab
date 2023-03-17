@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 8616685848737228371}
   - component: {fileID: 1978471637655604388}
   - component: {fileID: 5420857361349278248}
+  - component: {fileID: 7258403807616249297}
   - component: {fileID: 5393215579111688473}
   - component: {fileID: 4124689305029663659}
   - component: {fileID: 987077048351491925}
@@ -206,7 +207,6 @@ MonoBehaviour:
   sprintSpeed: 6
   rotationSpeed: 1
   speedChangeRate: 10
-  interactDistance: 4
   jumpHeight: 1.2
   gravity: -15
   jumpTimeout: 0.1
@@ -256,6 +256,19 @@ MonoBehaviour:
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
+--- !u!114 &7258403807616249297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4a07c02c6ba60248b4c8e48b7821984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 4
 --- !u!114 &5393215579111688473
 MonoBehaviour:
   m_ObjectHideFlags: 0
