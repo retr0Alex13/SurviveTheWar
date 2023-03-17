@@ -66,7 +66,7 @@ namespace OM
 
         public void HandleEatingOrDrinking(InputAction.CallbackContext ctx)
         {
-            if (ctx.performed)
+            if (ctx.canceled)
             {
                 if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, interactDistance))
                 {

@@ -250,7 +250,7 @@
                     "name": "",
                     "id": "63164691-987b-4d06-be38-626ef522c968",
                     "path": "<Keyboard>/e",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "Pickup",

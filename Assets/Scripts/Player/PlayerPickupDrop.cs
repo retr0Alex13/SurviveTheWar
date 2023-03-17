@@ -12,6 +12,7 @@ namespace OM
 
         private Inventory playerInventory;
         private ObjectGrabbable objectGrabbable;
+        private bool isHolding;
 
         private void Start()
         {
@@ -19,6 +20,24 @@ namespace OM
         }
 
         public void HandlePickup(InputAction.CallbackContext ctx)
+        {
+            if (ctx.canceled && !isHolding)
+            {
+                if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit2, pickUpDistance))
+                {
+                    if (raycastHit2.transform.TryGetComponent(out ItemSOHolder itemSOHolder))
+                    {
+                        if (itemSOHolder != null)
+                        {
+                            playerInventory.AddItem(itemSOHolder.ItemSO);
+                            Destroy(raycastHit2.transform.gameObject);
+                        }
+                    }
+                }
+            }
+        }
+
+        public void HandleGrab(InputAction.CallbackContext ctx)
         {
             if (ctx.performed)
             {
@@ -29,6 +48,7 @@ namespace OM
                         if (raycastHit.transform.TryGetComponent(out objectGrabbable))
                         {
                             objectGrabbable.Grab(objectGrabPointTransform);
+                            isHolding = true;
                         }
                     }
                 }
@@ -41,26 +61,13 @@ namespace OM
             {
                 Drop();
             }
-            //if (ctx.canceled)
-            //{
-            //    if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit2, pickUpDistance))
-            //    {
-            //        if (raycastHit2.transform.TryGetComponent(out ItemSOHolder itemSOHolder))
-            //        {
-            //            if (itemSOHolder != null)
-            //            {
-            //                playerInventory.AddItem(itemSOHolder.ItemSO);
-            //                Destroy(raycastHit2.transform.gameObject);
-            //            }
-            //        }
-            //    }
-            //}
         }
 
         private void Drop()
         {
             objectGrabbable.Drop();
             objectGrabbable = null;
+            isHolding = false;
         }
     }
 }

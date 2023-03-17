@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace OM
+namespace OM.Crafting
 {
     public class PlayerCrafting : MonoBehaviour
     {
@@ -11,14 +11,14 @@ namespace OM
 
         private void Start()
         {
-
         }
 
         public void HandleCrafting(InputAction.CallbackContext ctx)
         {
-            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, interactDistance, interactLayerMask) 
+            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, interactDistance, interactLayerMask)
                 && raycastHit.transform.TryGetComponent(out CraftingStation craftingWorkbench))
             {
+                // if button is held down call Craft function
                 if (ctx.performed)
                 {
                     craftingWorkbench.Craft();
