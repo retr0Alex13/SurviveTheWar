@@ -13,8 +13,6 @@ namespace StarterAssets
     public class FirstPersonController : MonoBehaviour
     {
         [Header("Player")]
-        [SerializeField, Tooltip("Can player use head bob")]
-        private bool canUseHeadBob = true;
         [SerializeField, Tooltip("Move speed of the character in m/s")]
         private float moveSpeed = 4.0f;
         [SerializeField, Tooltip("Sprint speed of the character in m/s")]
@@ -28,16 +26,6 @@ namespace StarterAssets
         [SerializeField, Tooltip("Distance for player interaction")]
         private float interactDistance = 4f;
         private int ineteractLayerMask = 1 << 10;
-
-        [Header("Headbob Settings")]
-        [SerializeField, Tooltip("Walk speed of the headbob effect")]
-        private float walkBobSpeed = 14f;
-        [SerializeField, Tooltip("Amount of the headbob effect when walking")]
-        private float walkBobAmount = 0.05f;
-        [SerializeField, Tooltip("Sprint speed of the headbob effect")]
-        private float sprintBobSpeed = 18f;
-        [SerializeField, Tooltip("Amount of the headbob effect when walking")]
-        private float sprintBobAmount = 0.11f;
 
         [Space(10)]
         [SerializeField, Tooltip("The height the player can jump")]
@@ -64,8 +52,6 @@ namespace StarterAssets
         [Header("Cinemachine")]
         [SerializeField, Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
         private GameObject cinemachineCameraTarget;
-        [SerializeField, Tooltip("Player camera root for headbob effect")]
-        private GameObject playerCameraRoot;
         [SerializeField, Tooltip("How far in degrees can you move the camera up")]
         private float topClamp = 90.0f;
         [SerializeField, Tooltip("How far in degrees can you move the camera down")]
@@ -83,14 +69,9 @@ namespace StarterAssets
         // timeout deltatime
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
-        private float headBobTimer;
-
-        // used to reset camera position in headbob effect
-        private float defaultYPos = 0;
 
         // for storing interactable interface
         private Transform selection;
-
 
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
@@ -121,12 +102,6 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
-            // get a reference to our player root gameObject
-            if (playerCameraRoot == null)
-            {
-                playerCameraRoot = GameObject.FindGameObjectWithTag("CinemachineTarget");
-            }
-            defaultYPos = _mainCamera.transform.localPosition.y;
         }
 
         private void Start()
@@ -149,7 +124,6 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
-            HandleHeadBob();
             HandleInteraction();
         }
 
@@ -265,24 +239,6 @@ namespace StarterAssets
             _controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
         }
 
-        private void HandleHeadBob()
-        {
-            if (!canUseHeadBob) return;
-            if (!_controller.isGrounded) return;
-
-            if (_input.GetMove() != Vector2.zero)
-            {
-                headBobTimer += Time.deltaTime * (_input.IsSprinting() ? sprintBobSpeed : walkBobSpeed);
-                playerCameraRoot.transform.localPosition = new Vector3(
-                    playerCameraRoot.transform.localPosition.x,
-                    defaultYPos + Mathf.Sin(headBobTimer) * (_input.IsSprinting() ? sprintBobAmount : walkBobAmount),
-                    playerCameraRoot.transform.localPosition.z);
-            }
-            else
-            {
-                playerCameraRoot.transform.localPosition = new Vector3(playerCameraRoot.transform.localPosition.x, defaultYPos, playerCameraRoot.transform.localPosition.z);
-            }
-        }
 
         private void JumpAndGravity()
         {

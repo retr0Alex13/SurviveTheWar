@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 1978471637655604388}
   - component: {fileID: 5420857361349278248}
   - component: {fileID: 5393215579111688473}
+  - component: {fileID: 4124689305029663659}
   - component: {fileID: 987077048351491925}
   - component: {fileID: 2403418030352593668}
   - component: {fileID: 2406968900621234481}
@@ -205,6 +206,7 @@ MonoBehaviour:
   sprintSpeed: 6
   rotationSpeed: 1
   speedChangeRate: 10
+  interactDistance: 4
   jumpHeight: 1.2
   gravity: -15
   jumpTimeout: 0.1
@@ -285,6 +287,25 @@ MonoBehaviour:
   isSprinting: 0
   HasStamina: 1
   playerCameraTransform: {fileID: 0}
+--- !u!114 &4124689305029663659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 240f204155dbcc646aee218e5e1f2d44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canUseHeadBob: 1
+  walkBobSpeed: 14
+  walkBobAmount: 0.05
+  sprintBobSpeed: 18
+  sprintBobAmount: 0.11
+  playerCameraRoot: {fileID: 4135013735270702863}
+  mainCamera: {fileID: 0}
 --- !u!114 &987077048351491925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,7 +356,6 @@ MonoBehaviour:
   items:
   - {fileID: 11400000, guid: 09f7c4168087f3747ab1930745a96853, type: 2}
   - {fileID: 11400000, guid: ee917bfb5c9440e49b16ec8438e70b33, type: 2}
-  - {fileID: 11400000, guid: 1b916879e95beac46988e7aa24d81100, type: 2}
 --- !u!114 &8616685848737228376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +484,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 987077048351491925}
+        m_TargetAssemblyTypeName: OM.PlayerPickupDrop, Assembly-CSharp
+        m_MethodName: HandleGrab
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 88491b50-63bc-4db6-a21f-35f6bc65370f
     m_ActionName: Player/Pickup[/Keyboard/e]
   - m_PersistentCalls:
@@ -483,7 +515,19 @@ MonoBehaviour:
     m_ActionId: e56cda4c-fc36-4f30-8d34-883a49239821
     m_ActionName: Player/Interact[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: OM.InventoryUI, Assembly-CSharp
+        m_MethodName: ControlInventoryWindow
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: c1166719-5f91-4040-9adc-4b0a2d01ef95
     m_ActionName: Player/Inventory[/Keyboard/tab]
   m_NeverAutoSwitchControlSchemes: 0
