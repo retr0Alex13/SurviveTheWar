@@ -1,3 +1,4 @@
+using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,58 +7,64 @@ namespace OM
     public class PlayerNeeds : MonoBehaviour
     {
         [Header("Hunger")]
-        [SerializeField] float maxHunger = 100f;
-        [SerializeField] float decreaseHungerRate = 1f;
-        [SerializeField] float currentHunger;
+        [SerializeField] private float maxHunger = 100f;
+
+        [SerializeField] private float decreaseHungerRate = 1f;
+        [SerializeField] private float currentHunger;
         public float HungerPercent => currentHunger / maxHunger;
 
         [Header("Thirst")]
         [SerializeField] private float maxThirst = 100f;
+
         [SerializeField] private float decreaseThirstRate = 1f;
-        [SerializeField] float currentThirst;
+        [SerializeField] private float currentThirst;
         public float ThirstPercent => currentThirst / maxThirst;
 
         [SerializeField] private float interactDistance = 2f;
 
-        // TODO: Make sanity
         [Header("Sanity")]
         [SerializeField] private float maxSanity = 100f;
+
         [SerializeField] private float decreaseSanityRate = 1f;
-        [SerializeField] float currentSanity;
+        [SerializeField] private float currentSanity;
         public float SanityPercent => currentSanity / maxSanity;
 
         [Header("Stamina")]
-        [SerializeField] float maxStamina = 100f;
+        [SerializeField] private float maxStamina = 100f;
 
-        [SerializeField] float decreaseStaminaRate = 1f;
+        [SerializeField] private float decreaseStaminaRate = 1f;
 
-        [SerializeField] float rechargeStaminaRate = 2f;
-        [SerializeField] float rechargeStaminaDelay = 1f;
+        [SerializeField] private float rechargeStaminaRate = 2f;
+        [SerializeField] private float rechargeStaminaDelay = 1f;
 
-        [SerializeField] float currentStamina;
-        [SerializeField] float currentStaminaDelayCounter;
+        [SerializeField] private float currentStamina;
+        [SerializeField] private float currentStaminaDelayCounter;
 
-        [SerializeField] bool isSprinting = false;
-        [SerializeField] bool HasStamina = true;
+        [SerializeField] private bool HasStamina = true;
         public float StaminaPercent => currentStamina / maxStamina;
 
         public delegate void CharacterStaminaAction(bool HasStamina);
+
         public static event CharacterStaminaAction OnExhausted;
 
         public delegate void CharacterNeedsAction(float Hunger, float Thirst, float Stamina);
+
         public static event CharacterNeedsAction OnNeedsChanged;
 
         [Header("Player Refernces")]
         [SerializeField] private Transform playerCameraTransform;
+        private StarterAssetsInputs playerInputs;
 
-        void Start()
+        private void Start()
         {
             currentThirst = maxThirst;
             currentHunger = maxHunger;
             currentStamina = maxStamina;
+            
+            playerInputs = GetComponent<StarterAssetsInputs>();
         }
 
-        void Update()
+        private void Update()
         {
             HandleStarvingAndThirst();
             HandleStamina();
@@ -84,7 +91,6 @@ namespace OM
             currentHunger -= decreaseHungerRate * Time.deltaTime;
             currentThirst -= decreaseThirstRate * Time.deltaTime;
 
-
             if (currentHunger <= 0 || currentThirst <= 0)
             {
                 GameManager.gameManager.playerHealth.DamageEntity(5);
@@ -96,44 +102,34 @@ namespace OM
 
         private void HandleStamina()
         {
-            if (isSprinting)
+            if (playerInputs.IsSprinting() && playerInputs.GetMove().y > 0.1f)
             {
                 currentStamina -= decreaseStaminaRate * Time.deltaTime;
-                if (currentStamina <= 0)
+
+                HasStamina = currentStamina > 0;
+
+                if (!HasStamina)
                 {
-                    HasStamina = false;
                     OnExhausted(HasStamina);
                     currentStamina = 0;
                 }
-                else
-                {
-                    HasStamina = true;
-                    OnExhausted(HasStamina);
-                }
-                currentStaminaDelayCounter = 0;
             }
-
-            if (!isSprinting && currentStamina < maxStamina)
+            else if (currentStamina < maxStamina)
             {
-                Debug.Log("not sprinting and stamina is low");
                 if (currentStaminaDelayCounter < rechargeStaminaDelay)
                 {
                     currentStaminaDelayCounter += Time.deltaTime;
                 }
-                if (currentStaminaDelayCounter >= rechargeStaminaDelay)
+                else
                 {
                     currentStamina += rechargeStaminaRate * Time.deltaTime;
                 }
             }
+
             currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
         }
 
-        public void SprintInput(InputAction.CallbackContext ctx)
-        {
-            isSprinting = ctx.ReadValueAsButton();
-        }
-
-        void AddHungerAndThirst(float hungerAmount, float thirstAmount)
+        private void AddHungerAndThirst(float hungerAmount, float thirstAmount)
         {
             currentHunger += hungerAmount;
             currentThirst += thirstAmount;
@@ -141,6 +137,5 @@ namespace OM
             currentHunger = Mathf.Clamp(currentHunger, 0f, maxHunger);
             currentThirst = Mathf.Clamp(currentThirst, 0f, maxThirst);
         }
-
     }
 }
