@@ -19,6 +19,9 @@ namespace OM
             playerInventory = GetComponent<Inventory>();
         }
 
+        /// <summary>
+        /// Function for picking up items to inventory
+        /// </summary>
         public void HandlePickup(InputAction.CallbackContext ctx)
         {
             if (!ctx.canceled || isHolding) return;
@@ -27,10 +30,15 @@ namespace OM
 
             if (!raycastHit.transform.TryGetComponent(out ItemSOHolder itemSOHolder) || itemSOHolder == null) return;
 
+            if(!playerInventory.InventorySlotsAvailable()) return;
+
             playerInventory.AddItem(itemSOHolder.ItemSO);
             Destroy(raycastHit.transform.gameObject);
         }
 
+        /// <summary>
+        /// Function for grabbing and holding items
+        /// </summary>
         public void HandleGrab(InputAction.CallbackContext ctx)
         {
             if (!ctx.performed)

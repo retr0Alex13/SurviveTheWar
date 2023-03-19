@@ -6,25 +6,41 @@ namespace OM
     public class Inventory : MonoBehaviour
     {
         [SerializeField] public List<ItemSO> items = new List<ItemSO>();
+        [SerializeField] private int inventorySize = 4;
+        [SerializeField] private InventoryMediator mediator;
+        private bool isInventoryChanged;
 
-        public delegate void InventoryAction();
-        public static event InventoryAction OnItemChanged;
 
         private void Start()
         {
-
+            UpdateInventoryUI();
         }
 
         public void AddItem(ItemSO item)
         {
             items.Add(item);
-            OnItemChanged?.Invoke();
+            UpdateInventoryUI();
         }
 
         public void RemoveItem(ItemSO item)
         {
             items.Remove(item);
-            OnItemChanged?.Invoke();
+            UpdateInventoryUI();
+        }
+
+        private void UpdateInventoryUI()
+        {
+            isInventoryChanged = true;
+            mediator.FireEvent(isInventoryChanged);
+            isInventoryChanged = false;
+        }
+
+        public bool InventorySlotsAvailable()
+        {
+            if (items.Count >= inventorySize)
+                return false;
+
+            return true;
         }
     }
 

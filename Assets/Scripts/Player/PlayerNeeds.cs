@@ -40,7 +40,6 @@ namespace OM
         [SerializeField] private float currentStamina;
         [SerializeField] private float currentStaminaDelayCounter;
 
-        [SerializeField] private bool HasStamina = true;
         public float StaminaPercent => currentStamina / maxStamina;
 
         public delegate void CharacterStaminaAction(bool HasStamina);
@@ -67,7 +66,7 @@ namespace OM
         private void Update()
         {
             HandleStarvingAndThirst();
-            HandleStamina();
+            UpdateStamina();
             OnNeedsChanged?.Invoke(HungerPercent, ThirstPercent, StaminaPercent);
         }
 
@@ -100,33 +99,46 @@ namespace OM
             }
         }
 
-        private void HandleStamina()
+        private void UpdateStamina()
         {
-            if (playerInputs.IsSprinting() && playerInputs.GetMove().y > 0.1f)
+            currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+
+            if (PlayerSprinting())
             {
-                currentStamina -= decreaseStaminaRate * Time.deltaTime;
-
-                HasStamina = currentStamina > 0;
-
-                if (!HasStamina)
-                {
-                    OnExhausted(HasStamina);
-                    currentStamina = 0;
-                }
+                HandleSprinting();
             }
             else if (currentStamina < maxStamina)
             {
-                if (currentStaminaDelayCounter < rechargeStaminaDelay)
-                {
-                    currentStaminaDelayCounter += Time.deltaTime;
-                }
-                else
-                {
-                    currentStamina += rechargeStaminaRate * Time.deltaTime;
-                }
+                HandleRecharging();
             }
+        }
 
-            currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+        private bool PlayerSprinting()
+        {
+            return playerInputs.IsSprinting() && playerInputs.GetMove().y > 0.1f;
+        }
+
+        private void HandleSprinting()
+        {
+            currentStamina -= decreaseStaminaRate * Time.deltaTime;
+            if (currentStamina <= 0)
+            {
+                OnExhausted(false);
+                currentStamina = 0;
+            }
+            currentStaminaDelayCounter = 0f;
+        }
+
+        private void HandleRecharging()
+        {
+            if (currentStaminaDelayCounter < rechargeStaminaDelay)
+            {
+                currentStaminaDelayCounter += Time.deltaTime;
+            }
+            else
+            {
+                currentStamina += rechargeStaminaRate * Time.deltaTime;
+            }
         }
 
         private void AddHungerAndThirst(float hungerAmount, float thirstAmount)

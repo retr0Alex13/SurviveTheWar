@@ -39,7 +39,6 @@ namespace OM
                 Transform selected = hit.transform;
                 if (hit.transform.TryGetComponent(out IInteractable interactable))
                 {
-                    Debug.Log(hit.transform.name);
                     interactable.Highlight();
                 }
                 // set selection tranform to hit interface transofm
