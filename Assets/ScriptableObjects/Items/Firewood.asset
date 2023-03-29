@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 7
   itemName: Firewood
+  quantity: 0
   prefab: {fileID: 1755127807388825079, guid: d2b3063c31702d241948f91f18de2161, type: 3}
-  icon: {fileID: 21300000, guid: 34acd8e846d00104e9593b1cfbf36cdb, type: 3}
+  image: {fileID: 21300000, guid: 34acd8e846d00104e9593b1cfbf36cdb, type: 3}

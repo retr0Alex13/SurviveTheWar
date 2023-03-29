@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace OM.Crafting
+namespace OM
 {
     public class CraftingStation : MonoBehaviour, IInteractable
     {

@@ -147,7 +147,6 @@ GameObject:
   - component: {fileID: 4124689305029663659}
   - component: {fileID: 987077048351491925}
   - component: {fileID: 2403418030352593668}
-  - component: {fileID: 2406968900621234481}
   - component: {fileID: 8616685848737228376}
   m_Layer: 8
   m_Name: PlayerCapsule
@@ -268,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a07c02c6ba60248b4c8e48b7821984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 4
+  interactDistance: 2
 --- !u!114 &5393215579111688473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,12 +292,10 @@ MonoBehaviour:
   currentSanity: 0
   maxStamina: 8
   decreaseStaminaRate: 1
-  rechargeStaminaRate: 2
+  rechargeStaminaRate: 3
   rechargeStaminaDelay: 1
   currentStamina: 0
   currentStaminaDelayCounter: 1
-  isSprinting: 0
-  HasStamina: 1
   playerCameraTransform: {fileID: 0}
 --- !u!114 &4124689305029663659
 MonoBehaviour:
@@ -313,10 +310,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canUseHeadBob: 1
-  walkBobSpeed: 14
-  walkBobAmount: 0.05
-  sprintBobSpeed: 18
-  sprintBobAmount: 0.11
+  walkBobSpeed: 12
+  walkBobAmount: 0.04
+  sprintBobSpeed: 13
+  sprintBobAmount: 0.08
   playerCameraRoot: {fileID: 4135013735270702863}
   mainCamera: {fileID: 0}
 --- !u!114 &987077048351491925
@@ -354,21 +351,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   playerCameraTransform: {fileID: 0}
---- !u!114 &2406968900621234481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8616685848737228372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b4c01d540b486641b550c5889901377, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items:
-  - {fileID: 11400000, guid: 09f7c4168087f3747ab1930745a96853, type: 2}
-  - {fileID: 11400000, guid: ee917bfb5c9440e49b16ec8438e70b33, type: 2}
 --- !u!114 &8616685848737228376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,18 +430,6 @@ MonoBehaviour:
       - m_Target: {fileID: 5420857361349278248}
         m_TargetAssemblyTypeName: StarterAssets.StarterAssetsInputs, Assembly-CSharp
         m_MethodName: OnSprint
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5393215579111688473}
-        m_TargetAssemblyTypeName: OM.PlayerNeeds, Assembly-CSharp
-        m_MethodName: SprintInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

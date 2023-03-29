@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OM.Crafting
+namespace OM
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/RecipieSO")]
     public class CraftingRecipeSO : ScriptableObject

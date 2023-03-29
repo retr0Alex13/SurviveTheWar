@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 4
   itemName: OfficePaper
+  quantity: 0
   prefab: {fileID: 7565486831765466064, guid: 09942ffd0dd3e20428a0eb35c640248d, type: 3}
-  icon: {fileID: 21300000, guid: 2d579e526793387478684092f7393812, type: 3}
+  image: {fileID: 21300000, guid: 2d579e526793387478684092f7393812, type: 3}

@@ -46,7 +46,7 @@ namespace OM
                 Sprite s = AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/{pathFolder}/{data.itemName}_Icon.png");
                 if (s != null)
                 {
-                    data.icon = s;
+                    data.image = s;
                     EditorUtility.SetDirty(data);
                 }
 #endif

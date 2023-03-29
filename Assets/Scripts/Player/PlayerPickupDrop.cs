@@ -9,30 +9,36 @@ namespace OM
         [SerializeField] private Transform playerCameraTransform;
         [SerializeField] private Transform objectGrabPointTransform;
         [SerializeField] private LayerMask pickUpLayerMask;
+        [SerializeField] private InventoryMediator inventoryMediator;
 
-        private Inventory playerInventory;
         private ObjectGrabbable objectGrabbable;
         private bool isHolding;
 
-        private void Start()
-        {
-            playerInventory = GetComponent<Inventory>();
-        }
+        public delegate void PlayerPickUpAction(ItemSO itemSO);
+
+        public static event PlayerPickUpAction OnItemPickUp;
 
         /// <summary>
         /// Function for picking up items to inventory
         /// </summary>
         public void HandlePickup(InputAction.CallbackContext ctx)
         {
-            if (!ctx.canceled || isHolding) return;
+            if (ctx.canceled || isHolding)
+            {
+                return;
+            }
 
-            if (!Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out var raycastHit, pickUpDistance)) return;
+            if (!Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance))
+            {
+                return;
+            }
 
-            if (!raycastHit.transform.TryGetComponent(out ItemSOHolder itemSOHolder) || itemSOHolder == null) return;
+            if (!raycastHit.transform.TryGetComponent<ItemSOHolder>(out var itemSOHolder) || itemSOHolder == null)
+            {
+                return;
+            }
 
-            if(!playerInventory.InventorySlotsAvailable()) return;
-
-            playerInventory.AddItem(itemSOHolder.ItemSO);
+            OnItemPickUp?.Invoke(itemSOHolder.ItemSO);
             Destroy(raycastHit.transform.gameObject);
         }
 

@@ -16,9 +16,8 @@ namespace OM
 
         [SerializeField] private ItemType itemType;
         [SerializeField] public string itemName;
-        [SerializeField] public int quantity;
         [SerializeField] private GameObject prefab;
-        [SerializeField] public Sprite icon;
+        [SerializeField] public Sprite image;
 
         public GameObject Prefab { get { return prefab; } }
     }
