@@ -5,7 +5,7 @@ using UnityEngine;
 namespace OM
 {
 
-    public class DaySurvivedUI : MonoBehaviour
+    public class ShowDaysSurvived : MonoBehaviour
     {
         private CanvasGroup daySurvivedGroupUI;
         [SerializeField] private DayNightSystem dayNightSystem;

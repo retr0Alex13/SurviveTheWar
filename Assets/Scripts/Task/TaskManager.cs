@@ -35,7 +35,7 @@ namespace OM
 
                 taskObject.GetComponent<Button>().onClick.AddListener(delegate
                 {
-                    taskWindow.GetComponent<TaskWindow>().Initialize(task);
+                    taskWindow.GetComponent<TaskWindowBuilder>().Initialize(task);
                     taskWindow.SetActive(true);
                     gameObject.SetActive(false);
                 });

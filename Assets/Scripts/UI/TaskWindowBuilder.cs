@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace OM
 {
-    public class TaskWindow : MonoBehaviour
+    public class TaskWindowBuilder : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI titleText;
         [SerializeField] private TextMeshProUGUI descriptionText;

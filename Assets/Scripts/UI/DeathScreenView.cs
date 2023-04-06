@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace OM
 {
-    public class DeathScreenUI : MonoBehaviour
+    public class DeathScreenView : MonoBehaviour
     {
         private CanvasGroup deathGroupUI;
         [SerializeField] private float alphaLerp = 1f;
