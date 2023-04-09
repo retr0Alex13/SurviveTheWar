@@ -41,13 +41,12 @@ namespace OM
         {
             if (ItemDictionary.TryGetValue(referenceData, out InventoryItem value))
             {
-                value.RemoveFromStack();
-
-                if (value.StackSize == 0)
+                if (value.StackSize == 1)
                 {
                     Inventory.Remove(value);
                     ItemDictionary.Remove(referenceData);
                 }
+                value.RemoveFromStack();
             }
             OnInventoryChange();
         }

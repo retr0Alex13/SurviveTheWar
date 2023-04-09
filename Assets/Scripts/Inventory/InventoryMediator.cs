@@ -42,12 +42,19 @@ namespace OM
 
         public void InventoryVisibility(InputAction.CallbackContext ctx)
         {
-            if(ctx.performed)
+            if (ctx.performed)
             {
                 inventoryView.gameObject.SetActive(!isInventoryActive());
+                if (isInventoryActive())
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
             }
         }
-
         private bool isInventoryActive()
         {
             return inventoryView.gameObject.activeSelf;

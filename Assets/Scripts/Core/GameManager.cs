@@ -1,6 +1,7 @@
 using StarterAssets;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace OM
 {
@@ -9,8 +10,7 @@ namespace OM
         public static GameManager gameManager { get; private set; }
 
         [Header("Player References")]
-        [SerializeField] private FirstPersonController playerController;
-        [SerializeField] private StarterAssetsInputs playerInputs;
+        [SerializeField] private PlayerInput playerInput;
 
         public HealthSystem playerHealth = new HealthSystem(100, 100);
 
@@ -44,8 +44,7 @@ namespace OM
 
         private void FreezePlayer()
         {
-            playerController.enabled = false;
-            playerInputs.enabled = false;
+            playerInput.enabled = false;
         }
     }
 }

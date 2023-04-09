@@ -6,29 +6,36 @@ namespace OM
 {
     public class PlayerNeeds : MonoBehaviour
     {
+        [SerializeField] private float interactDistance = 2f;
+
+        #region Hunger
         [Header("Hunger")]
         [SerializeField] private float maxHunger = 100f;
 
         [SerializeField] private float decreaseHungerRate = 1f;
         [SerializeField] private float currentHunger;
         public float HungerPercent => currentHunger / maxHunger;
+        #endregion
 
+        #region Thirst
         [Header("Thirst")]
         [SerializeField] private float maxThirst = 100f;
 
         [SerializeField] private float decreaseThirstRate = 1f;
         [SerializeField] private float currentThirst;
         public float ThirstPercent => currentThirst / maxThirst;
+        #endregion
 
-        [SerializeField] private float interactDistance = 2f;
-
+        #region Sanity
         [Header("Sanity")]
         [SerializeField] private float maxSanity = 100f;
 
         [SerializeField] private float decreaseSanityRate = 1f;
         [SerializeField] private float currentSanity;
         public float SanityPercent => currentSanity / maxSanity;
+        #endregion
 
+        #region Stamina
         [Header("Stamina")]
         [SerializeField] private float maxStamina = 100f;
 
@@ -41,6 +48,7 @@ namespace OM
         [SerializeField] private float currentStaminaDelayCounter;
 
         public float StaminaPercent => currentStamina / maxStamina;
+        #endregion
 
         public delegate void CharacterStaminaAction(bool HasStamina);
 
@@ -72,7 +80,7 @@ namespace OM
 
         public void HandleEatingOrDrinking(InputAction.CallbackContext ctx)
         {
-            if (ctx.canceled)
+            if (ctx.performed)
             {
                 if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, interactDistance))
                 {

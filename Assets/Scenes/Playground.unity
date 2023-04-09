@@ -3246,6 +3246,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventoryBar
       objectReference: {fileID: 0}
+    - target: {fileID: 258222086583684426, guid: dfb19d944dc000b4c9fc2b269f1ac683,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 258222086583684531, guid: dfb19d944dc000b4c9fc2b269f1ac683,
         type: 3}
       propertyPath: inventoryMediator
@@ -3289,12 +3294,12 @@ PrefabInstance:
     - target: {fileID: 258222086583684533, guid: dfb19d944dc000b4c9fc2b269f1ac683,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 258222086583684533, guid: dfb19d944dc000b4c9fc2b269f1ac683,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 258222086583684533, guid: dfb19d944dc000b4c9fc2b269f1ac683,
         type: 3}
@@ -4439,6 +4444,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 987077048351491925, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
+      propertyPath: inventoryMediator
+      value: 
+      objectReference: {fileID: 1013156372}
+    - target: {fileID: 987077048351491925, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
       propertyPath: playerCameraTransform
       value: 
       objectReference: {fileID: 1405640147}
@@ -4556,6 +4566,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 512845562}
     m_Modifications:
+    - target: {fileID: 5908367790491940826, guid: b5bd5559c45743642a195ecb66aff818,
+        type: 3}
+      propertyPath: playerInput
+      value: 
+      objectReference: {fileID: 2006620068}
     - target: {fileID: 5908367790491940826, guid: b5bd5559c45743642a195ecb66aff818,
         type: 3}
       propertyPath: playerInputs
