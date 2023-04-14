@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace OM
 {
     public class InventoryView : MonoBehaviour
     {
         [SerializeField] private GameObject itemSlotPrefab;
-        [SerializeField] private InventoryMediator inventoryMediator;
+        [SerializeField] public InventoryMediator inventoryMediator;
 
         public void OnUpdateInventory()
         {
@@ -38,6 +37,7 @@ namespace OM
         public void RemoveItemSlot(InventoryItem item)
         {
             inventoryMediator.InventorySystem.Remove(item.itemData);
+            inventoryMediator.RemoveItemFromInventory(item.itemData);
         }
     }
 }

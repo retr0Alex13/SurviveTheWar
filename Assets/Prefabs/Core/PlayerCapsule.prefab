@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &50821810128691629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4700523929922016164}
+  m_Layer: 8
+  m_Name: HoldItemPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4700523929922016164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50821810128691629}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.4, y: 1.17, z: 0.57}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8997996947095583982}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4135013735270702863
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,6 +179,7 @@ GameObject:
   - component: {fileID: 987077048351491925}
   - component: {fileID: 2403418030352593668}
   - component: {fileID: 8616685848737228376}
+  - component: {fileID: 785804566909964821}
   m_Layer: 8
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -169,6 +201,7 @@ Transform:
   m_Children:
   - {fileID: 4135013735270702856}
   - {fileID: 5393215578589016641}
+  - {fileID: 4700523929922016164}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -280,13 +313,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c633437796ec944688ed879a5180efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactDistance: 2
   maxHunger: 100
   decreaseHungerRate: 0.4
   currentHunger: 0
   maxThirst: 90
   decreaseThirstRate: 0.4
   currentThirst: 0
-  interactDistance: 2
   maxSanity: 100
   decreaseSanityRate: 1
   currentSanity: 0
@@ -312,8 +345,8 @@ MonoBehaviour:
   canUseHeadBob: 1
   walkBobSpeed: 12
   walkBobAmount: 0.04
-  sprintBobSpeed: 13
-  sprintBobAmount: 0.08
+  sprintBobSpeed: 15
+  sprintBobAmount: 0.1
   playerCameraRoot: {fileID: 4135013735270702863}
   mainCamera: {fileID: 0}
 --- !u!114 &987077048351491925
@@ -499,9 +532,9 @@ MonoBehaviour:
     m_ActionName: Player/Interact[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: OM.InventoryUI, Assembly-CSharp
-        m_MethodName: ControlInventoryWindow
+      - m_Target: {fileID: 785804566909964821}
+        m_TargetAssemblyTypeName: OM.InventoryMediator, Assembly-CSharp
+        m_MethodName: InventoryVisibility
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -518,3 +551,17 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &785804566909964821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d46f57dfc5717f4d9c868b96f0ea19e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryView: {fileID: 0}
+  playerDropPoint: {fileID: 0}

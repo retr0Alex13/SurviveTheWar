@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
-using System.Collections.Generic;
-using UnityEngine.EventSystems;
 
 namespace OM
 {

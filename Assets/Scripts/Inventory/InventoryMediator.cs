@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,9 +7,9 @@ namespace OM
     public class InventoryMediator : MonoBehaviour
     {
         [SerializeField] private InventoryView inventoryView;
+        [SerializeField] private Transform playerDropPoint;
 
         public InventorySystem InventorySystem = new InventorySystem();
-
 
         void OnEnable()
         {
@@ -38,6 +37,14 @@ namespace OM
         public void AddItemToInventory(ItemSO item)
         {
             InventorySystem.Add(item);
+        }
+
+        public void RemoveItemFromInventory(ItemSO item)
+        {
+            InventorySystem.Remove(item);
+            GameObject dropItem = Instantiate(item.Prefab, 
+                new Vector3(playerDropPoint.position.x, playerDropPoint.position.y, playerDropPoint.position.z), 
+                Quaternion.identity);
         }
 
         public void InventoryVisibility(InputAction.CallbackContext ctx)

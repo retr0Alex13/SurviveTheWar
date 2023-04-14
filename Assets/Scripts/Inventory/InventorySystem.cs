@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +10,6 @@ namespace OM
 
         public delegate void InventoryAction();
         public static event InventoryAction OnInventoryChange;
-
 
         public InventoryItem Get(ItemSO item)
         {

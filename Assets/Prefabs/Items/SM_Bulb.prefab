@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 2541901780422404243}
   - component: {fileID: 2541901780422404252}
   - component: {fileID: 2541901780422404249}
-  m_Layer: 6
+  - component: {fileID: 2541901780334786631}
+  m_Layer: 10
   m_Name: SM_Bulb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,3 +144,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSO: {fileID: 11400000, guid: ee917bfb5c9440e49b16ec8438e70b33, type: 2}
+--- !u!114 &2541901780334786631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8149932189074464859}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
