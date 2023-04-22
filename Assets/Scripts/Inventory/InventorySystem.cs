@@ -11,6 +11,7 @@ namespace OM
         public delegate void InventoryAction();
         public static event InventoryAction OnInventoryChange;
 
+
         public InventoryItem Get(ItemSO item)
         {
             if (ItemDictionary.TryGetValue(item, out InventoryItem inventoryItem))

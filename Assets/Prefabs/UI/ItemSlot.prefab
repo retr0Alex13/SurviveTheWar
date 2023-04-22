@@ -619,6 +619,7 @@ MonoBehaviour:
   amountObject: {fileID: 1185157938677932473}
   amountText: {fileID: 1185157938296436947}
   OptionPanel: {fileID: 3916276685974545291}
+  useButton: {fileID: 2245291391219035173}
 --- !u!114 &7526092102970996903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -665,7 +666,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1264704216730388249}
         m_TargetAssemblyTypeName: OM.ItemSlot, Assembly-CSharp
-        m_MethodName: SetState
+        m_MethodName: SetWindowState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -797,7 +798,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7086034843602894788}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1264704216730388249}
+        m_TargetAssemblyTypeName: OM.ItemSlot, Assembly-CSharp
+        m_MethodName: Use
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5043259189762973102
 MonoBehaviour:
   m_ObjectHideFlags: 0

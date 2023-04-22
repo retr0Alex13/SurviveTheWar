@@ -42,6 +42,11 @@ namespace OM
         public void RemoveItemFromInventory(ItemSO item)
         {
             InventorySystem.Remove(item);
+        }
+
+        public void RemoveItemAndDrop(ItemSO item)
+        {
+            InventorySystem.Remove(item);
             GameObject dropItem = Instantiate(item.Prefab, 
                 new Vector3(playerDropPoint.position.x, playerDropPoint.position.y, playerDropPoint.position.z), 
                 Quaternion.identity);

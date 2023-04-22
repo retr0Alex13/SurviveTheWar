@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a707cb3d5b390544db74a4794f858e42, type: 3}
   m_Name: LightBulb
   m_EditorClassIdentifier: 
-  itemType: 3
+  itemType: 1
   itemName: Light Bulb
-  quantity: 0
   prefab: {fileID: 8149932189074464859, guid: 7824e1d369b7fc947aafcb0db3c22ca6, type: 3}
   image: {fileID: 21300000, guid: d483528c73b430347b2b4a516aa96bc6, type: 3}

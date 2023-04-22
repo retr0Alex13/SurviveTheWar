@@ -33,11 +33,5 @@ namespace OM
             ItemSlot itemSlot = obj.GetComponent<ItemSlot>();
             itemSlot.Set(item);
         }
-
-        public void RemoveItemSlot(InventoryItem item)
-        {
-            inventoryMediator.InventorySystem.Remove(item.itemData);
-            inventoryMediator.RemoveItemFromInventory(item.itemData);
-        }
     }
 }

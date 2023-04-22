@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a707cb3d5b390544db74a4794f858e42, type: 3}
-  m_Name: MetalScrap
+  m_Name: Soda
   m_EditorClassIdentifier: 
-  itemType: 1
-  itemName: Metal Scrap
-  prefab: {fileID: 6897142107613896957, guid: bb8bc69ad66ef3248bece0a3b20b37f6, type: 3}
-  image: {fileID: 21300000, guid: eb2c4ebdd0920ab42b59a3f1482b5381, type: 3}
+  itemType: 3
+  itemName: Soda
+  prefab: {fileID: 2640907006130985664, guid: de09415a968aa8d4c99ee736425da5a9, type: 3}
+  image: {fileID: 21300000, guid: d09585bc403083a4ead05d14e2e3be20, type: 3}

@@ -4,6 +4,9 @@ namespace OM
 {
     public class ObjectEatable : MonoBehaviour, IInteractable
     {
+        public delegate void EatableAction(float food, float water);
+        public static event EatableAction OneItemConsuming;
+
         [SerializeField] private float foodToRestore;
         [SerializeField] private float thirstToRestore;
         private Outline outline;
@@ -31,6 +34,11 @@ namespace OM
         {
             if (outline == null) return;
             outline.enabled = false;
+        }
+
+        public void Consume()
+        {
+            OneItemConsuming?.Invoke(FoodToRestore, ThirstToRestore);
         }
     }
 }

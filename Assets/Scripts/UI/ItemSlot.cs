@@ -10,6 +10,9 @@ namespace OM
         [SerializeField] private GameObject amountObject;
         [SerializeField] private TextMeshProUGUI amountText;
         [SerializeField] private GameObject OptionPanel;
+        [SerializeField] private GameObject useButton;
+
+        private InventoryView inventoryView;
 
         [HideInInspector] public InventoryItem InventoryItem;
 
@@ -17,8 +20,18 @@ namespace OM
         {
             InventoryItem = item;
             itemImage.sprite = item.itemData.image;
+            inventoryView = transform.parent.GetComponent<InventoryView>();
 
-            if(item.StackSize <= 1)
+            if(item.itemData.itemType == ItemSO.ItemType.Eatable)
+            {
+                useButton.SetActive(true);
+            }
+            else
+            {
+                useButton.SetActive(false);
+            }
+
+            if (item.StackSize <= 1)
             {
                 amountObject.SetActive(false);
                 return;
@@ -28,14 +41,21 @@ namespace OM
 
         public void Remove()
         {
-            InventoryView inventoryView = transform.parent.GetComponent<InventoryView>();
-            inventoryView.RemoveItemSlot(InventoryItem);
+            inventoryView.inventoryMediator.RemoveItemAndDrop(InventoryItem.itemData);
         }
 
-        public void SetState()
+        public void SetWindowState()
         {
             OptionPanel.SetActive(!OptionPanel.activeSelf);
         }
 
+        public void Use()
+        {
+            if(InventoryItem.itemData.Prefab.TryGetComponent(out ObjectEatable objectEatable))
+            {
+                objectEatable.Consume();
+                inventoryView.inventoryMediator.RemoveItemFromInventory(InventoryItem.itemData);
+            }
+        }
     }
 }

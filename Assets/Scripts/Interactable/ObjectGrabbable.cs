@@ -35,7 +35,6 @@ namespace OM
         {
             if (objectGrabPointTransform != null)
             {
-
                 Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed);
                 objectRigidBody.MovePosition(newPosition);
             }

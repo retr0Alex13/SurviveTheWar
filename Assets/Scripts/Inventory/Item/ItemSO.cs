@@ -10,11 +10,12 @@ namespace OM
         {
             None,
             CraftingMaterial,
-            Usable
+            Equipable,
+            Eatable
         }
 
 
-        [SerializeField] private ItemType itemType;
+        [SerializeField] public ItemType itemType;
         [SerializeField] public string itemName;
         [SerializeField] private GameObject prefab;
         [SerializeField] public Sprite image;

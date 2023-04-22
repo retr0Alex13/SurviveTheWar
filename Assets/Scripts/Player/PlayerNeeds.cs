@@ -62,6 +62,16 @@ namespace OM
         [SerializeField] private Transform playerCameraTransform;
         private StarterAssetsInputs playerInputs;
 
+        private void OnEnable()
+        {
+            ObjectEatable.OneItemConsuming += AddHungerAndThirst;
+        }
+
+        private void OnDisable()
+        {
+            ObjectEatable.OneItemConsuming -= AddHungerAndThirst;
+        }
+
         private void Start()
         {
             currentThirst = maxThirst;
@@ -76,21 +86,6 @@ namespace OM
             HandleStarvingAndThirst();
             UpdateStamina();
             OnNeedsChanged?.Invoke(HungerPercent, ThirstPercent, StaminaPercent);
-        }
-
-        public void HandleEatingOrDrinking(InputAction.CallbackContext ctx)
-        {
-            if (ctx.performed)
-            {
-                if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, interactDistance))
-                {
-                    if (raycastHit.transform.TryGetComponent(out ObjectEatable itemEatable))
-                    {
-                        AddHungerAndThirst(itemEatable.FoodToRestore, itemEatable.ThirstToRestore);
-                        Destroy(itemEatable.gameObject);
-                    }
-                }
-            }
         }
 
         private void HandleStarvingAndThirst()
