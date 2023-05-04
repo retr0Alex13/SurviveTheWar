@@ -22,7 +22,7 @@ namespace OM
             // if selecttion was setted
             if (selection != null)
             {
-                if (selection.TryGetComponent(out IInteractable interactable))
+                if (selection.TryGetComponent(out ISelectable interactable))
                 {
                     interactable.Dehighlight();
                 }
@@ -37,7 +37,7 @@ namespace OM
             {
                 // get a hit transform
                 Transform selected = hit.transform;
-                if (hit.transform.TryGetComponent(out IInteractable interactable))
+                if (hit.transform.TryGetComponent(out ISelectable interactable))
                 {
                     interactable.Highlight();
                 }

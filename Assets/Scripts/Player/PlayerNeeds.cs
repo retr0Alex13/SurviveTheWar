@@ -6,7 +6,7 @@ namespace OM
 {
     public class PlayerNeeds : MonoBehaviour
     {
-        [SerializeField] private float interactDistance = 2f;
+        [SerializeField] private int starvingDamagePerTick = 5;
 
         #region Hunger
         [Header("Hunger")]
@@ -54,13 +54,17 @@ namespace OM
 
         public static event CharacterStaminaAction OnExhausted;
 
-        public delegate void CharacterNeedsAction(float Hunger, float Thirst, float Stamina);
+        public delegate void CharacterNeedsAction(
+            float Hunger, 
+            float Thirst, 
+            float Stamina);
 
         public static event CharacterNeedsAction OnNeedsChanged;
 
         [Header("Player Refernces")]
         [SerializeField] private Transform playerCameraTransform;
         private StarterAssetsInputs playerInputs;
+        private PlayerHealth playerHealth;
 
         private void OnEnable()
         {
@@ -79,6 +83,7 @@ namespace OM
             currentStamina = maxStamina;
             
             playerInputs = GetComponent<StarterAssetsInputs>();
+            playerHealth = GetComponent<PlayerHealth>();
         }
 
         private void Update()
@@ -95,7 +100,7 @@ namespace OM
 
             if (currentHunger <= 0 || currentThirst <= 0)
             {
-                GameManager.gameManager.playerHealth.DamageEntity(5);
+                playerHealth.playerHealth.DamageEntity(starvingDamagePerTick);
 
                 currentHunger = Mathf.Clamp(currentHunger, 0f, maxHunger);
                 currentThirst = Mathf.Clamp(currentThirst, 0f, maxThirst);
