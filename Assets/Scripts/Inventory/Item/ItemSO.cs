@@ -19,6 +19,7 @@ namespace OM
         [SerializeField] public string itemName;
         [SerializeField] private GameObject prefab;
         [SerializeField] public Sprite image;
+        [SerializeField] public int MaxStackSize;
 
         public GameObject Prefab { get { return prefab; } }
     }

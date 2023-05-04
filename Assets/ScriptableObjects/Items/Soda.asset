@@ -16,3 +16,4 @@ MonoBehaviour:
   itemName: Soda
   prefab: {fileID: 2640907006130985664, guid: de09415a968aa8d4c99ee736425da5a9, type: 3}
   image: {fileID: 21300000, guid: d09585bc403083a4ead05d14e2e3be20, type: 3}
+  MaxStackSize: 3
