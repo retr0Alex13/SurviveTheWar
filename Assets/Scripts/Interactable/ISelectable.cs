@@ -1,6 +1,6 @@
 namespace OM
 {
-    public interface IInteractable
+    public interface ISelectable
     {
         public void Highlight();
         public void Dehighlight();

@@ -1,8 +1,9 @@
 using UnityEngine;
+using ProPixelizer;
 
 namespace OM
 {
-    public class ObjectGrabbable : MonoBehaviour, IInteractable
+    public class ObjectGrabbable : MonoBehaviour, ISelectable
     {
         [SerializeField] private float lerpSpeed = 10f;
         private Rigidbody objectRigidBody;

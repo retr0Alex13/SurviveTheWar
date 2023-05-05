@@ -4,11 +4,12 @@ namespace OM
 {
     public class EventSystem : MonoBehaviour
     {
+        public bool isInSafeZone = false;
+
         [Header("Event")]
         [Range(0, 1), SerializeField] private float probabilityOfEvent = 0.1f;
         [SerializeField] private bool isEventActive = false;
-        public bool isInSafeZone = false;
-        [SerializeField] private int damagePlayerByEvent = 50;
+        [SerializeField] private int eventDamage = 35;
 
         [Header("Timer")]
         [SerializeField] private float timeToGetToSafe = 10f;
@@ -17,6 +18,8 @@ namespace OM
         [Header("Audio of Event")]
         private AudioSource audioSource;
         [SerializeField] private AudioClip audioClip;
+
+        private PlayerHealth playerHealth;
 
         private void OnEnable()
         {
@@ -31,6 +34,7 @@ namespace OM
         private void Start()
         {
             audioSource = GetComponent<AudioSource>();
+            playerHealth = (PlayerHealth)FindAnyObjectByType(typeof(PlayerHealth));
             audioSource.clip = audioClip;
         }
         private void Update()
@@ -53,7 +57,7 @@ namespace OM
                 currentTimeToGetSafe = 0;
                 if (!isInSafeZone)
                 {
-                    GameManager.gameManager.playerHealth.DamageEntity(damagePlayerByEvent);
+                    playerHealth.playerHealth.DamageEntity(eventDamage);
                 }
             }
         }

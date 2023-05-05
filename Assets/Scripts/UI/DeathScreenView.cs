@@ -10,12 +10,12 @@ namespace OM
 
         private void OnEnable()
         {
-            GameManager.OnPlayerDead += SetVisibleDeathGroupUI;
+            PlayerHealth.OnPlayerDead += SetVisibleDeathGroupUI;
         }
 
         private void OnDisable()
         {
-            GameManager.OnPlayerDead -= SetVisibleDeathGroupUI;
+            PlayerHealth.OnPlayerDead -= SetVisibleDeathGroupUI;
         }
 
         private void Start()

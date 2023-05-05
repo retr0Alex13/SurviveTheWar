@@ -15,11 +15,11 @@ namespace OM
 
         private void OnEnable()
         {
-            GameManager.OnPlayerDead += CloseTasksList;
+            PlayerHealth.OnPlayerDead += CloseTasksList;
         }
         private void OnDisable()
         {
-            GameManager.OnPlayerDead -= CloseTasksList;
+            PlayerHealth.OnPlayerDead -= CloseTasksList;
 
         }
         private void Start()

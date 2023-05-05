@@ -1180,6 +1180,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0271df749728104eac22c3d897fd8ce, type: 3}
+--- !u!1 &752926625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 752926626}
+  m_Layer: 8
+  m_Name: Equip Slot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &752926626
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752926625}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.375, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1696424539}
+  m_Father: {fileID: 1405640147}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &830847249
 GameObject:
   m_ObjectHideFlags: 0
@@ -2544,6 +2576,95 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90e75f8ab0b6c254792051b148e0dedf, type: 3}
+--- !u!1001 &1696424538
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 752926626}
+    m_Modifications:
+    - target: {fileID: 1896010513567207029, guid: 90e75f8ab0b6c254792051b148e0dedf,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161050477777549152, guid: 90e75f8ab0b6c254792051b148e0dedf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161050477777549152, guid: 90e75f8ab0b6c254792051b148e0dedf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.185
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161050477777549152, guid: 90e75f8ab0b6c254792051b148e0dedf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.218
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161050477777549152, guid: 90e75f8ab0b6c254792051b148e0dedf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161050477777549152, guid: 90e75f8ab0b6c254792051b148e0dedf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161050477777549152, guid: 90e75f8ab0b6c254792051b148e0dedf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161050477777549152, guid: 90e75f8ab0b6c254792051b148e0dedf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161050477777549152, guid: 90e75f8ab0b6c254792051b148e0dedf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161050477777549152, guid: 90e75f8ab0b6c254792051b148e0dedf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161050477777549152, guid: 90e75f8ab0b6c254792051b148e0dedf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161050477777549152, guid: 90e75f8ab0b6c254792051b148e0dedf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536169397484924378, guid: 90e75f8ab0b6c254792051b148e0dedf,
+        type: 3}
+      propertyPath: m_Name
+      value: Flashlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536169397484924378, guid: 90e75f8ab0b6c254792051b148e0dedf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1896010513567207029, guid: 90e75f8ab0b6c254792051b148e0dedf, type: 3}
+    - {fileID: 8658155170859128072, guid: 90e75f8ab0b6c254792051b148e0dedf, type: 3}
+    - {fileID: 1896010513567207030, guid: 90e75f8ab0b6c254792051b148e0dedf, type: 3}
+    - {fileID: 1896010512670642602, guid: 90e75f8ab0b6c254792051b148e0dedf, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 90e75f8ab0b6c254792051b148e0dedf, type: 3}
+--- !u!4 &1696424539 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5161050477777549152, guid: 90e75f8ab0b6c254792051b148e0dedf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1696424538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1754304173 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4028506124101316184, guid: 4f3fa90d522997f489d8ad2f1a920427,
@@ -4563,6 +4684,16 @@ PrefabInstance:
       propertyPath: objectGrabPointTransform
       value: 
       objectReference: {fileID: 60889539378096551}
+    - target: {fileID: 2163828238103916758, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: equipSlot
+      value: 
+      objectReference: {fileID: 752926626}
+    - target: {fileID: 2163828238103916758, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: flashlightSlot
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2403418030352593668, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: playerCameraTransform

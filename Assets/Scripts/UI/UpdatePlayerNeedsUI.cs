@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 namespace OM
 {
-    public class PlayerNeedsUI : MonoBehaviour
+    public class UpdatePlayerNeedsUI : MonoBehaviour
     {
-        [SerializeField] Image hungerMeter, thirstMeter, staminaBar;
+        [SerializeField] private Image hungerMeter, thirstMeter, staminaBar;
         void OnEnable()
         {
             PlayerNeeds.OnNeedsChanged += ChangeCharacterNeedsUI;

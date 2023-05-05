@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace OM
 {
-    public class CraftingStation : MonoBehaviour, IInteractable
+    public class CraftingStation : MonoBehaviour, ISelectable
     {
         [SerializeField] private Image recipieImage;
         [SerializeField] private List<CraftingRecipeSO> craftingRecipeSOList;

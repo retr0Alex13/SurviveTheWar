@@ -143,13 +143,14 @@ GameObject:
   - component: {fileID: 1978471637655604388}
   - component: {fileID: 5420857361349278248}
   - component: {fileID: 7258403807616249297}
+  - component: {fileID: 5341501212074273096}
   - component: {fileID: 5393215579111688473}
   - component: {fileID: 4124689305029663659}
   - component: {fileID: 987077048351491925}
   - component: {fileID: 2403418030352593668}
-  - component: {fileID: 8616685848737228376}
   - component: {fileID: 785804566909964821}
-  - component: {fileID: 1697393887123931827}
+  - component: {fileID: 2163828238103916758}
+  - component: {fileID: 8616685848737228376}
   m_Layer: 8
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -270,6 +271,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactDistance: 2
+--- !u!114 &5341501212074273096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540b7c9561a06134ebe35412edbb34d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5393215579111688473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c633437796ec944688ed879a5180efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 2
+  starvingDamagePerTick: 5
   maxHunger: 100
   decreaseHungerRate: 0.4
   currentHunger: 0
@@ -353,6 +366,32 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   playerCameraTransform: {fileID: 0}
+--- !u!114 &785804566909964821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d46f57dfc5717f4d9c868b96f0ea19e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryView: {fileID: 0}
+  playerDropPoint: {fileID: 0}
+--- !u!114 &2163828238103916758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24a883dc4413b2c4e9244994c99e45c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8616685848737228376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,18 +484,6 @@ MonoBehaviour:
     m_ActionName: Player/Sprint[/Keyboard/leftShift,/XInputControllerWindows/leftTrigger]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5393215579111688473}
-        m_TargetAssemblyTypeName: OM.PlayerNeeds, Assembly-CSharp
-        m_MethodName: HandleEatingOrDrinking
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 987077048351491925}
         m_TargetAssemblyTypeName: OM.PlayerPickupDrop, Assembly-CSharp
         m_MethodName: HandlePickup
@@ -501,7 +528,7 @@ MonoBehaviour:
     m_ActionName: Player/Interact[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1697393887123931827}
+      - m_Target: {fileID: 785804566909964821}
         m_TargetAssemblyTypeName: OM.InventoryMediator, Assembly-CSharp
         m_MethodName: InventoryVisibility
         m_Mode: 0
@@ -511,40 +538,28 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
     m_ActionId: c1166719-5f91-4040-9adc-4b0a2d01ef95
     m_ActionName: Player/Inventory[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2163828238103916758}
+        m_TargetAssemblyTypeName: OM.PlayerEquipSlot, Assembly-CSharp
+        m_MethodName: UnEquipItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d5cfa9b7-73ee-4a8f-96bd-06489d5a1cf0
+    m_ActionName: Player/Drop[/Keyboard/g]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &785804566909964821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8616685848737228372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d46f57dfc5717f4d9c868b96f0ea19e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryView: {fileID: 0}
-  playerDropPoint: {fileID: 0}
---- !u!114 &1697393887123931827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8616685848737228372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d46f57dfc5717f4d9c868b96f0ea19e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryView: {fileID: 0}
-  playerDropPoint: {fileID: 0}

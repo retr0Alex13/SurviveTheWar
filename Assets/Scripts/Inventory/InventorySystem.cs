@@ -29,11 +29,16 @@ namespace OM
             }
             else
             {
-                InventoryItem newItem = new InventoryItem(referenceData);
-                Inventory.Add(newItem);
-                ItemDictionary.Add(referenceData, newItem);
+                CreateNewItemCell(referenceData);
             }
             OnInventoryChange();
+        }
+
+        private void CreateNewItemCell(ItemSO referenceData)
+        {
+            InventoryItem newItem = new InventoryItem(referenceData);
+            Inventory.Add(newItem);
+            ItemDictionary.Add(referenceData, newItem);
         }
 
         public void Remove(ItemSO referenceData)
@@ -50,5 +55,4 @@ namespace OM
             OnInventoryChange();
         }
     }
-
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace OM
 {
-    public class ObjectEatable : MonoBehaviour, IInteractable
+    public class ObjectEatable : MonoBehaviour, ISelectable
     {
         public delegate void EatableAction(float food, float water);
         public static event EatableAction OneItemConsuming;

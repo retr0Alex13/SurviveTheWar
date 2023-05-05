@@ -11,10 +11,17 @@ namespace OM
         [SerializeField] private TextMeshProUGUI amountText;
         [SerializeField] private GameObject OptionPanel;
         [SerializeField] private GameObject useButton;
+        [SerializeField] private GameObject equipButton;
 
         private InventoryView inventoryView;
+        private PlayerEquipSlot equipSlot;
 
         [HideInInspector] public InventoryItem InventoryItem;
+
+        private void Awake()
+        {
+            equipSlot = FindAnyObjectByType<PlayerEquipSlot>();
+        }
 
         public void Set(InventoryItem item)
         {
@@ -22,15 +29,14 @@ namespace OM
             itemImage.sprite = item.itemData.image;
             inventoryView = transform.parent.GetComponent<InventoryView>();
 
-            if(item.itemData.itemType == ItemSO.ItemType.Eatable)
+            if (item.itemData.itemType == ItemSO.ItemType.Eatable)
             {
                 useButton.SetActive(true);
             }
-            else
+            else if (item.itemData.itemType == ItemSO.ItemType.Equipable)
             {
-                useButton.SetActive(false);
+                equipButton.SetActive(true);
             }
-
             if (item.StackSize <= 1)
             {
                 amountObject.SetActive(false);
@@ -51,9 +57,20 @@ namespace OM
 
         public void Use()
         {
-            if(InventoryItem.itemData.Prefab.TryGetComponent(out ObjectEatable objectEatable))
+            if (InventoryItem.itemData.Prefab.TryGetComponent(out ObjectEatable objectEatable))
             {
                 objectEatable.Consume();
+                inventoryView.inventoryMediator.RemoveItemFromInventory(InventoryItem.itemData);
+            }
+        }
+
+        public void Equip()
+        {
+            if (InventoryItem.itemData.Prefab.TryGetComponent(out IInteractable interactable))
+            {
+                if (equipSlot.itemSO != null)
+                    return;
+                equipSlot.EquipItem(InventoryItem.itemData);
                 inventoryView.inventoryMediator.RemoveItemFromInventory(InventoryItem.itemData);
             }
         }
