@@ -7,16 +7,13 @@ namespace OM
 {
     public class PlayerEquipSlot : MonoBehaviour
     {
+        [HideInInspector] public Transform currentlyequipedItem;
+
         [SerializeField] private Transform equipSlot;
+        [SerializeField] private Transform dropItemPoint;
 
-        [HideInInspector] public ItemSO itemSO;
-        private InventoryMediator inventoryMediator;
-        private Transform currentlyequipedItem;
-
-        private void Awake()
-        {
-            inventoryMediator = GetComponent<InventoryMediator>();
-        }
+        private ItemSO itemSO;
+        private IInteractable interactable;
 
         public void EquipItem(ItemSO itemData)
         {
@@ -28,6 +25,7 @@ namespace OM
                 {
                     currentlyequipedItem = transform;
                     currentlyequipedItem.gameObject.SetActive(true);
+                    interactable = currentlyequipedItem.GetComponent<IInteractable>();
                 }
             }
         }
@@ -36,12 +34,23 @@ namespace OM
         {
             if(context.performed)
             {
-                if (itemSO == null)
+                if (currentlyequipedItem == null)
                     return;
-                inventoryMediator.RemoveItemAndDrop(itemSO);
 
                 currentlyequipedItem.gameObject.SetActive(false);
+                GameObject dropItem = Instantiate(itemSO.Prefab, new Vector3(dropItemPoint.position.x, dropItemPoint.position.y, dropItemPoint.position.z),
+                Quaternion.identity);
                 itemSO = null;
+                interactable = null;
+                currentlyequipedItem = null;
+            }
+        }
+
+        public void Use(InputAction.CallbackContext context)
+        {
+            if(context.performed)
+            {
+                interactable?.Interact();
             }
         }
     }

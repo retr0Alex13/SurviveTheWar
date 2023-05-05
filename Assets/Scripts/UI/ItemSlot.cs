@@ -68,7 +68,7 @@ namespace OM
         {
             if (InventoryItem.itemData.Prefab.TryGetComponent(out IInteractable interactable))
             {
-                if (equipSlot.itemSO != null)
+                if (equipSlot.currentlyequipedItem != null)
                     return;
                 equipSlot.EquipItem(InventoryItem.itemData);
                 inventoryView.inventoryMediator.RemoveItemFromInventory(InventoryItem.itemData);
