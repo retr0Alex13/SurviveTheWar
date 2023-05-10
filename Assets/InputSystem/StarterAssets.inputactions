@@ -51,7 +51,16 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Interact",
+                    "name": "Hold",
+                    "type": "Button",
+                    "id": "fd1cf047-4531-435a-9ebb-bb49c8013ec9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Craft",
                     "type": "Button",
                     "id": "e56cda4c-fc36-4f30-8d34-883a49239821",
                     "expectedControlType": "Button",
@@ -81,6 +90,15 @@
                     "name": "UseItemInHand",
                     "type": "Button",
                     "id": "bab573d8-5cba-463b-9a09-de1414d8312f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "f00f1e5e-9018-4212-b955-8fa006a8a8c8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -268,7 +286,7 @@
                     "name": "",
                     "id": "63164691-987b-4d06-be38-626ef522c968",
                     "path": "<Keyboard>/e",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "Pickup",
@@ -282,7 +300,7 @@
                     "interactions": "Hold",
                     "processors": "",
                     "groups": "KeyboardMouse",
-                    "action": "Interact",
+                    "action": "Craft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -316,6 +334,28 @@
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "UseItemInHand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eb4a41c3-8a11-439d-80e5-84d704b9a827",
+                    "path": "<Keyboard>/e",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e09e27e2-083a-4375-b7a4-ff27061082d5",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
