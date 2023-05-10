@@ -1,15 +1,17 @@
 using UnityEngine;
-using ProPixelizer;
 
 namespace OM
 {
-    public class ObjectGrabbable : MonoBehaviour, ISelectable
+    public class ObjectGrabbable : MonoBehaviour, ISelectable, IInteractable
     {
+        [SerializeField] private bool isPickable;
         [SerializeField] private float lerpSpeed = 10f;
         private Rigidbody objectRigidBody;
         private Transform objectGrabPointTransform;
         private Outline outline;
         private bool isInTexture = false;
+
+        public bool IsPickable { get => isPickable; set => isPickable = value; }
 
         private void Awake()
         {
@@ -69,6 +71,11 @@ namespace OM
         {
             if (outline == null) return;
             outline.enabled = false;
+        }
+
+        public void Interact()
+        {
+            
         }
     }
 }

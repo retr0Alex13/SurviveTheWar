@@ -6,11 +6,16 @@ namespace OM
 {
     public class Flashlight : MonoBehaviour, IInteractable
     {
-        private Transform light;
+        private Transform sourceLight;
+
+        public bool IsPickable { get; set; }
+
         public void Interact()
         {
-            light = transform.GetChild(0);
-            light.gameObject.SetActive(!light.gameObject.activeSelf);
+            if (transform.GetChild(0) == null)
+                return;
+            sourceLight = transform.GetChild(0);
+            sourceLight.gameObject.SetActive(!sourceLight.gameObject.activeSelf);
         }
     }
 }
