@@ -7,6 +7,7 @@ namespace OM
     public class InventoryMediator : MonoBehaviour
     {
         [SerializeField] private InventoryView inventoryView;
+        [SerializeField] private GameObject inventoryMenu;
         [SerializeField] private Transform playerDropPoint;
 
         public InventorySystem InventorySystem = new InventorySystem();
@@ -59,8 +60,8 @@ namespace OM
         {
             if (ctx.performed)
             {
-                inventoryView.gameObject.SetActive(!isInventoryActive());
-                if (isInventoryActive())
+                inventoryMenu.SetActive(!isInventoryMenuActive());
+                if (isInventoryMenuActive())
                 {
                     Cursor.lockState = CursorLockMode.None;
                 }
@@ -70,9 +71,9 @@ namespace OM
                 }
             }
         }
-        private bool isInventoryActive()
+        private bool isInventoryMenuActive()
         {
-            return inventoryView.gameObject.activeSelf;
+            return inventoryMenu.activeSelf;
         }
 
     }
