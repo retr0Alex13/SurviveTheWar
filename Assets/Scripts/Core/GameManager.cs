@@ -9,9 +9,6 @@ namespace OM
     {
         public static GameManager gameManager { get; private set; }
 
-        private int money;
-        public int Money { get { return money; } }
-
         void Awake()
         {
             //Singleton
