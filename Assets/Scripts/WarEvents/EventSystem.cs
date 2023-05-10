@@ -12,12 +12,12 @@ namespace OM
         [SerializeField] private int eventDamage = 35;
 
         [Header("Timer")]
+        [SerializeField] private float currentTimeOfEvent;
+        private float eventDuration;
+
+
         [SerializeField] private float timeToGetToSafe = 10f;
         [SerializeField] private float currentTimeToGetSafe;
-
-        [Header("Audio of Event")]
-        private AudioSource audioSource;
-        [SerializeField] private AudioClip audioClip;
 
         private PlayerHealth playerHealth;
 
@@ -33,16 +33,11 @@ namespace OM
 
         private void Start()
         {
-            audioSource = GetComponent<AudioSource>();
-            playerHealth = (PlayerHealth)FindAnyObjectByType(typeof(PlayerHealth));
-            audioSource.clip = audioClip;
+            playerHealth = FindAnyObjectByType<PlayerHealth>();
+            eventDuration = SoundManager.Instance.GetAudioClip("Air Raid Alert").length;
         }
         private void Update()
         {
-            if (isEventActive && !audioSource.isPlaying)
-            {
-                isEventActive = false;
-            }
             if (isEventActive)
             {
                 StartEventTimer();
@@ -52,6 +47,7 @@ namespace OM
         private void StartEventTimer()
         {
             currentTimeToGetSafe -= Time.deltaTime;
+            currentTimeOfEvent -= Time.deltaTime;
             if (currentTimeToGetSafe <= 0)
             {
                 currentTimeToGetSafe = 0;
@@ -60,6 +56,11 @@ namespace OM
                     playerHealth.playerHealth.DamageEntity(eventDamage);
                 }
             }
+            if(currentTimeOfEvent <= 0)
+            {
+                isEventActive = false;
+            }
+            
         }
 
         private void HandleEvent()
@@ -75,12 +76,10 @@ namespace OM
 
         private void TriggerEvent()
         {
-            if (!audioSource.isPlaying)
-            {
-                isEventActive = true;
-                audioSource.Play();
-            }
+            isEventActive = true;
             currentTimeToGetSafe = timeToGetToSafe;
+            currentTimeOfEvent = eventDuration;
+            SoundManager.Instance.PlaySound("Air Raid Alert", transform.position);
             Debug.Log("Air Raid Alert!");
         }
     }
