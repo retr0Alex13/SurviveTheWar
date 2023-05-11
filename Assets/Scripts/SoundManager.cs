@@ -41,7 +41,6 @@ namespace OM
         {
             if (sound.hasCooldown)
             {
-                Debug.Log(sound.name);
                 soundTimerDictionary[sound.name] = 0f;
             }
         }
@@ -53,7 +52,6 @@ namespace OM
 
             sound.source.volume = sound.volume;
             // sound.source.pitch = sound.pitch;
-            sound.source.pitch = Random.Range(0.9f, 1.1f);
             sound.source.loop = sound.isLoop;
         }
 
@@ -94,7 +92,8 @@ namespace OM
             }
 
             if (!CanPlaySound(sound)) return;
-            
+            sound.source.pitch = Random.Range(0.9f, 1.1f);
+
             AudioClip randomClip = sound.clips[Random.Range(0, sound.clips.Length)];
             sound.source.PlayOneShot(randomClip);
         }

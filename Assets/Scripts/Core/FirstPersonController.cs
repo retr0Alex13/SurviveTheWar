@@ -60,6 +60,7 @@ namespace StarterAssets
         private float _rotationVelocity;
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
+        private bool _isSprinting;
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
@@ -163,10 +164,12 @@ namespace StarterAssets
             if(_input.IsSprinting())
             {
                 targetSpeed = sprintSpeed;
+                _isSprinting = true;
             }
             else
             {
                 targetSpeed = moveSpeed;
+                _isSprinting = false;
             }
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
@@ -209,7 +212,6 @@ namespace StarterAssets
             {
                 // move
                 inputDirection = transform.right * _input.GetMove().x + transform.forward * _input.GetMove().y;
-                SoundManager.Instance.PlaySound("GrassFootsteps");
             }
 
             // move the player
@@ -260,6 +262,28 @@ namespace StarterAssets
             {
                 _verticalVelocity += gravity * Time.deltaTime;
             }
+        }
+
+        public bool IsGrounded()
+        {
+            return grounded;
+        }
+
+        public bool IsMoving()
+        {
+            if (_input.GetMove() == Vector2.zero)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool IsSprinting()
+        {
+            return _isSprinting;
         }
 
         public void SetCursorState(InputAction.CallbackContext ctx)
