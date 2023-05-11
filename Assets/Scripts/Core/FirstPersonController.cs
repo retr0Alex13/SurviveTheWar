@@ -60,8 +60,6 @@ namespace StarterAssets
         private float _rotationVelocity;
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
-        private bool _isSprinting;
-        private bool _isMoving;
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
@@ -165,12 +163,10 @@ namespace StarterAssets
             if(_input.IsSprinting())
             {
                 targetSpeed = sprintSpeed;
-                _isSprinting = true;
             }
             else
             {
                 targetSpeed = moveSpeed;
-                _isSprinting = false;
             }
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
@@ -180,7 +176,7 @@ namespace StarterAssets
             if (_input.GetMove() == Vector2.zero)
             {
                 targetSpeed = 0.0f;
-                _isMoving = false;
+                SoundManager.Instance.StopSound("GrassFootsteps");
             }
 
             // a reference to the players current horizontal velocity
@@ -213,7 +209,7 @@ namespace StarterAssets
             {
                 // move
                 inputDirection = transform.right * _input.GetMove().x + transform.forward * _input.GetMove().y;
-                _isMoving = true;
+                SoundManager.Instance.PlaySound("GrassFootsteps");
             }
 
             // move the player
@@ -266,21 +262,6 @@ namespace StarterAssets
             }
         }
 
-        public bool IsGrounded()
-        {
-            return grounded;
-        }
-        
-        public bool IsSprinting()
-        {
-            return _isSprinting;
-        }
-
-        public bool IsMoving()
-        {
-            return _isMoving;
-        }
-        
         public void SetCursorState(InputAction.CallbackContext ctx)
         {
             Cursor.lockState = ctx.ReadValueAsButton() ? CursorLockMode.None : CursorLockMode.Locked;

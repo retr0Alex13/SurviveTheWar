@@ -3602,32 +3602,32 @@ MonoBehaviour:
     pitch: 1
     isLoop: 0
     hasCooldown: 0
-    useDefaultCoolDown: 0
-    coolDown: 0
+    cooldown: 0
+    source: {fileID: 0}
   - name: GrassFootsteps
-    clip: {fileID: 8300000, guid: 551d550ab98e3cc4bb7793e752fe8628, type: 3}
+    clip: {fileID: 8300000, guid: 55a810a67df804d4487e8f990523255b, type: 3}
     volume: 1
     pitch: 1
     isLoop: 0
     hasCooldown: 1
-    useDefaultCoolDown: 1
-    coolDown: 0
+    cooldown: 0
+    source: {fileID: 0}
   - name: TileFootsteps
-    clip: {fileID: 8300000, guid: b993df4a93c1d304ab19d8b2eb88c9a5, type: 3}
+    clip: {fileID: 0}
     volume: 1
     pitch: 1
     isLoop: 0
     hasCooldown: 1
-    useDefaultCoolDown: 1
-    coolDown: 0
+    cooldown: 0
+    source: {fileID: 0}
   - name: WoodFootsteps
-    clip: {fileID: 8300000, guid: 8e001351cd7065543a068386cde4c960, type: 3}
+    clip: {fileID: 0}
     volume: 1
     pitch: 1
     isLoop: 0
     hasCooldown: 1
-    useDefaultCoolDown: 1
-    coolDown: 0
+    cooldown: 0
+    source: {fileID: 0}
 --- !u!4 &1806781362
 Transform:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ namespace OM
 
         [Header("Timer")]
         [SerializeField] private float currentTimeOfEvent;
-        private float eventDuration;
+        [SerializeField] private float eventDuration;
 
 
         [SerializeField] private float timeToGetToSafe = 10f;
@@ -34,7 +34,7 @@ namespace OM
         private void Start()
         {
             playerHealth = FindAnyObjectByType<PlayerHealth>();
-            eventDuration = SoundManager.Instance.GetAudioClip("Air Raid Alert").length;
+            eventDuration = SoundManager.Instance.GetAudioClip("Air Raid Alert").clip.length;
         }
         private void Update()
         {
@@ -50,6 +50,7 @@ namespace OM
             currentTimeOfEvent -= Time.deltaTime;
             if (currentTimeToGetSafe <= 0)
             {
+                SoundManager.Instance.StopSound("Air Raid Alert");
                 currentTimeToGetSafe = 0;
                 if (!isInSafeZone)
                 {
@@ -79,7 +80,7 @@ namespace OM
             isEventActive = true;
             currentTimeToGetSafe = timeToGetToSafe;
             currentTimeOfEvent = eventDuration;
-            SoundManager.Instance.PlaySound("Air Raid Alert", transform.position);
+            SoundManager.Instance.PlaySound("Air Raid Alert");
             Debug.Log("Air Raid Alert!");
         }
     }

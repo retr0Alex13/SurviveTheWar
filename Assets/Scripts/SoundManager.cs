@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace OM
 {
@@ -13,10 +14,7 @@ namespace OM
 
         public static SoundManager Instance
         {
-            get
-            {
-                return _instance;
-            }
+            get { return _instance; }
         }
 
         private void Awake()
@@ -31,22 +29,33 @@ namespace OM
             }
 
             soundTimerDictionary = new Dictionary<string, float>();
+
+            foreach (Sound sound in sounds)
+            {
+                sound.source = gameObject.AddComponent<AudioSource>();
+                sound.source.clip = sound.clip;
+                
+                sound.source.volume = sound.volume;
+                sound.source.pitch = sound.pitch;
+                sound.source.loop = sound.isLoop;
+
+                if (sound.hasCooldown)
+                {
+                    Debug.Log(sound.name);
+                    soundTimerDictionary[sound.name] = 0f;
+                }
+            }
         }
 
-        public AudioClip GetAudioClip(string soundName)
-        {
-            Sound sound = GetSound(soundName);
-            return sound.clip;
-        }
-
-        public Sound GetSound(string soundName)
+        public AudioSource GetAudioClip(string soundName)
         {
             Sound sound = Array.Find(sounds, s => s.name == soundName);
-            return sound;
+            return sound.source;
+
         }
         public void PlaySound(string soundName, Vector3 position)
         {
-            Sound sound = GetSound(soundName);
+            Sound sound = Array.Find(sounds, s => s.name == soundName);
 
             if (sound == null)
             {
@@ -57,26 +66,19 @@ namespace OM
             if (!CanPlaySound(sound)) return;
 
             GameObject soundGameObject = new GameObject("Sound");
+            soundGameObject.transform.SetParent(transform);
             AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
-            audioSource.clip = GetAudioClip(soundName);
             
             audioSource.clip = sound.clip;
             audioSource.volume = sound.volume;
             audioSource.pitch = sound.pitch;
             audioSource.loop = sound.isLoop;
-            audioSource.spatialBlend = 1f;
-
-            if (sound.hasCooldown)
-            {
-                Debug.Log(sound.name);
-                soundTimerDictionary[sound.name] = 0f;
-            }
             audioSource.Play();
         }
-        
+
         public void PlaySound(string soundName)
         {
-            Sound sound = GetSound(soundName);
+            Sound sound = Array.Find(sounds, s => s.name == soundName);
 
             if (sound == null)
             {
@@ -85,26 +87,12 @@ namespace OM
             }
 
             if (!CanPlaySound(sound)) return;
-
-            GameObject soundGameObject = new GameObject("Sound");
-            AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
-            
-            audioSource.clip = sound.clip;
-            audioSource.volume = sound.volume;
-            audioSource.pitch = sound.pitch;
-            audioSource.loop = sound.isLoop;
-
-            if (sound.hasCooldown)
-            {
-                Debug.Log(sound.name);
-                soundTimerDictionary[sound.name] = 0f;
-            }
-            audioSource.PlayOneShot(sound.clip);
+            sound.source.PlayOneShot(sound.clip);
         }
 
         public void StopSound(string soundName)
         {
-            Sound sound = GetSound(soundName);
+            Sound sound = Array.Find(sounds, s => s.name == soundName);
 
             if (sound == null)
             {
@@ -112,13 +100,7 @@ namespace OM
                 return;
             }
 
-            foreach (AudioSource audioSource in FindObjectsByType<AudioSource>(FindObjectsSortMode.None))
-            {
-                if (sound.clip == audioSource.clip)
-                {
-                    audioSource.Stop();
-                }
-            }
+            sound.source.Stop();
         }
 
         private static bool CanPlaySound(Sound sound)
@@ -127,9 +109,9 @@ namespace OM
             {
                 float lastTimePlayed = soundTimerDictionary[sound.name];
 
-                if(sound.useDefaultCoolDown)
+                if (sound.cooldown > 0 && sound.hasCooldown)
                 {
-                    if (lastTimePlayed + sound.clip.length < Time.time)
+                    if (lastTimePlayed + sound.cooldown < Time.time)
                     {
                         soundTimerDictionary[sound.name] = Time.time;
                         return true;
@@ -137,13 +119,13 @@ namespace OM
                 }
                 else
                 {
-                    if (lastTimePlayed + sound.coolDown < Time.time)
+                    if (lastTimePlayed + sound.clip.length < Time.time)
                     {
                         soundTimerDictionary[sound.name] = Time.time;
                         return true;
                     }
                 }
-                
+               
 
                 return false;
             }

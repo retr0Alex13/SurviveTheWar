@@ -20,7 +20,7 @@ namespace OM
 
         public bool isLoop;
         public bool hasCooldown;
-        public bool useDefaultCoolDown;
-        public float coolDown;
+        public float cooldown;
+        public AudioSource source;
     }
 }
