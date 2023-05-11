@@ -176,7 +176,7 @@ namespace StarterAssets
             if (_input.GetMove() == Vector2.zero)
             {
                 targetSpeed = 0.0f;
-                SoundManager.Instance.StopSound("GrassFootsteps");
+                //SoundManager.Instance.StopSound("GrassFootsteps");
             }
 
             // a reference to the players current horizontal velocity

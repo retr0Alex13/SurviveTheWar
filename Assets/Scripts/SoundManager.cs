@@ -32,25 +32,35 @@ namespace OM
 
             foreach (Sound sound in sounds)
             {
-                sound.source = gameObject.AddComponent<AudioSource>();
-                sound.source.clip = sound.clip;
-                
-                sound.source.volume = sound.volume;
-                sound.source.pitch = sound.pitch;
-                sound.source.loop = sound.isLoop;
-
-                if (sound.hasCooldown)
-                {
-                    Debug.Log(sound.name);
-                    soundTimerDictionary[sound.name] = 0f;
-                }
+                InitializeAudioSource(sound);
+                InitializeSoundCooldown(sound);
             }
+        }
+
+        private static void InitializeSoundCooldown(Sound sound)
+        {
+            if (sound.hasCooldown)
+            {
+                Debug.Log(sound.name);
+                soundTimerDictionary[sound.name] = 0f;
+            }
+        }
+
+        private void InitializeAudioSource(Sound sound)
+        {
+            sound.source = gameObject.AddComponent<AudioSource>();
+            sound.source.clip = sound.clips[Random.Range(0, sound.clips.Length)];
+
+            sound.source.volume = sound.volume;
+            // sound.source.pitch = sound.pitch;
+            sound.source.pitch = Random.Range(0.9f, 1.1f);
+            sound.source.loop = sound.isLoop;
         }
 
         public AudioSource GetAudioClip(string soundName)
         {
             Sound sound = Array.Find(sounds, s => s.name == soundName);
-            return sound.source;
+            return sound?.source;
 
         }
         public void PlaySound(string soundName, Vector3 position)
@@ -65,11 +75,8 @@ namespace OM
 
             if (!CanPlaySound(sound)) return;
 
-            GameObject soundGameObject = new GameObject("Sound");
-            soundGameObject.transform.SetParent(transform);
-            AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
-            
-            audioSource.clip = sound.clip;
+            AudioSource audioSource = CreateAudioSource("Sound", transform);
+            audioSource.clip = sound.clips[Random.Range(0, sound.clips.Length)];
             audioSource.volume = sound.volume;
             audioSource.pitch = sound.pitch;
             audioSource.loop = sound.isLoop;
@@ -87,7 +94,9 @@ namespace OM
             }
 
             if (!CanPlaySound(sound)) return;
-            sound.source.PlayOneShot(sound.clip);
+            
+            AudioClip randomClip = sound.clips[Random.Range(0, sound.clips.Length)];
+            sound.source.PlayOneShot(randomClip);
         }
 
         public void StopSound(string soundName)
@@ -108,29 +117,39 @@ namespace OM
             if (soundTimerDictionary.ContainsKey(sound.name))
             {
                 float lastTimePlayed = soundTimerDictionary[sound.name];
+                float cooldownDuration = sound.cooldown > 0 && sound.hasCooldown ? sound.cooldown : GetLongestClipDuration(sound.clips);
 
-                if (sound.cooldown > 0 && sound.hasCooldown)
+                if (lastTimePlayed + cooldownDuration < Time.time)
                 {
-                    if (lastTimePlayed + sound.cooldown < Time.time)
-                    {
-                        soundTimerDictionary[sound.name] = Time.time;
-                        return true;
-                    }
+                    soundTimerDictionary[sound.name] = Time.time;
+                    return true;
                 }
-                else
-                {
-                    if (lastTimePlayed + sound.clip.length < Time.time)
-                    {
-                        soundTimerDictionary[sound.name] = Time.time;
-                        return true;
-                    }
-                }
-               
-
                 return false;
             }
 
             return true;
+        }
+        
+        private static float GetLongestClipDuration(AudioClip[] clips)
+        {
+            float longestDuration = 0f;
+
+            foreach (AudioClip clip in clips)
+            {
+                if (clip.length > longestDuration)
+                {
+                    longestDuration = clip.length;
+                }
+            }
+
+            return longestDuration;
+        }
+        
+        private static AudioSource CreateAudioSource(string name, Transform parent)
+        {
+            GameObject soundGameObject = new GameObject(name);
+            soundGameObject.transform.SetParent(parent);
+            return soundGameObject.AddComponent<AudioSource>();
         }
     }
 }

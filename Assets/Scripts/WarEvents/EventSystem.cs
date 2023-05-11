@@ -50,7 +50,6 @@ namespace OM
             currentTimeOfEvent -= Time.deltaTime;
             if (currentTimeToGetSafe <= 0)
             {
-                SoundManager.Instance.StopSound("Air Raid Alert");
                 currentTimeToGetSafe = 0;
                 if (!isInSafeZone)
                 {
