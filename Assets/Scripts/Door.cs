@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace OM
 {
     public class Door : MonoBehaviour, IInteractable
     {
-        [SerializeField] private bool isDoorClosed;
+        [SerializeField] private bool isOpened;
         private Animator animator;
 
-        public bool IsPickable { get; set;}
+        public bool IsPickable { get; set; }
 
         private void Awake()
         {
@@ -19,8 +20,19 @@ namespace OM
         [ContextMenu("Open/CloseDoor")]
         public void Interact()
         {
-            isDoorClosed = !isDoorClosed;
-            animator.SetBool("IsOpened", isDoorClosed);
+            isOpened = !isOpened;
+            animator.SetBool("OpenClosed", isOpened);
+        }
+
+        public void PlayCloseDoorSound()
+        {
+            SoundManager.Instance.PlaySound("DoorClosing");
+        }
+
+        public void PlayOpenDoorSound()
+        {
+            SoundManager.Instance.PlaySound("DoorOpening");
         }
     }
 }
+        
