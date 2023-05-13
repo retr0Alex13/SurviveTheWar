@@ -39,6 +39,18 @@ namespace OM
         public void Consume()
         {
             OneItemConsuming?.Invoke(FoodToRestore, ThirstToRestore);
+            if (gameObject.CompareTag("Food/Soda"))
+            {
+                SoundManager.Instance.PlaySound("DrinkingSoda");
+            }
+            else if (gameObject.CompareTag("Food/Water"))
+            {
+                SoundManager.Instance.PlaySound("Drinking");
+            }
+            else
+            {
+                SoundManager.Instance.PlaySound("Eating");
+            }
         }
     }
 }

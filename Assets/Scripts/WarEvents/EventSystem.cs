@@ -34,7 +34,7 @@ namespace OM
         private void Start()
         {
             playerHealth = FindAnyObjectByType<PlayerHealth>();
-            eventDuration = SoundManager.Instance.GetAudioClip("Air Raid Alert").clip.length;
+            eventDuration = SoundManager.Instance.GetAudioClip("Air Raid Alert").length;
         }
         private void Update()
         {

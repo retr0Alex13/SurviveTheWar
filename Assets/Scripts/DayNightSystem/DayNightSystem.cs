@@ -19,9 +19,9 @@ namespace OM
         private float endDayHour = 21;
         [Tooltip("How long Day/Night wil be")]
         [SerializeField] private float dayNightTimerModifier = 20;
-        //[SerializeField] private float fogDencity = 0.05f;
+        [SerializeField] private float fogDencity = 0.05f;
         private float lightIntencityLerp = 1f;
-        //private float fogIntencityLerp = 0.5f;
+        private float fogIntencityLerp = 0.5f;
 
         public delegate void DayNightAction();
         public static event DayNightAction OnNewHour;
@@ -108,12 +108,12 @@ namespace OM
             if (!IsDayTime())
             {
                 DirectionalLight.intensity = Mathf.Lerp(DirectionalLight.intensity, 0, Time.deltaTime * lightIntencityLerp);
-                //RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, fogDencity, Time.deltaTime * fogIntencityLerp);
+                RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, fogDencity, Time.deltaTime * fogIntencityLerp);
             }
             else
             {
                 DirectionalLight.intensity = Mathf.Lerp(DirectionalLight.intensity, 1f, Time.deltaTime * lightIntencityLerp);
-                //RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, 0, Time.deltaTime * fogIntencityLerp);
+                RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, 0, Time.deltaTime * fogIntencityLerp);
             }
         }
 

@@ -62,7 +62,8 @@ namespace OM
 
         private void TryGrab()
         {
-            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance) && raycastHit.transform.TryGetComponent(out objectGrabbable))
+            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance) 
+                && raycastHit.transform.TryGetComponent(out objectGrabbable))
             {
                 objectGrabbable.Grab(objectGrabPointTransform);
                 isHolding = true;

@@ -16,6 +16,7 @@ namespace OM
                 return;
             sourceLight = transform.GetChild(0);
             sourceLight.gameObject.SetActive(!sourceLight.gameObject.activeSelf);
+            SoundManager.Instance.PlaySound("FlashlightClick");
         }
     }
 }

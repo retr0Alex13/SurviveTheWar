@@ -8,6 +8,8 @@ TagManager:
   - Footsteps/Grass
   - Footsteps/Tile
   - Footsteps/Wood
+  - Food/Soda
+  - Food/Water
   layers:
   - Default
   - TransparentFX

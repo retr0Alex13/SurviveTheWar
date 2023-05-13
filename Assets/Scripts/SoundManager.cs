@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using Object = System.Object;
 using Random = UnityEngine.Random;
 
 namespace OM
@@ -32,7 +34,7 @@ namespace OM
 
             foreach (Sound sound in sounds)
             {
-                InitializeAudioSource(sound);
+                sound.audioSource = gameObject.AddComponent<AudioSource>();
                 InitializeSoundCooldown(sound);
             }
         }
@@ -44,22 +46,19 @@ namespace OM
                 soundTimerDictionary[sound.name] = 0f;
             }
         }
+        
 
-        private void InitializeAudioSource(Sound sound)
+        public AudioClip GetAudioClip(string soundName)
         {
-            sound.source = gameObject.AddComponent<AudioSource>();
-            sound.source.clip = sound.clips[Random.Range(0, sound.clips.Length)];
-
-            sound.source.volume = sound.volume;
-            // sound.source.pitch = sound.pitch;
-            sound.source.loop = sound.isLoop;
-        }
-
-        public AudioSource GetAudioClip(string soundName)
-        {
-            Sound sound = Array.Find(sounds, s => s.name == soundName);
-            return sound?.source;
-
+            foreach (Sound sound in sounds)
+            {
+                if (sound.name == soundName)
+                {
+                    return sound.clips[0];
+                }
+            }
+            Debug.LogError("Sound with " + soundName + " not found!");
+            return null;
         }
         public void PlaySound(string soundName, Vector3 position)
         {
@@ -73,12 +72,19 @@ namespace OM
 
             if (!CanPlaySound(sound)) return;
 
-            AudioSource audioSource = CreateAudioSource("Sound", transform);
+            GameObject soundGameObject = new GameObject("Sound");
+            soundGameObject.transform.position = position;
+            AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
             audioSource.clip = sound.clips[Random.Range(0, sound.clips.Length)];
+            audioSource.pitch = Random.Range(0.9f, 1.1f);
             audioSource.volume = sound.volume;
-            audioSource.pitch = sound.pitch;
             audioSource.loop = sound.isLoop;
+            audioSource.spatialBlend = 1f;
+            audioSource.rolloffMode = AudioRolloffMode.Linear;
+            audioSource.dopplerLevel = 0f;
             audioSource.Play();
+            
+            GameObject.Destroy(soundGameObject, audioSource.clip.length);
         }
 
         public void PlaySound(string soundName)
@@ -92,10 +98,13 @@ namespace OM
             }
 
             if (!CanPlaySound(sound)) return;
-            sound.source.pitch = Random.Range(0.9f, 1.1f);
-
+            
             AudioClip randomClip = sound.clips[Random.Range(0, sound.clips.Length)];
-            sound.source.PlayOneShot(randomClip);
+            
+            sound.audioSource.volume = sound.volume;
+            sound.audioSource.loop = sound.isLoop;
+            sound.audioSource.pitch = Random.Range(0.9f, 1.1f);
+            sound.audioSource.PlayOneShot(randomClip);
         }
 
         public void StopSound(string soundName)
@@ -108,7 +117,7 @@ namespace OM
                 return;
             }
 
-            sound.source.Stop();
+            //sound.source.Stop();
         }
 
         private static bool CanPlaySound(Sound sound)
@@ -142,13 +151,6 @@ namespace OM
             }
 
             return longestDuration;
-        }
-        
-        private static AudioSource CreateAudioSource(string name, Transform parent)
-        {
-            GameObject soundGameObject = new GameObject(name);
-            soundGameObject.transform.SetParent(parent);
-            return soundGameObject.AddComponent<AudioSource>();
         }
     }
 }

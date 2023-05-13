@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 1777746895159563299}
   - component: {fileID: 1777746895159563293}
   - component: {fileID: 1777746895595987457}
-  - component: {fileID: 1165277228}
   m_Layer: 10
   m_Name: SM_Scrap_Metal_01
   m_TagString: Untagged
@@ -147,24 +146,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSO: {fileID: 11400000, guid: a08419ef6fe54de47b05d01f14adee5e, type: 2}
 --- !u!114 &1777746895595987457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6897142107613896957}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
---- !u!114 &1165277228
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

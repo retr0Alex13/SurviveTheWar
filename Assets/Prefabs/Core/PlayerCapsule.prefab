@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 785804566909964821}
   - component: {fileID: 2163828238103916758}
   - component: {fileID: 8616685848737228376}
+  - component: {fileID: 5393215579111688503}
   m_Layer: 8
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -186,8 +187,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 1.7
+  m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.25
   m_SkinWidth: 0.02
@@ -215,7 +216,7 @@ MonoBehaviour:
   fallTimeout: 0.15
   grounded: 1
   groundedOffset: -0.14
-  groundedRadius: 0.5
+  groundedRadius: 0.3
   groundLayers:
     serializedVersion: 2
     m_Bits: 512
@@ -271,6 +272,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactDistance: 2
+  hintPanel: {fileID: 0}
+  hintText: {fileID: 0}
 --- !u!114 &5341501212074273096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1ec76d02b6700438353aef9d35fc31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpDistance: 2
+  pickUpDistance: 1
   playerCameraTransform: {fileID: 0}
   objectGrabPointTransform: {fileID: 0}
   pickUpLayerMask:
@@ -379,6 +382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryView: {fileID: 0}
+  inventoryMenu: {fileID: 0}
   playerDropPoint: {fileID: 0}
 --- !u!114 &2163828238103916758
 MonoBehaviour:
@@ -392,6 +396,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a883dc4413b2c4e9244994c99e45c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentlyequipedItem: {fileID: 0}
+  equipSlot: {fileID: 0}
+  dropItemPoint: {fileID: 0}
 --- !u!114 &8616685848737228376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,24 +503,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 987077048351491925}
-        m_TargetAssemblyTypeName: OM.PlayerPickupDrop, Assembly-CSharp
-        m_MethodName: HandleGrab
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_ActionId: 88491b50-63bc-4db6-a21f-35f6bc65370f
     m_ActionName: Player/Pickup[/Keyboard/e]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2403418030352593668}
-        m_TargetAssemblyTypeName: OM.PlayerCrafting, Assembly-CSharp
+        m_TargetAssemblyTypeName: OM.Crafting.PlayerCrafting, Assembly-CSharp
         m_MethodName: HandleCrafting
         m_Mode: 0
         m_Arguments:
@@ -558,8 +553,69 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d5cfa9b7-73ee-4a8f-96bd-06489d5a1cf0
     m_ActionName: Player/Drop[/Keyboard/g]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2163828238103916758}
+        m_TargetAssemblyTypeName: OM.PlayerEquipSlot, Assembly-CSharp
+        m_MethodName: Use
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bab573d8-5cba-463b-9a09-de1414d8312f
+    m_ActionName: Player/UseItemInHand[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 987077048351491925}
+        m_TargetAssemblyTypeName: OM.PlayerPickupDrop, Assembly-CSharp
+        m_MethodName: HandleGrab
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fd1cf047-4531-435a-9ebb-bb49c8013ec9
+    m_ActionName: Player/Hold[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7258403807616249297}
+        m_TargetAssemblyTypeName: OM.PlayerInteraction, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f00f1e5e-9018-4212-b955-8fa006a8a8c8
+    m_ActionName: Player/Interact[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5393215579111688503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa1a54f5d3875c41b34e5e788156a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}

@@ -72,6 +72,7 @@ namespace OM
             {
                 //Craft needed item
                 Debug.Log("Crafted!");
+                PlayCraftFX();
                 EvaluateCraftingGoal(craftingRecipieSO.outputItemSO.name);
                 Instantiate(craftingRecipieSO.outputItemSO.Prefab, itemSpawnPoint.position, itemSpawnPoint.rotation);
 
@@ -86,6 +87,11 @@ namespace OM
         public void EvaluateCraftingGoal(string itemName)
         {
             EventManager.Instance.QueueEvent(new CraftingGameEvent(itemName));
+        }
+
+        private void PlayCraftFX()
+        {
+            SoundManager.Instance.PlaySound("Crafting", transform.position);
         }
     }
 }
