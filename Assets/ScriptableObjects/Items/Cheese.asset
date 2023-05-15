@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a707cb3d5b390544db74a4794f858e42, type: 3}
-  m_Name: "\u041B\u0430\u043C\u043F\u043E\u0447\u043A\u0430"
+  m_Name: Cheese
   m_EditorClassIdentifier: 
-  itemType: 1
-  itemName: Light Bulb
-  prefab: {fileID: 8149932189074464859, guid: 7824e1d369b7fc947aafcb0db3c22ca6, type: 3}
-  image: {fileID: 21300000, guid: d483528c73b430347b2b4a516aa96bc6, type: 3}
-  MaxStackSize: 4
+  itemType: 3
+  itemName: Cheese
+  prefab: {fileID: 9043372340163264298, guid: 498bf24c11ba67e47824cd12a1619ce0, type: 3}
+  image: {fileID: 21300000, guid: 9209445320887414e86c03f8b4ac94be, type: 3}
+  MaxStackSize: 2

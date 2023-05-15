@@ -608,6 +608,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6479931070878907189}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &403660000 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6479931070745651178, guid: 75a4646e7e3c0d04b90d199a88d77477,
+    type: 3}
+  m_PrefabInstance: {fileID: 6479931070878907189}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403659997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521841df086425240808b13fef072dd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &445866510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5973,6 +5985,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 866840399170264345, guid: a9b65119651e8d944a705bcaad549512,
         type: 3}
+      propertyPath: taskView
+      value: 
+      objectReference: {fileID: 403660000}
+    - target: {fileID: 866840399170264345, guid: a9b65119651e8d944a705bcaad549512,
+        type: 3}
       propertyPath: timeOfDay
       value: 9
       objectReference: {fileID: 0}
@@ -6967,6 +6984,23 @@ PrefabInstance:
       propertyPath: taskWindow
       value: 
       objectReference: {fileID: 2081638054}
+    - target: {fileID: 6479931070745651178, guid: 75a4646e7e3c0d04b90d199a88d77477,
+        type: 3}
+      propertyPath: allTasks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479931070745651178, guid: 75a4646e7e3c0d04b90d199a88d77477,
+        type: 3}
+      propertyPath: allTasks.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 51974e8b191ae1f4bac0b1b2c7eef478,
+        type: 2}
+    - target: {fileID: 6479931070745651178, guid: 75a4646e7e3c0d04b90d199a88d77477,
+        type: 3}
+      propertyPath: allTasks.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 51974e8b191ae1f4bac0b1b2c7eef478,
+        type: 2}
     - target: {fileID: 6479931070745651179, guid: 75a4646e7e3c0d04b90d199a88d77477,
         type: 3}
       propertyPath: m_Pivot.x

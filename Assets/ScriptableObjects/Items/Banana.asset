@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a707cb3d5b390544db74a4794f858e42, type: 3}
-  m_Name: "\u0411\u0430\u0442\u0430\u0440\u0435\u0439\u043A\u0430"
+  m_Name: Banana
   m_EditorClassIdentifier: 
-  itemType: 1
-  itemName: "\u0411\u0430\u0442\u0430\u0440\u0435\u0439\u043A\u0438"
-  prefab: {fileID: 5766109493797294353, guid: a9a7639d4c9c3c949931d18c8e449768, type: 3}
-  image: {fileID: 21300000, guid: a3ee851c59b77914293af60a2eaaaabc, type: 3}
-  MaxStackSize: 4
+  itemType: 3
+  itemName: Banana
+  prefab: {fileID: 2363324583320523016, guid: ddc064a69407d0e48b673c5f38a4f5d4, type: 3}
+  image: {fileID: 21300000, guid: 6814745bbd0763b40addf4cf7ca5ff74, type: 3}
+  MaxStackSize: 2

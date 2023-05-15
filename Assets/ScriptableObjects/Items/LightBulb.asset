@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a707cb3d5b390544db74a4794f858e42, type: 3}
-  m_Name: "\u0411\u0430\u043D\u0430\u043D"
+  m_Name: LightBulb
   m_EditorClassIdentifier: 
-  itemType: 3
-  itemName: Banana
-  prefab: {fileID: 2363324583320523016, guid: ddc064a69407d0e48b673c5f38a4f5d4, type: 3}
-  image: {fileID: 21300000, guid: 6814745bbd0763b40addf4cf7ca5ff74, type: 3}
-  MaxStackSize: 2
+  itemType: 1
+  itemName: Light Bulb
+  prefab: {fileID: 8149932189074464859, guid: 7824e1d369b7fc947aafcb0db3c22ca6, type: 3}
+  image: {fileID: 21300000, guid: d483528c73b430347b2b4a516aa96bc6, type: 3}
+  MaxStackSize: 4

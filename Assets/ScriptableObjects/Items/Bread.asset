@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a707cb3d5b390544db74a4794f858e42, type: 3}
-  m_Name: "\u0421\u0438\u0440"
+  m_Name: Bread
   m_EditorClassIdentifier: 
   itemType: 3
-  itemName: Cheese
-  prefab: {fileID: 9043372340163264298, guid: 498bf24c11ba67e47824cd12a1619ce0, type: 3}
-  image: {fileID: 21300000, guid: 9209445320887414e86c03f8b4ac94be, type: 3}
-  MaxStackSize: 2
+  itemName: Bread
+  prefab: {fileID: 1647493014752655734, guid: 417edce4e898efe4facd1e15b2b45217, type: 3}
+  image: {fileID: 21300000, guid: 1c0fc3784b9e97c46a23236f62a7e092, type: 3}
+  MaxStackSize: 4

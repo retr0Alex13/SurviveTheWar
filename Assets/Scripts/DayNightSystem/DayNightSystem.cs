@@ -23,6 +23,8 @@ namespace OM
         private float lightIntencityLerp = 1f;
         private float fogIntencityLerp = 0.5f;
 
+        [SerializeField] private TaskView taskView;
+
         public delegate void DayNightAction();
         public static event DayNightAction OnNewHour;
         public static event DayNightAction OnNewDay;
@@ -68,7 +70,9 @@ namespace OM
             if (timeOfDay >= endDayHour)
             {
                 NextDay();
+                taskView.GenerateDailyTasks();
             }
+            //Time For Transition
             else if (timeOfDay >= endDayHour - 0.2f)
             {
                 OnNewDay?.Invoke();

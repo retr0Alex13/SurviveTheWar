@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a707cb3d5b390544db74a4794f858e42, type: 3}
-  m_Name: "\u041C\u0435\u0442\u0430\u043B\u043E\u0431\u0440\u0443\u0445\u0442"
+  m_Name: Pizza
   m_EditorClassIdentifier: 
-  itemType: 1
-  itemName: Metal Scrap
-  prefab: {fileID: 6897142107613896957, guid: bb8bc69ad66ef3248bece0a3b20b37f6, type: 3}
-  image: {fileID: 21300000, guid: eb2c4ebdd0920ab42b59a3f1482b5381, type: 3}
-  MaxStackSize: 4
+  itemType: 3
+  itemName: Pizza
+  prefab: {fileID: 7988871313573886518, guid: b007892fc93ee6343a8420bb1d92b2ce, type: 3}
+  image: {fileID: 21300000, guid: d4fee940b1f3f3a4793ba4ebf98eb40f, type: 3}
+  MaxStackSize: 1
