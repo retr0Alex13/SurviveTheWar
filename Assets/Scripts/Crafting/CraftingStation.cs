@@ -73,7 +73,7 @@ namespace OM
                 //Craft needed item
                 Debug.Log("Crafted!");
                 PlayCraftFX();
-                EvaluateCraftingGoal(craftingRecipieSO.outputItemSO.name);
+                EvaluateCraftingGoal(craftingRecipieSO.outputItemSO.itemName);
                 Instantiate(craftingRecipieSO.outputItemSO.Prefab, itemSpawnPoint.position, itemSpawnPoint.rotation);
 
 

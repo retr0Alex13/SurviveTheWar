@@ -94,7 +94,7 @@ MonoBehaviour:
     type: 3}
   taskContent: {fileID: 6479931070745651179}
   taskWindow: {fileID: 0}
-  currentTasks:
+  allTasks:
   - {fileID: 11400000, guid: 7bd6c9b51bbceb445ab4eb37ea40f280, type: 2}
   - {fileID: 11400000, guid: 51974e8b191ae1f4bac0b1b2c7eef478, type: 2}
 --- !u!114 &6479931070745651159

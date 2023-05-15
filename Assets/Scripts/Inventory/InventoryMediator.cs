@@ -38,6 +38,7 @@ namespace OM
         public void AddItemToInventory(ItemSO item)
         {
             InventorySystem.Add(item);
+            EvaluateGatheringGoal(item.itemName);
         }
 
         public void RemoveItemFromInventory(ItemSO item)
@@ -75,6 +76,9 @@ namespace OM
         {
             return inventoryMenu.activeSelf;
         }
-
+        public void EvaluateGatheringGoal(string itemName)
+        {
+            EventManager.Instance.QueueEvent(new GatheringGameEvent(itemName));
+        }
     }
 }

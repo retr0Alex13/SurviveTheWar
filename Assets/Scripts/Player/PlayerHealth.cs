@@ -8,11 +8,14 @@ namespace OM
     public class PlayerHealth : MonoBehaviour
     {
         public HealthSystem playerHealth = new HealthSystem(100, 100);
-
+        
         public delegate void PlayerHealthAction();
+        
         public static event PlayerHealthAction OnPlayerDead;
+        
 
         private PlayerInput playerInput;
+        
 
         private void Awake() => playerInput = GetComponent<PlayerInput>();
 
@@ -20,10 +23,12 @@ namespace OM
 
         private void OnDisable() => HealthSystem.OnHealthChanged -= OnHealthChanged;
 
-        private void OnHealthChanged(float currentHealth, float maxHealth)
+        private void OnHealthChanged(float currentMaxHealth, float currentHealth)
         {
             if (playerHealth.CurrentHealth > 0)
+            {
                 return;
+            }
             PlayerDead();
         }
 

@@ -16,7 +16,7 @@ MonoBehaviour:
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
-  item: Flashlight
+  item: "\u041B\u0456\u0445\u0442\u0430\u0440\u0438\u043A"
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31,7 +31,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   information:
     name: "\u041F\u043E\u0447\u0430\u0442\u043E\u043A"
-    description: 
+    description: "\u041F\u043E\u0447\u0430\u0442\u043E\u043A \u0432\u0438\u0436\u0438\u0432\u0430\u043D\u043D\u044F"
   reward:
     money: 10
     sanity: 10

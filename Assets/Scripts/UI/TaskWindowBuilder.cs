@@ -26,8 +26,8 @@ namespace OM
 
                 if (goal.Completed)
                 {
-                    countObj.GetComponent<TextMeshProUGUI>().text = "Done";
-                    countObj.GetComponent<TextMeshProUGUI>().color = Color.green;
+                    countObj.GetComponent<TextMeshProUGUI>().text = "Готово";
+                    countObj.GetComponent<TextMeshProUGUI>().color = Color.gray;
                     //countObj.SetActive(false);
                 }
                 else

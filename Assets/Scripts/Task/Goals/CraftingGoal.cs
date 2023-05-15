@@ -6,7 +6,7 @@ namespace OM
 
         public override string GetDescription()
         {
-            return $"Craft a {item}";
+            return $"Зробити {item}";
         }
 
         public override void Initialize()
