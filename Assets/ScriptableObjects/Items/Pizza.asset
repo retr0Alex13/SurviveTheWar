@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pizza
   m_EditorClassIdentifier: 
   itemType: 3
-  itemName: Pizza
+  itemName: "\u041F\u0456\u0446\u0446\u0430"
   prefab: {fileID: 7988871313573886518, guid: b007892fc93ee6343a8420bb1d92b2ce, type: 3}
   image: {fileID: 21300000, guid: d4fee940b1f3f3a4793ba4ebf98eb40f, type: 3}
   MaxStackSize: 1

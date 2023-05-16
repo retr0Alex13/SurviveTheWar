@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Banana
   m_EditorClassIdentifier: 
   itemType: 3
-  itemName: Banana
+  itemName: "\u0411\u0430\u043D\u0430\u043D"
   prefab: {fileID: 2363324583320523016, guid: ddc064a69407d0e48b673c5f38a4f5d4, type: 3}
   image: {fileID: 21300000, guid: 6814745bbd0763b40addf4cf7ca5ff74, type: 3}
   MaxStackSize: 2

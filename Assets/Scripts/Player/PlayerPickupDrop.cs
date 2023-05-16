@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,12 +10,18 @@ namespace OM
         [SerializeField] private Transform playerCameraTransform;
         [SerializeField] private Transform objectGrabPointTransform;
         [SerializeField] private LayerMask pickUpLayerMask;
+        private InventoryMediator inventory;
 
         private ObjectGrabbable objectGrabbable;
         private bool isHolding;
 
         public delegate void PlayerPickUpAction(ItemSO itemSO);
         public static event PlayerPickUpAction OnItemPickUp;
+
+        private void Awake()
+        {
+            inventory = GetComponent<InventoryMediator>();
+        }
 
         /// <summary>
         /// Function for picking up items to inventory
@@ -29,6 +36,7 @@ namespace OM
                     {
                         if (itemSOHolder != null)
                         {
+                            if(inventory.IsInventoryFull(itemSOHolder.ItemSO)) return;
                             OnItemPickUp(itemSOHolder.ItemSO);
                             Destroy(raycastHit.transform.gameObject);
                         }

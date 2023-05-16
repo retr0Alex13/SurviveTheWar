@@ -34,6 +34,18 @@ namespace OM
         {
             inventoryView.OnUpdateInventory();
         }
+        
+        public bool IsInventoryFull(ItemSO item)
+        {
+            if (InventorySystem.Get(item) == null)
+            {
+                if (InventorySystem.Inventory.Count == InventorySystem.slotsLimit)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         public void AddItemToInventory(ItemSO item)
         {

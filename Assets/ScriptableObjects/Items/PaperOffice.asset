@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PaperOffice
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: OfficePaper
+  itemName: "\u041E\u0444\u0456\u0441\u043D\u0438\u0439 \u041F\u0430\u043F\u0456\u0440"
   prefab: {fileID: 7565486831765466064, guid: 09942ffd0dd3e20428a0eb35c640248d, type: 3}
   image: {fileID: 21300000, guid: 2d579e526793387478684092f7393812, type: 3}
   MaxStackSize: 4

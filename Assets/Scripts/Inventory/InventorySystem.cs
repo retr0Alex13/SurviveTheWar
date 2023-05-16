@@ -5,6 +5,7 @@ namespace OM
 {
     public class InventorySystem
     {
+        public int slotsLimit = 6;
         public Dictionary<ItemSO, InventoryItem> ItemDictionary;
         public List<InventoryItem> Inventory { get; set; }
 
