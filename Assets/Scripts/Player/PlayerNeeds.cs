@@ -7,6 +7,9 @@ namespace OM
     public class PlayerNeeds : MonoBehaviour
     {
         [SerializeField] private int starvingDamagePerTick = 5;
+        [SerializeField] private int onFullNeedsHealPoints = 10;
+        [SerializeField, Tooltip("Used to simulate short time when player is not hungry")]
+        private int bonusSatedPoints = 10;
 
         #region Hunger
         [Header("Hunger")]
@@ -105,6 +108,10 @@ namespace OM
                 currentHunger = Mathf.Clamp(currentHunger, 0f, maxHunger);
                 currentThirst = Mathf.Clamp(currentThirst, 0f, maxThirst);
             }
+            else if (currentHunger >= maxHunger && currentThirst >= maxThirst)
+            {
+                playerHealth.playerHealth.HealEntity(onFullNeedsHealPoints);
+            }
         }
 
         private void UpdateStamina()
@@ -154,8 +161,8 @@ namespace OM
             currentHunger += hungerAmount;
             currentThirst += thirstAmount;
 
-            currentHunger = Mathf.Clamp(currentHunger, 0f, maxHunger);
-            currentThirst = Mathf.Clamp(currentThirst, 0f, maxThirst);
+            currentHunger = Mathf.Clamp(currentHunger, 0f, maxHunger + bonusSatedPoints);
+            currentThirst = Mathf.Clamp(currentThirst, 0f, maxThirst + bonusSatedPoints);
         }
     }
 }
