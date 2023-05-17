@@ -87,7 +87,7 @@ namespace OM
                 {
                     taskWindow.GetComponent<TaskWindowBuilder>().Initialize(randomTask);
                     taskWindow.SetActive(true);
-                    gameObject.SetActive(false);
+                    //gameObject.SetActive(false);
                 });
             }
         }
@@ -103,7 +103,7 @@ namespace OM
         {
             //Sets Checkmark to true
             //taskContent.GetChild(currentTasks.IndexOf(task)).Find("Done").gameObject.SetActive(true);
-            Debug.Log(taskContent.GetChild(listOfRandomTasks.IndexOf(task)).gameObject);
+            SoundManager.Instance.PlaySound("TaskCompleted");
             Destroy(taskContent.GetChild(listOfRandomTasks.IndexOf(task)).gameObject);
             listOfRandomTasks.Remove(task);
         }

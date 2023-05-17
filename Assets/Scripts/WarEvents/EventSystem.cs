@@ -79,7 +79,7 @@ namespace OM
             isEventActive = true;
             currentTimeToGetSafe = timeToGetToSafe;
             currentTimeOfEvent = eventDuration;
-            SoundManager.Instance.PlaySound("Air Raid Alert");
+            SoundManager.Instance.PlaySound("Air Raid Alert", transform.position);
             Debug.Log("Air Raid Alert!");
         }
     }

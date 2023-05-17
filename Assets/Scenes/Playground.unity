@@ -4184,6 +4184,38 @@ MonoBehaviour:
     hasCooldown: 0
     cooldown: 0
     audioSource: {fileID: 0}
+  - name: OpenInventory
+    clips:
+    - {fileID: 8300000, guid: 8a17e376ce72bfb4bb60119a868815fc, type: 3}
+    volume: 0.2
+    isLoop: 0
+    hasCooldown: 0
+    cooldown: 0
+    audioSource: {fileID: 0}
+  - name: PickupItem
+    clips:
+    - {fileID: 8300000, guid: 99bab977ac7f22e40942872099d3a90f, type: 3}
+    volume: 0.1
+    isLoop: 0
+    hasCooldown: 0
+    cooldown: 0
+    audioSource: {fileID: 0}
+  - name: FullInventory
+    clips:
+    - {fileID: 8300000, guid: a34330c442dbc95479f47045977e2488, type: 3}
+    volume: 0.1
+    isLoop: 0
+    hasCooldown: 0
+    cooldown: 0
+    audioSource: {fileID: 0}
+  - name: TaskCompleted
+    clips:
+    - {fileID: 8300000, guid: 53de1ab282599a6498379c2a24205c66, type: 3}
+    volume: 0.25
+    isLoop: 0
+    hasCooldown: 0
+    cooldown: 0
+    audioSource: {fileID: 0}
 --- !u!4 &1806781362
 Transform:
   m_ObjectHideFlags: 0
@@ -5348,6 +5380,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3577205999609247247}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2081638056 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3577205998601482405, guid: 03510d5a279f0514b859af6e9745306b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3577205999609247247}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081638054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bfb353481b270b45953c23dabbad14b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2084445384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6222,12 +6266,12 @@ PrefabInstance:
     - target: {fileID: 1210513285198060234, guid: dc78d0cfc7e712346af4a21c6a1d61db,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 12.25
       objectReference: {fileID: 0}
     - target: {fileID: 1210513285198060234, guid: dc78d0cfc7e712346af4a21c6a1d61db,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -9.1
       objectReference: {fileID: 0}
     - target: {fileID: 1210513285198060234, guid: dc78d0cfc7e712346af4a21c6a1d61db,
         type: 3}
@@ -6751,11 +6795,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: TaskWindow
       objectReference: {fileID: 0}
+    - target: {fileID: 3577205998601482409, guid: 03510d5a279f0514b859af6e9745306b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3577205999431417931, guid: 03510d5a279f0514b859af6e9745306b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 403659997}
+    - target: {fileID: 3577205999675838484, guid: 03510d5a279f0514b859af6e9745306b,
+        type: 3}
+      propertyPath: m_ChildControlWidth
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03510d5a279f0514b859af6e9745306b, type: 3}
 --- !u!1001 &4028506123691352309
@@ -6896,6 +6950,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 785804566909964821, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
+      propertyPath: taskWindow
+      value: 
+      objectReference: {fileID: 2081638056}
+    - target: {fileID: 785804566909964821, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
       propertyPath: inventoryMenu
       value: 
       objectReference: {fileID: 959753216}
@@ -6909,11 +6968,6 @@ PrefabInstance:
       propertyPath: playerDropPoint
       value: 
       objectReference: {fileID: 468911750}
-    - target: {fileID: 987077048351491925, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: pickUpDistance
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 987077048351491925, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: playerCameraTransform
@@ -6944,11 +6998,6 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1840160008}
-    - target: {fileID: 5341501212074273096, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: visualEffectController
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5393215579111688473, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: playerCameraTransform
@@ -6969,21 +7018,6 @@ PrefabInstance:
       propertyPath: hintPanel
       value: 
       objectReference: {fileID: 217329686}
-    - target: {fileID: 7258403807616249297, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: interactDistance
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: gravity
-      value: -35
-      objectReference: {fileID: 0}
-    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: jumpHeight
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: m_Name
@@ -7508,6 +7542,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1013156370}
     m_Modifications:
+    - target: {fileID: 8099239052595819313, guid: 2fced7a6feb1b3744abffbf22829d3f5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099239052595819313, guid: 2fced7a6feb1b3744abffbf22829d3f5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -103.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099239052595819318, guid: 2fced7a6feb1b3744abffbf22829d3f5,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8099239053183639512, guid: 2fced7a6feb1b3744abffbf22829d3f5,
         type: 3}
       propertyPath: m_Pivot.x
@@ -7613,6 +7662,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8099239053183639513, guid: 2fced7a6feb1b3744abffbf22829d3f5,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8099239053183639515, guid: 2fced7a6feb1b3744abffbf22829d3f5,
         type: 3}
       propertyPath: m_Name
@@ -7623,6 +7677,26 @@ PrefabInstance:
       propertyPath: dayNightSystem
       value: 
       objectReference: {fileID: 609132292}
+    - target: {fileID: 8099239053189306322, guid: 2fced7a6feb1b3744abffbf22829d3f5,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099239053189306322, guid: 2fced7a6feb1b3744abffbf22829d3f5,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099239053189306333, guid: 2fced7a6feb1b3744abffbf22829d3f5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099239053189306333, guid: 2fced7a6feb1b3744abffbf22829d3f5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 138
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fced7a6feb1b3744abffbf22829d3f5, type: 3}
 --- !u!4 &8338988565591873055 stripped

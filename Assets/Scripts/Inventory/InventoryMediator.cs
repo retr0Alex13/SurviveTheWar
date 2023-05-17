@@ -7,6 +7,7 @@ namespace OM
     public class InventoryMediator : MonoBehaviour
     {
         [SerializeField] private InventoryView inventoryView;
+        [SerializeField] private TaskWindowBuilder taskWindow;
         [SerializeField] private GameObject inventoryMenu;
         [SerializeField] private Transform playerDropPoint;
 
@@ -41,6 +42,7 @@ namespace OM
             {
                 if (InventorySystem.Inventory.Count == InventorySystem.slotsLimit)
                 {
+                    SoundManager.Instance.PlaySound("FullInventory");
                     return true;
                 }
             }
@@ -77,10 +79,12 @@ namespace OM
                 if (isInventoryMenuActive())
                 {
                     Cursor.lockState = CursorLockMode.None;
+                    SoundManager.Instance.PlaySound("OpenInventory");
                 }
                 else
                 {
                     Cursor.lockState = CursorLockMode.Locked;
+                    taskWindow.CloseWindow();
                 }
             }
         }

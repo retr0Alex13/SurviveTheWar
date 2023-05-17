@@ -210,8 +210,8 @@ MonoBehaviour:
   sprintSpeed: 6
   rotationSpeed: 1
   speedChangeRate: 10
-  jumpHeight: 1.2
-  gravity: -15
+  jumpHeight: 1
+  gravity: -35
   jumpTimeout: 0.1
   fallTimeout: 0.15
   grounded: 1
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a07c02c6ba60248b4c8e48b7821984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 2
+  interactDistance: 1.5
   hintPanel: {fileID: 0}
   hintText: {fileID: 0}
 --- !u!114 &5341501212074273096
@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1ec76d02b6700438353aef9d35fc31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpDistance: 1
+  pickUpDistance: 1.5
   playerCameraTransform: {fileID: 0}
   objectGrabPointTransform: {fileID: 0}
   pickUpLayerMask:
@@ -382,6 +382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryView: {fileID: 0}
+  taskWindow: {fileID: 0}
   inventoryMenu: {fileID: 0}
   playerDropPoint: {fileID: 0}
 --- !u!114 &2163828238103916758

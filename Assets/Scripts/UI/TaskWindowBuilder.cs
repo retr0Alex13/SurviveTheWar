@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace OM
         [SerializeField] private TextMeshProUGUI descriptionText;
         [SerializeField] private GameObject goalPrefab;
         [SerializeField] private Transform goalContent;
-        [SerializeField] private GameObject tasks;
+        [SerializeField] public GameObject tasks;
 
         public void Initialize(Task task)
         {
@@ -27,7 +28,7 @@ namespace OM
                 if (goal.Completed)
                 {
                     countObj.GetComponent<TextMeshProUGUI>().text = "Готово";
-                    countObj.GetComponent<TextMeshProUGUI>().color = Color.gray;
+                    //countObj.GetComponent<TextMeshProUGUI>().color = Color.green;
                     //countObj.SetActive(false);
                 }
                 else

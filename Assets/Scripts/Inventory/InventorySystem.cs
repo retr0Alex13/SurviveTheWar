@@ -32,6 +32,7 @@ namespace OM
             {
                 CreateNewItemCell(referenceData);
             }
+            SoundManager.Instance.PlaySound("PickupItem");
             OnInventoryChange();
         }
 
