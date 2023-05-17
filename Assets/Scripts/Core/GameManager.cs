@@ -11,7 +11,6 @@ namespace OM
 
         void Awake()
         {
-            //Singleton
             if (gameManager != null && gameManager != this)
             {
                 Destroy(this);

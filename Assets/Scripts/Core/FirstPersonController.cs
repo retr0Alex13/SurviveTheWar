@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using OM;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
@@ -95,6 +96,18 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
+
+            PauseState.OnGamePaused += DisablePlayerController;
+        }
+
+        private void OnDestroy()
+        {
+            PauseState.OnGamePaused -= DisablePlayerController;
+        }
+
+        private void DisablePlayerController(bool disable)
+        {
+            enabled = !disable;
         }
 
         private void Start()

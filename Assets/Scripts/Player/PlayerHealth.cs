@@ -31,7 +31,7 @@ namespace OM
             }
             PlayerDead();
         }
-
+        
         private void PlayerDead()
         {
             playerInput.enabled = false;
