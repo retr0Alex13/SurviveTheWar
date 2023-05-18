@@ -103,14 +103,15 @@ namespace OM
 
             if (currentHunger <= 0 || currentThirst <= 0)
             {
-                playerHealth.playerHealth.DamageEntity(starvingDamagePerTick);
+                playerHealth.health.DamageEntity(starvingDamagePerTick);
 
                 currentHunger = Mathf.Clamp(currentHunger, 0f, maxHunger);
                 currentThirst = Mathf.Clamp(currentThirst, 0f, maxThirst);
             }
-            else if (currentHunger >= maxHunger && currentThirst >= maxThirst)
+            
+            if (currentHunger >= maxHunger && currentThirst >= maxThirst)
             {
-                playerHealth.playerHealth.HealEntity(onFullNeedsHealPoints);
+                playerHealth.health.HealEntity(onFullNeedsHealPoints);
             }
         }
 
