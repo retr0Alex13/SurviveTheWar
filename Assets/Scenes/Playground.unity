@@ -356,6 +356,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 104221960}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &113411273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 113411274}
+  m_Layer: 0
+  m_Name: RewardSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &113411274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113411273}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.76, y: 1.307, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &120904914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5087,6 +5118,14 @@ MonoBehaviour:
     hasCooldown: 0
     cooldown: 0
     audioSource: {fileID: 0}
+  - name: DoorBell
+    clips:
+    - {fileID: 8300000, guid: 90c452bc4a2818e4c91d8440b4385115, type: 3}
+    volume: 0.5
+    isLoop: 0
+    hasCooldown: 0
+    cooldown: 0
+    audioSource: {fileID: 0}
 --- !u!4 &1806781362
 Transform:
   m_ObjectHideFlags: 0
@@ -7993,6 +8032,11 @@ PrefabInstance:
       objectReference: {fileID: 1840160008}
     - target: {fileID: 5393215579111688473, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
+      propertyPath: decreaseHungerRate
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5393215579111688473, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
       propertyPath: playerCameraTransform
       value: 
       objectReference: {fileID: 1405640147}
@@ -8230,6 +8274,34 @@ MonoBehaviour:
   isPauseButtonPressed: 0
   pauseMenuUI: {fileID: 100403021}
   ResumeGameButton: {fileID: 1834617387}
+--- !u!114 &5908367790103339518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242805005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e39a145d7b276459dc0add7883e5df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewardSpawnPoint: {fileID: 113411274}
+  rewardItems:
+  - {fileID: 11400000, guid: 6ec257de8cec89c48be566db7c90e501, type: 2}
+  - {fileID: 11400000, guid: 09f7c4168087f3747ab1930745a96853, type: 2}
+  - {fileID: 11400000, guid: a319506bd3d033748a99d62eb0f865d0, type: 2}
+  - {fileID: 11400000, guid: 80f6cd863f42256488f1181054bd9e67, type: 2}
+  - {fileID: 11400000, guid: 0da87afc21d93f54e957930f8023d93d, type: 2}
+  - {fileID: 11400000, guid: 7114fb27d7df34c4cab5be02d5625dbf, type: 2}
+  - {fileID: 11400000, guid: ee917bfb5c9440e49b16ec8438e70b33, type: 2}
+  - {fileID: 11400000, guid: a08419ef6fe54de47b05d01f14adee5e, type: 2}
+  - {fileID: 11400000, guid: c0b3eea746ea6c048bcdedd5fc85db22, type: 2}
+  - {fileID: 11400000, guid: b47abf6c850ba9148a898e3ad831dd9d, type: 2}
+  - {fileID: 11400000, guid: 39c81a0d8c1acf74a8127e870678d6a8, type: 2}
+  - {fileID: 11400000, guid: 1b916879e95beac46988e7aa24d81100, type: 2}
+  rewardParticle: {fileID: 141433446842962269, guid: 9fe8f8b3288e45a44af36ff8aa04486e,
+    type: 3}
 --- !u!1001 &6479931070878907189
 PrefabInstance:
   m_ObjectHideFlags: 0

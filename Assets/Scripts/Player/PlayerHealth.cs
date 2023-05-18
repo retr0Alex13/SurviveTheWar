@@ -7,8 +7,8 @@ namespace OM
 {
     public class PlayerHealth : MonoBehaviour
     {
-        public HealthSystem playerHealth = new HealthSystem(100, 100);
-        
+        public HealthSystem health = new HealthSystem(100, 100);
+
         public delegate void PlayerHealthAction();
         
         public static event PlayerHealthAction OnPlayerDead;
@@ -25,7 +25,7 @@ namespace OM
 
         private void OnHealthChanged(float currentMaxHealth, float currentHealth)
         {
-            if (playerHealth.CurrentHealth > 0)
+            if (health.CurrentHealth > 0)
             {
                 return;
             }

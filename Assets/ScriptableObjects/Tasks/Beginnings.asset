@@ -67,8 +67,7 @@ MonoBehaviour:
     name: "\u041F\u043E\u0447\u0430\u0442\u043E\u043A"
     description: "\u041E\u0441\u043D\u043E\u0432\u0438"
   reward:
-    money: 10
-    sanity: 10
+    amountOfItems: 1
   goals:
   - {fileID: 3509289494642414701}
   - {fileID: -2229786560427380359}

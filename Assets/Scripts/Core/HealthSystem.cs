@@ -19,10 +19,10 @@ namespace OM
         public static event OnHealthChange OnHealthChanged;
 
         private float damageCounter;
-        private float damageRate = 5f;
+        private float damageRate = 3f;
 
         private float healCounter;
-        private float healRate = 5f;
+        private float healRate = 2f;
 
 
         public HealthSystem(int health, int maxHealth)
@@ -59,16 +59,16 @@ namespace OM
                 if (healCounter >= healRate)
                 {
                     currentHealth += healAmount;
+                    if (OnHealthChanged != null)
+                    {
+                        OnHealthChanged(CurrentMaxHealth, CurrentHealth);
+                    }
+                    healCounter = 0;
                 }
-                healCounter = 0;
             }
             if (currentHealth > currentMaxHealth)
             {
                 currentHealth = currentMaxHealth;
-            }
-            if (OnHealthChanged != null)
-            {
-                OnHealthChanged(CurrentMaxHealth, CurrentHealth);
             }
         }
     }

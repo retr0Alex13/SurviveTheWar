@@ -53,7 +53,7 @@ namespace OM
                 currentTimeToGetSafe = 0;
                 if (!isInSafeZone)
                 {
-                    playerHealth.playerHealth.DamageEntity(eventDamage);
+                    playerHealth.health.DamageEntity(eventDamage);
                 }
             }
             if(currentTimeOfEvent <= 0)

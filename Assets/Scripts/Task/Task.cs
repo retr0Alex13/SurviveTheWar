@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace OM
 {
@@ -21,11 +22,10 @@ namespace OM
         [Serializable]
         public struct Reward
         {
-            public int money;
-            public int sanity;
+            [FormerlySerializedAs("money")] public int amountOfItems;
         }
 
-        [Header("Reward")] public Reward reward = new Reward { money = 10, sanity = 10 };
+        [Header("Reward")] public Reward reward = new Reward { amountOfItems = 1 };
 
         public bool Completed { get; protected set; }
         public TaskCompletedEvent taskCompleted;
@@ -87,6 +87,7 @@ namespace OM
             if (Completed)
             {
                 //Give reward
+                GameManager.gameManager.taskRewardController.SpawnRandomReward(reward.amountOfItems);
                 taskCompleted.Invoke(this);
                 taskCompleted.RemoveAllListeners();
             }
