@@ -8,22 +8,22 @@ namespace OM
         private CanvasGroup deathGroupUI;
         [SerializeField] private float alphaLerp = 1f;
 
-        private void OnEnable()
-        {
-            PlayerHealth.OnPlayerDead += SetVisibleDeathGroupUI;
-        }
-
-        private void OnDisable()
-        {
-            PlayerHealth.OnPlayerDead -= SetVisibleDeathGroupUI;
-        }
+        // private void OnEnable()
+        // {
+        //     PlayerHealth.OnPlayerDead += SetVisibleDeathGroupUI;
+        // }
+        //
+        // private void OnDisable()
+        // {
+        //     PlayerHealth.OnPlayerDead -= SetVisibleDeathGroupUI;
+        // }
 
         private void Start()
         {
             deathGroupUI = gameObject.GetComponent<CanvasGroup>();
             deathGroupUI.blocksRaycasts = false;
         }
-        private void SetVisibleDeathGroupUI()
+        public void SetVisibleDeathGroupUI()
         {
             StartCoroutine(AnimateDeathScreen());
         }
@@ -37,7 +37,7 @@ namespace OM
             while (elapsedTime < 1)
             {
                 deathGroupUI.alpha = Mathf.Lerp(currentAlpha, targetAlpha, elapsedTime);
-                elapsedTime += Time.deltaTime * alphaLerp;
+                elapsedTime += Time.unscaledDeltaTime * alphaLerp;
                 yield return null;
             }
             deathGroupUI.alpha = targetAlpha;

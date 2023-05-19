@@ -3561,6 +3561,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052874278}
   m_CullTransparentMesh: 1
+--- !u!114 &1054955802 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3380590349765034022, guid: b70da131ded05f04c959fe2cf413563a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3380590349549172251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5737b7e6370393e449f065a20cc8f04f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1063103728 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4028506122670722053, guid: 4f3fa90d522997f489d8ad2f1a920427,
@@ -3803,6 +3815,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5908367790103339513}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1278959901 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6815433705461031209, guid: b70da131ded05f04c959fe2cf413563a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3380590349549172251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1330897792 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 258222086583684533, guid: dfb19d944dc000b4c9fc2b269f1ac683,
@@ -4560,6 +4584,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1654142042}
   m_CullTransparentMesh: 1
+--- !u!114 &1672597846 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8978147727361013448, guid: b70da131ded05f04c959fe2cf413563a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3380590349549172251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1754304173 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4028506124101316184, guid: 4f3fa90d522997f489d8ad2f1a920427,
@@ -8272,8 +8308,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPauseButtonPressed: 0
+  deathScreenView: {fileID: 1054955802}
   pauseMenuUI: {fileID: 100403021}
-  ResumeGameButton: {fileID: 1834617387}
+  resumeGameButton: {fileID: 1834617387}
+  restartButton: {fileID: 1278959901}
+  toMainMenButton: {fileID: 1672597846}
 --- !u!114 &5908367790103339518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8290,9 +8329,9 @@ MonoBehaviour:
   rewardItems:
   - {fileID: 11400000, guid: 6ec257de8cec89c48be566db7c90e501, type: 2}
   - {fileID: 11400000, guid: 09f7c4168087f3747ab1930745a96853, type: 2}
-  - {fileID: 11400000, guid: a319506bd3d033748a99d62eb0f865d0, type: 2}
   - {fileID: 11400000, guid: 80f6cd863f42256488f1181054bd9e67, type: 2}
   - {fileID: 11400000, guid: 0da87afc21d93f54e957930f8023d93d, type: 2}
+  - {fileID: 11400000, guid: a319506bd3d033748a99d62eb0f865d0, type: 2}
   - {fileID: 11400000, guid: 7114fb27d7df34c4cab5be02d5625dbf, type: 2}
   - {fileID: 11400000, guid: ee917bfb5c9440e49b16ec8438e70b33, type: 2}
   - {fileID: 11400000, guid: a08419ef6fe54de47b05d01f14adee5e, type: 2}

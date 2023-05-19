@@ -1,14 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace OM
 {
     public class GameStateView : MonoBehaviour
     {
         [HideInInspector] public bool isPauseButtonPressed;
+        public DeathScreenView deathScreenView;
         public GameObject pauseMenuUI;
-        public Button ResumeGameButton;
+        public Button resumeGameButton;
+        public Button restartButton;
+        public Button toMainMenButton;
         
         private StateMachine stateMachine;
         public StateMachine StateMachine => stateMachine;
@@ -34,6 +39,16 @@ namespace OM
             {
                 isPauseButtonPressed = !isPauseButtonPressed;
             }
+        }
+
+        public void RestartScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        public void LoadMainMenuScene()
+        {
+            SceneManager.LoadScene(0);
         }
     }
 }

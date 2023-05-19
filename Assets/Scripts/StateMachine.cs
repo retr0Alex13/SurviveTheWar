@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+
 
 namespace OM
 {
@@ -12,11 +10,13 @@ namespace OM
 
         public ResumedState resumedState;
         public PauseState pauseState;
+        public GameOverState gameOverState;
 
         public StateMachine(GameStateView gameStateView)
         {
             resumedState = new ResumedState(gameStateView);
             pauseState = new PauseState(gameStateView);
+            gameOverState = new GameOverState(gameStateView);
         }
 
         public void Initialize(IState startingState)

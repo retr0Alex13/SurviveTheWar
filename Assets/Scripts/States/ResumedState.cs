@@ -6,14 +6,15 @@ namespace OM
 {
     public class ResumedState : IState
     {
+        private bool isPlayerDead;
         private GameStateView _gameStateView;
-
         public ResumedState(GameStateView gameStateView)
         {
-            this._gameStateView = gameStateView;
+            _gameStateView = gameStateView;
         }
         public void Enter()
         {
+            PlayerHealth.OnPlayerDead += SetPlayerDead;
             Cursor.lockState = CursorLockMode.Locked;
         }
 
@@ -23,11 +24,22 @@ namespace OM
             {
                 _gameStateView.StateMachine.TransitionTo(_gameStateView.StateMachine.pauseState);
             }
+
+            if (isPlayerDead)
+            {
+                _gameStateView.StateMachine.TransitionTo(_gameStateView.StateMachine.gameOverState);
+            }
         }
 
         public void Exit()
         {
-            
+            PlayerHealth.OnPlayerDead -= SetPlayerDead;
+            isPlayerDead = false;
+        }
+
+        private void SetPlayerDead()
+        {
+            isPlayerDead = true;
         }
     }
 }

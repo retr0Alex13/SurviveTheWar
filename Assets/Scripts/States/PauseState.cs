@@ -14,16 +14,19 @@ namespace OM
 
         public PauseState(GameStateView gameStateView)
         {
-            this._gameStateView = gameStateView;
+            _gameStateView = gameStateView;
         }
         
         public void Enter()
         {
             OnGamePaused?.Invoke(true);
-            _gameStateView.ResumeGameButton.onClick.AddListener(delegate 
+            
+            _gameStateView.resumeGameButton.onClick.AddListener(delegate 
             {
                 _gameStateView.isPauseButtonPressed = false;
             });
+            
+            _gameStateView.pauseMenuUI.SetActive(true);
             OnPause();
         }
 
@@ -38,27 +41,26 @@ namespace OM
         public void Exit()
         {
             OnGamePaused?.Invoke(false);
+            
+            _gameStateView.pauseMenuUI.SetActive(false);
+            
             OnUnpause();
         }
 
-        private void OnPause()
+        public void OnPause()
         {
             Cursor.lockState = CursorLockMode.None;
             
-            _gameStateView.pauseMenuUI.SetActive(true);
-
             Time.timeScale = 0f;
 
             AudioListener.pause = true;
 
         }
         
-        private void OnUnpause()
+        public void OnUnpause()
         {
             Cursor.lockState = CursorLockMode.Locked;
             
-            _gameStateView.pauseMenuUI.SetActive(false);
-
             Time.timeScale = 1f;
             
             AudioListener.pause = false;
