@@ -8,12 +8,18 @@ namespace OM
 {
     public class GameStateView : MonoBehaviour
     {
-        [HideInInspector] public bool isPauseButtonPressed;
-        public DeathScreenView deathScreenView;
+        [Header("Pause Menu")]
         public GameObject pauseMenuUI;
+
+        public GameObject optionsMenu;
+        [HideInInspector] 
+        public bool isPauseButtonPressed;
         public Button resumeGameButton;
+        
+        [Header("Death Screen Menu")]
+        public DeathScreenView deathScreenView;
         public Button restartButton;
-        public Button toMainMenButton;
+        public Button mainMenuButton;
         
         private StateMachine stateMachine;
         public StateMachine StateMachine => stateMachine;

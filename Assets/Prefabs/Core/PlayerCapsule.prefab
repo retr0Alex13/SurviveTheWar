@@ -299,8 +299,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starvingDamagePerTick: 5
+  onFullNeedsHealPoints: 10
+  bonusSatedPoints: 10
   maxHunger: 100
-  decreaseHungerRate: 0.4
+  decreaseHungerRate: 0.3
   currentHunger: 0
   maxThirst: 90
   decreaseThirstRate: 0.4
@@ -602,6 +604,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f00f1e5e-9018-4212-b955-8fa006a8a8c8
     m_ActionName: Player/Interact[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: OM.GameStateView, Assembly-CSharp
+        m_MethodName: IsPauseButtonPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 52a25702-9b23-4101-8469-43171d5fc7a0
+    m_ActionName: Player/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

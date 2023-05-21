@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using Object = System.Object;
 using Random = UnityEngine.Random;
 
@@ -12,6 +13,7 @@ namespace OM
     {
         private static SoundManager _instance;
         public Sound[] sounds;
+        public AudioMixerGroup audioMixer;
         private static Dictionary<string, float> soundTimerDictionary;
 
         public static SoundManager Instance
@@ -35,6 +37,7 @@ namespace OM
             foreach (Sound sound in sounds)
             {
                 sound.audioSource = gameObject.AddComponent<AudioSource>();
+                sound.audioSource.outputAudioMixerGroup = audioMixer;
                 InitializeSoundCooldown(sound);
             }
         }

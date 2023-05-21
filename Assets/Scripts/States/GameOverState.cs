@@ -20,7 +20,7 @@ namespace OM
             {
                 restartButton = true;
             });
-            _gameStateView.toMainMenButton.onClick.AddListener(delegate
+            _gameStateView.mainMenuButton.onClick.AddListener(delegate
             {
                 mainMenuButoon = true;
             });

@@ -42,6 +42,8 @@ namespace OM
         {
             OnGamePaused?.Invoke(false);
             
+            _gameStateView.optionsMenu.SetActive(false);
+            
             _gameStateView.pauseMenuUI.SetActive(false);
             
             OnUnpause();
