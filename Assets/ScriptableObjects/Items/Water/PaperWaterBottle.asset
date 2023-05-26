@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a707cb3d5b390544db74a4794f858e42, type: 3}
+  m_Name: PaperWaterBottle
+  m_EditorClassIdentifier: 
+  itemType: 3
+  itemName: "\u041C\u043E\u043B\u043E\u043A\u043E"
+  prefab: {fileID: 7840158139946370690, guid: 6ea4f04e8012a994aaa257c6769c7696, type: 3}
+  image: {fileID: 21300000, guid: f9af5cdae092c8447bb98e1412a2ca90, type: 3}
+  MaxStackSize: 0
