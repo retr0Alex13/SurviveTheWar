@@ -22,6 +22,8 @@ namespace OM
         public bool isLoop;
         public bool hasCooldown;
         public float cooldown;
+        public float minDistance = 1.5f;
+        public float maxDistance = 500;
         public AudioSource audioSource;
     }
 }

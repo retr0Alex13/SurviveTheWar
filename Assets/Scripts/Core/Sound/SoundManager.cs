@@ -75,8 +75,10 @@ namespace OM
 
             if (!CanPlaySound(sound)) return;
 
-            GameObject soundGameObject = new GameObject("Sound");
+            GameObject soundGameObject = new GameObject(sound.name);
             soundGameObject.transform.position = position;
+            soundGameObject.transform.parent = transform;
+            
             AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
             audioSource.clip = sound.clips[Random.Range(0, sound.clips.Length)];
             audioSource.pitch = Random.Range(0.9f, 1.1f);
@@ -84,9 +86,13 @@ namespace OM
             audioSource.loop = sound.isLoop;
             audioSource.spatialBlend = 1f;
             audioSource.rolloffMode = AudioRolloffMode.Linear;
-            audioSource.dopplerLevel = 0f;
+            audioSource.dopplerLevel = 1f;
+            audioSource.minDistance = sound.minDistance;
+            audioSource.maxDistance = sound.maxDistance;
             audioSource.Play();
             
+            if(audioSource.loop)
+                return;
             GameObject.Destroy(soundGameObject, audioSource.clip.length);
         }
 
@@ -116,11 +122,20 @@ namespace OM
 
             if (sound == null)
             {
-                Debug.LogError("Sound " + soundName + " Not Found!");
+                Debug.Log("Sound " + soundName + " Not Found!");
                 return;
             }
-
-            //sound.source.Stop();
+            
+            foreach (Transform child in transform)
+            {
+                if (child.name == sound.name)
+                {
+                    child.GetComponent<AudioSource>().Stop();
+                    Destroy(child.gameObject);
+                }
+            }
+            
+            sound.audioSource.Stop();
         }
 
         private static bool CanPlaySound(Sound sound)
