@@ -23,12 +23,12 @@ namespace OM
 
         private void OnEnable()
         {
-            DayNightSystem.OnNewHour += HandleEvent;
+            DayNightCycle.OnNewHour += HandleEvent;
         }
 
         private void OnDisable()
         {
-            DayNightSystem.OnNewHour -= HandleEvent;
+            DayNightCycle.OnNewHour -= HandleEvent;
         }
 
         private void Start()

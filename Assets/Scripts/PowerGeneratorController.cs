@@ -35,6 +35,7 @@ namespace OM
 
         public void Interact()
         {
+            SoundManager.Instance.PlaySound("Switch", transform.position);
             ControlGenerator();
         }
         

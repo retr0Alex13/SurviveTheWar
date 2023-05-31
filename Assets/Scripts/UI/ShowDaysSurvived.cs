@@ -8,7 +8,7 @@ namespace OM
     public class ShowDaysSurvived : MonoBehaviour
     {
         private CanvasGroup daySurvivedGroupUI;
-        [SerializeField] private DayNightSystem dayNightSystem;
+        [SerializeField] private DayNightCycle dayNightSystem;
         [SerializeField] private TextMeshProUGUI daysSurvivedText;
         [SerializeField] private float secondsToShowScreen = 2f;
         [SerializeField, Tooltip("How smooth screen wiil fade in/out")]
@@ -16,14 +16,14 @@ namespace OM
 
         private void OnEnable()
         {
-            DayNightSystem.OnNewDay += SetTextDaysSurvived;
-            DayNightSystem.OnNewDay += HandleDaySurvivedScreenVisibility;
+            DayNightCycle.OnNewDay += SetTextDaysSurvived;
+            DayNightCycle.OnNewDay += HandleDaySurvivedScreenVisibility;
         }
 
         private void OnDisable()
         {
-            DayNightSystem.OnNewDay -= SetTextDaysSurvived;
-            DayNightSystem.OnNewDay -= HandleDaySurvivedScreenVisibility;
+            DayNightCycle.OnNewDay -= SetTextDaysSurvived;
+            DayNightCycle.OnNewDay -= HandleDaySurvivedScreenVisibility;
         }
 
         private void Start()
@@ -33,7 +33,7 @@ namespace OM
 
         private void SetTextDaysSurvived()
         {
-            daysSurvivedText.text = dayNightSystem.DayCount + " days";
+            daysSurvivedText.text = dayNightSystem.dayNumber + " days";
         }
 
         private void HandleDaySurvivedScreenVisibility()

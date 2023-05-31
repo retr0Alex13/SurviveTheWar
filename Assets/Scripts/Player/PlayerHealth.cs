@@ -8,14 +8,10 @@ namespace OM
     public class PlayerHealth : MonoBehaviour
     {
         public HealthSystem health = new HealthSystem(100, 100);
-
         public delegate void PlayerHealthAction();
-        
         public static event PlayerHealthAction OnPlayerDead;
         
-
         private PlayerInput playerInput;
-        
 
         private void Awake() => playerInput = GetComponent<PlayerInput>();
 
