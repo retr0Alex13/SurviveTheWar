@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,8 @@ namespace OM
     public class HealthbarUI : MonoBehaviour
     {
         Image healthBar;
+        private float healthChangeSpeed = 0.5f;
+        private float targetHealth;
 
         private void Awake()
         {
@@ -29,7 +32,24 @@ namespace OM
 
         public void SetHealthbar(float maxHealth, float currentHealth)
         {
-            healthBar.fillAmount = currentHealth / maxHealth;
+            //healthBar.fillAmount = currentHealth / maxHealth;
+            targetHealth = currentHealth / maxHealth;
+            StartCoroutine(ChangeHealthbarSmoothly());
+        }
+        
+        IEnumerator ChangeHealthbarSmoothly()
+        {
+            float elapsedTime = 0;
+            float startingHealth = healthBar.fillAmount;
+
+            while (elapsedTime < healthChangeSpeed)
+            {
+                elapsedTime += Time.deltaTime;
+                healthBar.fillAmount = Mathf.Lerp(startingHealth, targetHealth, elapsedTime / healthChangeSpeed);
+                yield return null;
+            }
+
+            healthBar.fillAmount = targetHealth;
         }
     }
 }
