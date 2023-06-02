@@ -112,15 +112,12 @@ public class DayNightCycle : MonoBehaviour {
             UpdateTime();
             UpdateClock();
         }
+        CheckForNextHour();
 
-        
         AdjustSunRotation();
         SunIntensity();
         AdjustSunColor();
         UpdateModules(); //will update modules each frame
-        
-        IsNight();
-        Debug.Log(GetHour());
     }
 
     private void UpdateTimeScale()
@@ -267,10 +264,12 @@ public class DayNightCycle : MonoBehaviour {
     private void CheckForNextHour()
     {
         int currentHour = GetHour();
-        int nextHour = Mathf.FloorToInt(GetHour() + Time.deltaTime % 24);
+        int nextHour = Mathf.FloorToInt(_timeOfDay * 24);
         if (currentHour != nextHour)
         {
             // New hourstarted
+            Debug.Log(GetHour());
+            Debug.Log("New hour");
             OnNewHour?.Invoke();
         }
     }

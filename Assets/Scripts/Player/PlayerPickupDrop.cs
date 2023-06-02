@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +10,6 @@ namespace OM
         [SerializeField] private float pickUpDistance = 2f;
         [SerializeField] private Transform playerCameraTransform;
         [SerializeField] private Transform objectGrabPointTransform;
-        [SerializeField] private LayerMask pickUpLayerMask;
         private InventoryMediator inventory;
 
         private ObjectGrabbable objectGrabbable;
@@ -36,7 +36,14 @@ namespace OM
                     {
                         if (itemSOHolder != null)
                         {
-                            if(inventory.IsInventoryFull(itemSOHolder.ItemSO)) return;
+                            if (inventory.IsInventoryFull(itemSOHolder.ItemSO))
+                            {
+                                return;
+                            }
+                            else if (itemSOHolder.ItemSO.itemType == ItemSO.ItemType.Gasoline)
+                            {
+                                
+                            }
                             OnItemPickUp(itemSOHolder.ItemSO);
                             Destroy(raycastHit.transform.gameObject);
                         }

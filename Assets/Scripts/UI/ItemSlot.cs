@@ -28,6 +28,14 @@ namespace OM
             InventoryItem = item;
             itemImage.sprite = item.itemData.image;
             inventoryView = transform.parent.GetComponent<InventoryView>();
+            
+            Debug.Log(item.itemData.itemType);
+            if (item.itemData.itemType == ItemSO.ItemType.Gasoline)
+            {
+                Equip();
+                RemoveWithoutDrop();
+                return;
+            }
 
             if (item.itemData.itemType == ItemSO.ItemType.Eatable)
             {
@@ -48,6 +56,11 @@ namespace OM
         public void Remove()
         {
             inventoryView.inventoryMediator.RemoveItemAndDrop(InventoryItem.itemData);
+        }
+
+        public void RemoveWithoutDrop()
+        {
+            inventoryView.inventoryMediator.RemoveItemFromInventory(InventoryItem.itemData);
         }
 
         public void SetWindowState()

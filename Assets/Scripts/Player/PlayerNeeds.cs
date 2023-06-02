@@ -65,7 +65,6 @@ namespace OM
         public static event CharacterNeedsAction OnNeedsChanged;
 
         [Header("Player Refernces")]
-        [SerializeField] private Transform playerCameraTransform;
         private StarterAssetsInputs playerInputs;
         private PlayerHealth playerHealth;
 
@@ -125,7 +124,7 @@ namespace OM
             }
             else if (currentStamina < maxStamina)
             {
-                HandleRecharging();
+                HandleStaminaRecharging();
             }
         }
 
@@ -145,7 +144,7 @@ namespace OM
             currentStaminaDelayCounter = 0f;
         }
 
-        private void HandleRecharging()
+        private void HandleStaminaRecharging()
         {
             if (currentStaminaDelayCounter < rechargeStaminaDelay)
             {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 namespace OM
 {
@@ -19,7 +20,7 @@ namespace OM
 
         public void DrawInventory()
         {
-            foreach (InventoryItem item in inventoryMediator.InventorySystem.Inventory)
+            foreach (InventoryItem item in inventoryMediator.InventorySystem.Inventory.ToList())
             {
                 AddInventorySlot(item);
             }

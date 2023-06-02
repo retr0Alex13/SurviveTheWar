@@ -10,6 +10,7 @@ namespace OM
         {
             None,
             CraftingMaterial,
+            Gasoline,
             Equipable,
             Eatable
         }
