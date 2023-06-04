@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782b868f563766740901dde708da5b4a, type: 3}
+  m_Name: BatteryRecipe
+  m_EditorClassIdentifier: 
+  craftingSprite: {fileID: 21300000, guid: 633319a472afb914a833e84eb26e5a23, type: 3}
+  inputItemSOList:
+  - {fileID: 11400000, guid: 470784bbe04968b48a82505db2780003, type: 2}
+  - {fileID: 11400000, guid: 88c8a6a486d16884192fc8a8bd80e930, type: 2}
+  - {fileID: 11400000, guid: 06065fdabf5b2ea4187b646022b23edf, type: 2}
+  outputItemSO: {fileID: 11400000, guid: 556592d7a703bfd41b59714a8c79c2ff, type: 2}

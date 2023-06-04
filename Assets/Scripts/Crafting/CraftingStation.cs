@@ -10,6 +10,7 @@ namespace OM
         [SerializeField] private List<CraftingRecipeSO> craftingRecipeSOList;
         [SerializeField] private BoxCollider placeItemsArea;
         [SerializeField] private Transform itemSpawnPoint;
+        [SerializeField] private Transform overlapBox;
 
         private CraftingRecipeSO craftingRecipieSO;
         private Outline outline;
@@ -44,14 +45,20 @@ namespace OM
                 index = (index + 1) % craftingRecipeSOList.Count;
                 craftingRecipieSO = craftingRecipeSOList[index];
             }
+            Debug.Log("Next recipe");
             recipieImage.sprite = craftingRecipieSO.craftingSprite;
         }
 
         public void Craft()
         {
+            Debug.Log("Craft");
             Collider[] colliderArray = Physics.OverlapBox(
-                transform.position + placeItemsArea.center, placeItemsArea.size,
+                overlapBox.transform.position + placeItemsArea.center, placeItemsArea.size,
                 placeItemsArea.transform.rotation);
+            foreach (Collider collider in colliderArray)
+            {
+                Debug.Log(collider.gameObject.name);
+            }
 
             List<ItemSO> inputItemList = new List<ItemSO>(craftingRecipieSO.inputItemSOList);
             List<GameObject> consumeItemGOList = new List<GameObject>();
@@ -59,6 +66,7 @@ namespace OM
             {
                 if (collider.TryGetComponent(out ItemSOHolder itemSOHolder))
                 {
+                    Debug.Log(itemSOHolder.ItemSO.itemName);
                     if (inputItemList.Contains(itemSOHolder.ItemSO))
                     {
                         inputItemList.Remove(itemSOHolder.ItemSO);
@@ -83,7 +91,6 @@ namespace OM
                 }
             }
         }
-
         public void EvaluateCraftingGoal(string itemName)
         {
             EventManager.Instance.QueueEvent(new CraftingGameEvent(itemName));

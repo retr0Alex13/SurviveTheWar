@@ -295,9 +295,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5081052839549793346}
   - component: {fileID: 4921029496953930960}
-  - component: {fileID: 5085337864913645156}
   - component: {fileID: 5085337864913645161}
   - component: {fileID: 5085337864913645159}
+  - component: {fileID: 5085337864913645156}
   - component: {fileID: 5085337864913645157}
   - component: {fileID: 5085337864913645158}
   - component: {fileID: 5085337864913645160}
@@ -315,7 +315,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5086441711626055566}
-  m_LocalRotation: {x: -0, y: -0, z: 0.70710576, w: 0.70710784}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 4.4035435, y: 0.799, z: 6.672}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -354,18 +354,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 5099898413943234746}
   m_Enabled: 1
---- !u!114 &5085337864913645156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5086441711626055566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 117981e0eca0a344eafa36bd17e0a519, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &5085337864913645161
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -395,6 +383,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.046464957, y: 0.2063738, z: 0.044157267}
   m_Center: {x: 0.0012602992, y: 0.102390416, z: -0.0010186434}
+--- !u!114 &5085337864913645156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5086441711626055566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117981e0eca0a344eafa36bd17e0a519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5085337864913645157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,7 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f737d7c069350d478551c30702b00ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPickable: 0
+  isPickable: 1
   lerpSpeed: 10
 --- !u!114 &5085337864913645160
 MonoBehaviour:
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de42d2619b70dde47bbe91e610426590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSO: {fileID: 0}
+  itemSO: {fileID: 11400000, guid: 8f034332f87045e4c8f4f329dfeb5621, type: 2}
 --- !u!1 &5086501498163830138
 GameObject:
   m_ObjectHideFlags: 0

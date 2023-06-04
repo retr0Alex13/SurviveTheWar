@@ -12,7 +12,6 @@ public class DayNightCycle : MonoBehaviour {
     private float _targetDayLength = 0.5f; //length of day in minutes
     
     [SerializeField] private float dayStart = 8f;
-        
     public float targetDayLength
     {
         get
@@ -20,7 +19,8 @@ public class DayNightCycle : MonoBehaviour {
             return _targetDayLength;
         }
     }
-    [SerializeField]
+    [SerializeField]        
+
     private float elapsedTime;
     [SerializeField]
     private bool use24Clock = true;
@@ -97,9 +97,11 @@ public class DayNightCycle : MonoBehaviour {
     [SerializeField] private TaskView taskView;
     
     public delegate void DayNightAction();
-    
     public static event DayNightAction OnNewHour;
     public static event DayNightAction OnNewDay;
+    
+    private int previousHour = 0;
+
     
     private void Start()
     {
@@ -115,8 +117,6 @@ public class DayNightCycle : MonoBehaviour {
             UpdateTime();
             UpdateClock();
         }
-        CheckForNextHour();
-
         AdjustSunRotation();
         SunIntensity();
         AdjustSunColor();
@@ -148,6 +148,9 @@ public class DayNightCycle : MonoBehaviour {
     {
         _timeOfDay += Time.deltaTime * _timeScale / 86400; // seconds in a day
         elapsedTime += Time.deltaTime;
+        
+        CheckNewHour();
+
         if(_timeOfDay > 1) //new day!!
         {
             elapsedTime = 0;
@@ -169,6 +172,20 @@ public class DayNightCycle : MonoBehaviour {
                 _yearNumber++;
                 _dayNumber = 0;
             }
+        }
+    }
+
+
+    private void CheckNewHour()
+    {
+        int currentHour = Mathf.FloorToInt(_timeOfDay * 24);
+        if (currentHour != previousHour)
+        {
+            // Наступила нова година
+            //Debug.Log("New Hour");
+            Debug.Log(GetHour());
+            OnNewHour?.Invoke();
+            previousHour = currentHour;
         }
     }
 
@@ -269,18 +286,5 @@ public class DayNightCycle : MonoBehaviour {
         AdjustSunRotation();
         SunIntensity();
         AdjustSunColor();
-    }
-
-    private void CheckForNextHour()
-    {
-        int currentHour = GetHour();
-        int nextHour = Mathf.FloorToInt(_timeOfDay * 24);
-        if (currentHour != nextHour)
-        {
-            // New hourstarted
-            Debug.Log(GetHour());
-            Debug.Log("New hour");
-            OnNewHour?.Invoke();
-        }
     }
 }
