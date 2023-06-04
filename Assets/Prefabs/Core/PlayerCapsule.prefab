@@ -316,7 +316,6 @@ MonoBehaviour:
   rechargeStaminaDelay: 1
   currentStamina: 0
   currentStaminaDelayCounter: 1
-  playerCameraTransform: {fileID: 0}
 --- !u!114 &4124689305029663659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,9 +350,6 @@ MonoBehaviour:
   pickUpDistance: 1.5
   playerCameraTransform: {fileID: 0}
   objectGrabPointTransform: {fileID: 0}
-  pickUpLayerMask:
-    serializedVersion: 2
-    m_Bits: 567
 --- !u!114 &2403418030352593668
 MonoBehaviour:
   m_ObjectHideFlags: 0

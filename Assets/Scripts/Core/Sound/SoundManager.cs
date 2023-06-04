@@ -81,6 +81,7 @@ namespace OM
             
             AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
             audioSource.clip = sound.clips[Random.Range(0, sound.clips.Length)];
+            audioSource.outputAudioMixerGroup = audioMixer;
             audioSource.pitch = Random.Range(0.9f, 1.1f);
             audioSource.volume = sound.volume;
             audioSource.loop = sound.isLoop;

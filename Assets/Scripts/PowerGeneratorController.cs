@@ -12,7 +12,7 @@ namespace OM
         [SerializeField] private ParticleSystem smokeParticle;
         [SerializeField] private float fuel;
         [SerializeField] private List<Light> lights;
-        private bool isTurnedOn;
+        public bool isTurnedOn;
 
         private void Update()
         {

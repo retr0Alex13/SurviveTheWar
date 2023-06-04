@@ -9,7 +9,9 @@ namespace OM
     {
         public delegate void PausedStateAction(bool isPaused);
         public static event PausedStateAction OnGamePaused;
-        
+
+        private bool isExitButtonPressed;
+
         private GameStateView _gameStateView;
 
         public PauseState(GameStateView gameStateView)
@@ -26,6 +28,11 @@ namespace OM
                 _gameStateView.isPauseButtonPressed = false;
             });
             
+            _gameStateView.exitButton.onClick.AddListener(delegate
+            {
+                isExitButtonPressed = true;
+            });
+            
             _gameStateView.pauseMenuUI.SetActive(true);
             OnPause();
         }
@@ -36,6 +43,11 @@ namespace OM
             {
                 _gameStateView.StateMachine.TransitionTo(_gameStateView.StateMachine.resumedState);
             }
+            else if (isExitButtonPressed)
+            {
+                _gameStateView.StateMachine.TransitionTo(_gameStateView.StateMachine.resumedState);
+                _gameStateView.LoadMainMenuScene();
+            }
         }
 
         public void Exit()
@@ -45,6 +57,10 @@ namespace OM
             _gameStateView.optionsMenu.SetActive(false);
             
             _gameStateView.pauseMenuUI.SetActive(false);
+
+            _gameStateView.isPauseButtonPressed = false;
+
+            isExitButtonPressed = false;
             
             OnUnpause();
         }

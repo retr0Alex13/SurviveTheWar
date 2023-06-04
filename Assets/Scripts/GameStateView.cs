@@ -10,6 +10,7 @@ namespace OM
     {
         [Header("Pause Menu")]
         public GameObject pauseMenuUI;
+        public Button exitButton;
 
         public GameObject optionsMenu;
         [HideInInspector] 

@@ -10,6 +10,9 @@ public class DayNightCycle : MonoBehaviour {
     [Tooltip("Day Length in Minutes")]
     [SerializeField]
     private float _targetDayLength = 0.5f; //length of day in minutes
+    
+    [SerializeField] private float dayStart = 8f;
+        
     public float targetDayLength
     {
         get
@@ -101,7 +104,7 @@ public class DayNightCycle : MonoBehaviour {
     private void Start()
     {
         NormalTimeCurve();
-        SetDayTime(8f);
+        SetDayTime(dayStart);
     }
 
     private void Update()
@@ -152,7 +155,14 @@ public class DayNightCycle : MonoBehaviour {
             _timeOfDay -= 1;
             
             OnNewDay?.Invoke();
-            taskView.GenerateDailyTasks();  // Generate new tasks
+            if (taskView != null)
+            {
+                taskView.GenerateDailyTasks();  // Generate new tasks
+            }
+            else
+            {
+                Debug.LogWarning(taskView + " is null");
+            }
             
             if(_dayNumber > _yearLength) //new year!
             {
@@ -242,7 +252,7 @@ public class DayNightCycle : MonoBehaviour {
 
     }
 
-    private bool IsNight()
+    public bool IsNight()
     {
         if (GetHour() >= 18)
         {

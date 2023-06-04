@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,7 +9,7 @@ namespace OM
     public class SettingsMenu : MonoBehaviour
     {
         public AudioMixer audioMixer;
-        
+
         private Resolution[] resolutions;
 
         public TMP_Dropdown resolutionDropDown;
@@ -26,17 +24,52 @@ namespace OM
         {
             if (PlayerPrefs.HasKey("volume"))
             {
-                SetVolume(PlayerPrefs.GetFloat("volume"));
+                float volume = PlayerPrefs.GetFloat("volume");
+                SetVolume(volume);
             }
 
             if (PlayerPrefs.HasKey("quality"))
             {
-                SetQuality(PlayerPrefs.GetInt("quality"));
+                int quality = PlayerPrefs.GetInt("quality");
+                SetQuality(quality);
+            }
+            
+            if (PlayerPrefs.HasKey("msaa"))
+            {
+                int mSAA = PlayerPrefs.GetInt("msaa");
+                switch (mSAA)
+                {
+                    case 0:
+                        QualitySettings.antiAliasing = 2;
+                        break;
+                    case 1:
+                        QualitySettings.antiAliasing = 4;
+                        break;
+                    case 2:
+                        QualitySettings.antiAliasing = 8;
+                        break;
+                    default:
+                        QualitySettings.antiAliasing = 8;
+                        break;
+                }
+                PlayerPrefs.SetInt("msaa", mSAA);
+                SetMSAA(mSAA);
             }
 
             if (PlayerPrefs.HasKey("fullscreen"))
             {
-                SetQuality(PlayerPrefs.GetInt("fullscreen"));
+                int fullscreen = PlayerPrefs.GetInt("fullscreen");
+                SetFullScreen(fullscreen == 1);
+            }
+
+            if (PlayerPrefs.HasKey("vsync"))
+            {
+                int vSync = PlayerPrefs.GetInt("vsync");
+                SetVsync(vSync == 1);
+            }
+            else
+            {
+                SetVsync(true);
             }
         }
 
@@ -48,11 +81,9 @@ namespace OM
         private void HandleResolutionSetting()
         {
             resolutions = Screen.resolutions;
-
             resolutionDropDown.ClearOptions();
 
             List<string> options = new List<string>();
-
             int currentResolutionIndex = 0;
 
             for (int i = 0; i < resolutions.Length; i++)
@@ -83,7 +114,7 @@ namespace OM
             QualitySettings.SetQualityLevel(qualityIndex);
             PlayerPrefs.SetInt("quality", qualityIndex);
         }
-        
+
         public void SetResolution(int resolutionScreenIndex)
         {
             Resolution resolution = resolutions[resolutionScreenIndex];
@@ -94,6 +125,32 @@ namespace OM
         {
             Screen.fullScreen = isFullScreen;
             PlayerPrefs.SetInt("fullscreen", isFullScreen ? 1 : 0);
+        }
+
+        public void SetVsync(bool vSyncIndex)
+        {
+            QualitySettings.vSyncCount = vSyncIndex ? 1 : 0;
+            PlayerPrefs.SetInt("vsync", vSyncIndex ? 1 : 0);
+        }
+
+        public void SetMSAA(int mSAAindex)
+        {
+            switch (mSAAindex)
+            {
+                case 0:
+                    QualitySettings.antiAliasing = 2;
+                    break;
+                case 1:
+                    QualitySettings.antiAliasing = 4;
+                    break;
+                case 2:
+                    QualitySettings.antiAliasing = 8;
+                    break;
+                default:
+                    QualitySettings.antiAliasing = 8;
+                    break;
+            }
+            PlayerPrefs.SetInt("msaa", mSAAindex);
         }
     }
 }
