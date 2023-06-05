@@ -83,7 +83,7 @@ namespace OM
             {
                 if (equipSlot.currentlyequipedItem != null)
                     return;
-                equipSlot.EquipItem(InventoryItem.itemData);
+                equipSlot.EquipItem(InventoryItem.itemData.Prefab.GetComponent<ItemSOHolder>());
                 inventoryView.inventoryMediator.RemoveItemFromInventory(InventoryItem.itemData);
             }
         }

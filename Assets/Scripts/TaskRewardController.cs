@@ -8,7 +8,6 @@ namespace OM
     {
         [SerializeField] private Transform rewardSpawnPoint;
         [SerializeField] private List<ItemSO> rewardItems;
-        [SerializeField] private GameObject rewardParticle;
 
         public void SpawnRandomReward(int itemsAmount)
         {
@@ -22,9 +21,6 @@ namespace OM
 
             if (itemsAmount != 0)
             {
-                Instantiate(rewardParticle,
-                    new Vector3(rewardSpawnPoint.position.x, rewardSpawnPoint.position.y, rewardSpawnPoint.position.z),
-                    Quaternion.identity);
                 SoundManager.Instance.PlaySound("DoorBell", rewardSpawnPoint.position);
             }
         }

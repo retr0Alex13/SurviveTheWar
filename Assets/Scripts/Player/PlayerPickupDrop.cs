@@ -59,7 +59,7 @@ namespace OM
         {
             if (playerEquipSlot.currentlyequipedItem != null)
                 return;
-            playerEquipSlot.EquipItem(itemSOHolder.ItemSO);
+            playerEquipSlot.EquipItem(itemSOHolder);
             Destroy(raycastHit.transform.gameObject);
         }
 

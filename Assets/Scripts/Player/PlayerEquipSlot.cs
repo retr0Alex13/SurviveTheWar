@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,13 +12,13 @@ namespace OM
 
         [SerializeField] private Transform equipSlot;
         [SerializeField] private Transform dropItemPoint;
-        
+
         private ItemSO itemSO;
         private IInteractable interactable;
 
-        public void EquipItem(ItemSO itemData)
+        public void EquipItem(ItemSOHolder itemData)
         {
-            itemSO = itemData;
+            itemSO = itemData.ItemSO;
             foreach(Transform transform in equipSlot)
             {
                 ItemSO item = transform.GetComponent<ItemSOHolder>().ItemSO;
@@ -26,6 +27,7 @@ namespace OM
                     currentlyequipedItem = transform;
                     currentlyequipedItem.gameObject.SetActive(true);
                     interactable = currentlyequipedItem.GetComponent<IInteractable>();
+                    currentlyequipedItem.GetComponent<ItemSOHolder>().ItemCapacity = itemData.ItemCapacity;
                 }
             }
         }

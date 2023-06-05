@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace OM
 {
@@ -11,7 +12,7 @@ namespace OM
 
         [SerializeField] private ParticleSystem smokeParticle;
         [SerializeField] private float fuel = 30f;
-        [SerializeField] private float maxFloatCapacity = 100;
+        [SerializeField] private float maxFuelCapacity = 100;
         [SerializeField] private List<Light> lights;
         public bool isTurnedOn;
 
@@ -102,7 +103,10 @@ namespace OM
         public void AddFuel(float fuelAmount)
         {
             fuel += fuelAmount;
-            fuel = Mathf.Clamp(fuel, 0, maxFloatCapacity);
+            fuel = Mathf.Clamp(fuel, fuel, maxFuelCapacity);
+            
+            SoundManager.Instance.PlaySound("PouringWater", transform.position);
+            
             Debug.Log("Fuel: " + fuel);
         }
 

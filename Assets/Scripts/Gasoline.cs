@@ -6,13 +6,16 @@ namespace OM
 {
     public class Gasoline : MonoBehaviour, IInteractable
     {
-        [SerializeField] private float fuelAmount = 50f;
         [SerializeField] private float fillingDistance = 1.5f;
+        private float fuelAmount;
+        
         private Transform playerCameraTransform;
         public bool IsPickable { get; set; }
         
         public void Interact()
         {
+            fuelAmount = transform.GetComponent<ItemSOHolder>().ItemCapacity;
+            
             foreach (Transform obj in transform.root)
             {
                 playerCameraTransform = obj.parent;
