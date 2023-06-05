@@ -34,6 +34,10 @@ namespace OM
         public void UpdateInventory()
         {
             inventoryView.OnUpdateInventory();
+            foreach (InventoryItem item in InventorySystem.Inventory)
+            {
+                Debug.Log(item.itemData.itemName);
+            }
         }
         
         public bool IsInventoryFull(ItemSO item)

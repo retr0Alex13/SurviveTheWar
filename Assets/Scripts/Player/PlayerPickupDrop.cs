@@ -10,6 +10,7 @@ namespace OM
         [SerializeField] private float pickUpDistance = 2f;
         [SerializeField] private Transform playerCameraTransform;
         [SerializeField] private Transform objectGrabPointTransform;
+        private PlayerEquipSlot playerEquipSlot;
         private InventoryMediator inventory;
 
         private ObjectGrabbable objectGrabbable;
@@ -21,6 +22,7 @@ namespace OM
         private void Awake()
         {
             inventory = GetComponent<InventoryMediator>();
+            playerEquipSlot = GetComponent<PlayerEquipSlot>();
         }
 
         /// <summary>
@@ -28,29 +30,40 @@ namespace OM
         /// </summary>
         public void HandlePickup(InputAction.CallbackContext ctx)
         {
-            if (ctx.canceled && !isHolding)
+            if (ctx.canceled || isHolding)
+                return;
+
+            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance))
             {
-                if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance))
+                if (raycastHit.transform.TryGetComponent(out ItemSOHolder itemSOHolder))
                 {
-                    if (raycastHit.transform.TryGetComponent(out ItemSOHolder itemSOHolder))
+                    if (itemSOHolder == null)
+                        return;
+
+                    if (inventory.IsInventoryFull(itemSOHolder.ItemSO))
+                        return;
+            
+                    if (itemSOHolder.ItemSO.itemType == ItemSO.ItemType.Gasoline)
                     {
-                        if (itemSOHolder != null)
-                        {
-                            if (inventory.IsInventoryFull(itemSOHolder.ItemSO))
-                            {
-                                return;
-                            }
-                            else if (itemSOHolder.ItemSO.itemType == ItemSO.ItemType.Gasoline)
-                            {
-                                
-                            }
-                            OnItemPickUp(itemSOHolder.ItemSO);
-                            Destroy(raycastHit.transform.gameObject);
-                        }
+                        ProceedToEquipItem(itemSOHolder, raycastHit);
+                        return;
                     }
+            
+                    OnItemPickUp(itemSOHolder.ItemSO);
+                    Destroy(raycastHit.transform.gameObject);
                 }
             }
         }
+
+
+        private void ProceedToEquipItem(ItemSOHolder itemSOHolder, RaycastHit raycastHit)
+        {
+            if (playerEquipSlot.currentlyequipedItem != null)
+                return;
+            playerEquipSlot.EquipItem(itemSOHolder.ItemSO);
+            Destroy(raycastHit.transform.gameObject);
+        }
+
         /// <summary>
         /// Function for grabbing and holding items
         /// </summary>

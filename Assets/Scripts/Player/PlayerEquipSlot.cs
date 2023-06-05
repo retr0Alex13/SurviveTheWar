@@ -11,7 +11,7 @@ namespace OM
 
         [SerializeField] private Transform equipSlot;
         [SerializeField] private Transform dropItemPoint;
-
+        
         private ItemSO itemSO;
         private IInteractable interactable;
 
