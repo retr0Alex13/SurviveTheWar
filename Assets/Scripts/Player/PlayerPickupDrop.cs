@@ -30,31 +30,30 @@ namespace OM
         /// </summary>
         public void HandlePickup(InputAction.CallbackContext ctx)
         {
-            if (ctx.canceled || isHolding)
-                return;
-
-            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance))
+            if (ctx.canceled && !isHolding)
             {
-                if (raycastHit.transform.TryGetComponent(out ItemSOHolder itemSOHolder))
+                if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance))
                 {
-                    if (itemSOHolder == null)
-                        return;
-
-                    if (inventory.IsInventoryFull(itemSOHolder.ItemSO))
-                        return;
-            
-                    if (itemSOHolder.ItemSO.itemType == ItemSO.ItemType.Gasoline)
+                    if (raycastHit.transform.TryGetComponent(out ItemSOHolder itemSOHolder))
                     {
-                        ProceedToEquipItem(itemSOHolder, raycastHit);
-                        return;
+                        if (itemSOHolder != null)
+                        {
+                            if (inventory.IsInventoryFull(itemSOHolder.ItemSO))
+                                return;
+                            
+                            else if (itemSOHolder.ItemSO.itemType == ItemSO.ItemType.Gasoline)
+                            {
+                                ProceedToEquipItem(itemSOHolder, raycastHit);
+                                return;
+                            }
+                            
+                            OnItemPickUp(itemSOHolder.ItemSO);
+                            Destroy(raycastHit.transform.gameObject);
+                        }
                     }
-            
-                    OnItemPickUp(itemSOHolder.ItemSO);
-                    Destroy(raycastHit.transform.gameObject);
                 }
             }
         }
-
 
         private void ProceedToEquipItem(ItemSOHolder itemSOHolder, RaycastHit raycastHit)
         {
