@@ -10,7 +10,8 @@ namespace OM
         public bool IsPickable { get; set; }
 
         [SerializeField] private ParticleSystem smokeParticle;
-        [SerializeField] private float fuel;
+        [SerializeField] private float fuel = 30f;
+        [SerializeField] private float maxFloatCapacity = 100;
         [SerializeField] private List<Light> lights;
         public bool isTurnedOn;
 
@@ -101,6 +102,8 @@ namespace OM
         public void AddFuel(float fuelAmount)
         {
             fuel += fuelAmount;
+            fuel = Mathf.Clamp(fuel, 0, maxFloatCapacity);
+            Debug.Log("Fuel: " + fuel);
         }
 
         private bool CheckFuel()

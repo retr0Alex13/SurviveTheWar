@@ -34,6 +34,11 @@ namespace OM
             objectRigidBody.isKinematic = false;
         }
 
+        public void Remove()
+        {
+            
+        }
+
         private void FixedUpdate()
         {
             if (objectGrabPointTransform != null)

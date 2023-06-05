@@ -72,6 +72,7 @@ namespace OM
             {
                 if (objectGrabbable != null)
                 {
+                    objectGrabbable.Drop();
                     Drop();
                 }
                 return;
@@ -83,6 +84,7 @@ namespace OM
             }
             else
             {
+                objectGrabbable.Drop();
                 Drop();
             }
         }
@@ -99,7 +101,6 @@ namespace OM
 
         private void Drop()
         {
-            objectGrabbable.Drop();
             objectGrabbable = null;
             isHolding = false;
         }

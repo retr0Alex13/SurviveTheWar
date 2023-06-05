@@ -58,12 +58,12 @@ namespace OM
                 {
                     if (interactable.IsPickable)
                     {
-                        hintText.text = $"Натисність \"{pickUpKey}\" щоб підібрати";
+                        hintText.text = $"Натисність \"{pickUpKey} \" щоб підібрати";
                         hintPanel.SetActive(true);
                     }
                     else
                     {
-                        hintText.text = $"Натисність \"{interactKey}\" щоб взаємодіяти";
+                        hintText.text = $"Натисність \"{ interactKey } \" для взаємодії";
                         hintPanel.SetActive(true);
                     }
                 }

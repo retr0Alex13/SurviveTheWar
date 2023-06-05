@@ -34,24 +34,49 @@ namespace OM
         {
             if(context.performed)
             {
-                if (currentlyequipedItem == null)
+                if (!CurrentlyEquipedItem())
                     return;
 
                 currentlyequipedItem.gameObject.SetActive(false);
                 GameObject dropItem = Instantiate(itemSO.Prefab, new Vector3(dropItemPoint.position.x, dropItemPoint.position.y, dropItemPoint.position.z),
                 Quaternion.identity);
-                itemSO = null;
-                interactable = null;
-                currentlyequipedItem = null;
+                ResetHands();
             }
         }
 
         public void Use(InputAction.CallbackContext context)
         {
+            if(!CurrentlyEquipedItem())
+                return;
+            
             if(context.performed)
             {
                 interactable?.Interact();
+                if(itemSO.itemType == ItemSO.ItemType.Gasoline)
+                    RemoveItem();
             }
+        }
+        
+        private void RemoveItem()
+        {
+            if (!CurrentlyEquipedItem())
+                return;
+            currentlyequipedItem.gameObject.SetActive(false);
+            ResetHands();
+        }
+
+        private bool CurrentlyEquipedItem()
+        {
+            if (currentlyequipedItem == null)
+                return false;
+            return true;
+        }
+        
+        private void ResetHands()
+        {
+            itemSO = null;
+            interactable = null;
+            currentlyequipedItem = null;
         }
     }
 }
