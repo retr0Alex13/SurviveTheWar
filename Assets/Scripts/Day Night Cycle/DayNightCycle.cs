@@ -273,7 +273,6 @@ public class DayNightCycle : MonoBehaviour {
     {
         if (GetHour() >= 18)
         {
-            Debug.Log("night");
             return true;
         }
         return false;

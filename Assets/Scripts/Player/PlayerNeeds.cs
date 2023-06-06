@@ -8,16 +8,19 @@ namespace OM
     {
         [SerializeField] private int starvingDamagePerTick = 5;
         [SerializeField] private int onFullNeedsHealPoints = 10;
-        [SerializeField, Tooltip("Used to simulate short time when player is not hungry")]
-        private int bonusSatedPoints = 10;
 
         #region Hunger
+        
         [Header("Hunger")]
         [SerializeField] private float maxHunger = 100f;
 
         [SerializeField] private float decreaseHungerRate = 1f;
         [SerializeField] private float currentHunger;
+        
+        [SerializeField, Tooltip("Used to simulate short time when player is not hungry")]
+        private int bonusSatedPoints = 10;
         public float HungerPercent => currentHunger / maxHunger;
+        
         #endregion
 
         #region Thirst
@@ -30,12 +33,19 @@ namespace OM
         #endregion
 
         #region Sanity
+        
         [Header("Sanity")]
         [SerializeField] private float maxSanity = 100f;
 
         [SerializeField] private float decreaseSanityRate = 1f;
+        [SerializeField] private float hightDecreaseSanityRate = 5f;
         [SerializeField] private float currentSanity;
+
+        [SerializeField] private int sanityDamage = 10;
+
+        [SerializeField] public int lightPoints = 0;
         public float SanityPercent => currentSanity / maxSanity;
+        
         #endregion
 
         #region Stamina
@@ -53,8 +63,9 @@ namespace OM
         public float StaminaPercent => currentStamina / maxStamina;
         #endregion
 
+        [SerializeField] private DayNightCycle dayNightCycle;
+        
         public delegate void CharacterStaminaAction(bool HasStamina);
-
         public static event CharacterStaminaAction OnExhausted;
 
         public delegate void CharacterNeedsAction(
@@ -63,6 +74,10 @@ namespace OM
             float Stamina);
 
         public static event CharacterNeedsAction OnNeedsChanged;
+
+        public delegate void CharacterSanityAction(float maxSanity, float currentSanity);
+        public static event CharacterSanityAction OnSanityChanged;
+        
 
         [Header("Player Refernces")]
         private StarterAssetsInputs playerInputs;
@@ -83,6 +98,7 @@ namespace OM
             currentThirst = maxThirst;
             currentHunger = maxHunger;
             currentStamina = maxStamina;
+            currentSanity = maxSanity;
             
             playerInputs = GetComponent<StarterAssetsInputs>();
             playerHealth = GetComponent<PlayerHealth>();
@@ -92,7 +108,37 @@ namespace OM
         {
             HandleStarvingAndThirst();
             UpdateStamina();
+            HandleSanity();
+
+
             OnNeedsChanged?.Invoke(HungerPercent, ThirstPercent, StaminaPercent);
+        }
+
+        private void HandleSanity()
+        {
+            if (!dayNightCycle.IsNight())
+            {
+                return;
+            }
+            if(lightPoints == 100)
+                return;
+            if (lightPoints < 100)
+            {
+                ReduceSanity(decreaseSanityRate);
+            }
+            else if (lightPoints <= 0)
+            {
+                ReduceSanity(hightDecreaseSanityRate);
+            }
+
+            if (currentSanity <= 0)
+            {
+                // Damage player for 0 sanity
+                playerHealth.health.DamageEntity(sanityDamage);
+                currentSanity = Mathf.Clamp(currentSanity, 0f, maxStamina);
+            }
+            OnSanityChanged?.Invoke(maxSanity, currentSanity);
+            //Debug.Log("Sanity: " + currentSanity);
         }
 
         private void HandleStarvingAndThirst()
@@ -163,6 +209,16 @@ namespace OM
 
             currentHunger = Mathf.Clamp(currentHunger, 0f, maxHunger + bonusSatedPoints);
             currentThirst = Mathf.Clamp(currentThirst, 0f, maxThirst + bonusSatedPoints);
+        }
+
+        public void ReduceSanity(float valueAmount)
+        {
+            currentSanity -= valueAmount * Time.deltaTime;
+        }
+
+        public void AddSanity(float valueAmount)
+        {
+            // Add Sanity
         }
     }
 }

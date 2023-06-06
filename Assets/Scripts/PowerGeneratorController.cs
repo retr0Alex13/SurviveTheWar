@@ -13,7 +13,7 @@ namespace OM
         [SerializeField] private ParticleSystem smokeParticle;
         [SerializeField] private float fuel = 30f;
         [SerializeField] private float maxFuelCapacity = 100;
-        [SerializeField] private List<Light> lights;
+        [SerializeField] private List<GameObject> lights;
         public bool isTurnedOn;
 
         private void Update()
@@ -73,10 +73,7 @@ namespace OM
             SoundManager.Instance.PlaySound("GeneratorRunning", transform.position);
 
             // Set light enabled = true in light list
-            foreach (Light light in lights)
-            {
-                light.enabled = true;
-            }
+            SetLights(true);
         }
 
         private void StopGenerator()
@@ -94,9 +91,14 @@ namespace OM
             SoundManager.Instance.StopSound("GeneratorRunning");
             
             // Set light enabled = false in light list
-            foreach (Light light in lights)
+            SetLights(false);
+        }
+
+        private void SetLights(bool status)
+        {
+            foreach (GameObject light in lights)
             {
-                light.enabled = false;
+                light.SetActive(status);
             }
         }
 
