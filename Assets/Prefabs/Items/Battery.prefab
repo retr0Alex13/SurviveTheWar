@@ -185,3 +185,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSO: {fileID: 11400000, guid: 556592d7a703bfd41b59714a8c79c2ff, type: 2}
+  <ItemCapacity>k__BackingField: 0

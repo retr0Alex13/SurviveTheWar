@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSO: {fileID: 11400000, guid: 3ad1ebf0348e9a745b2fccfc9f4d00c2, type: 2}
+  <ItemCapacity>k__BackingField: 50
 --- !u!114 &128929661708078796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b2555454d56e540a4b62c974feef35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fillingDistance: 1.5
 --- !u!23 &3053205724841004432
 MeshRenderer:
   m_ObjectHideFlags: 0

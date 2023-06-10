@@ -440,6 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSO: {fileID: 11400000, guid: 8f034332f87045e4c8f4f329dfeb5621, type: 2}
+  <ItemCapacity>k__BackingField: 0
 --- !u!1 &5086501498163830138
 GameObject:
   m_ObjectHideFlags: 0

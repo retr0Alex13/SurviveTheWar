@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSO: {fileID: 11400000, guid: 06065fdabf5b2ea4187b646022b23edf, type: 2}
+  <ItemCapacity>k__BackingField: 0
 --- !u!114 &7300379138744387647
 MonoBehaviour:
   m_ObjectHideFlags: 0

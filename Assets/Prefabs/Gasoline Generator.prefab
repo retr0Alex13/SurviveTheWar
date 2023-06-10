@@ -114,9 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smokeParticle: {fileID: 4494873767502919594}
   fuel: 8
+  maxFuelCapacity: 100
   lights:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   isTurnedOn: 0
