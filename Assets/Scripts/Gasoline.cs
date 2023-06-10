@@ -8,9 +8,12 @@ namespace OM
     {
         [SerializeField] private float fillingDistance = 1.5f;
         private float fuelAmount;
-        
         private Transform playerCameraTransform;
         public bool IsPickable { get; set; }
+
+        public delegate void GasolineAction();
+
+        public static event GasolineAction OnGasolineUsed;
         
         public void Interact()
         {
@@ -30,6 +33,7 @@ namespace OM
                 if (raycastHit.transform.TryGetComponent(out PowerGeneratorController generatorController))
                 {
                     generatorController.AddFuel(fuelAmount);
+                    OnGasolineUsed?.Invoke();
                     fuelAmount = 0;
                 }
             }

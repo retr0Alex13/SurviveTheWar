@@ -20,10 +20,10 @@ namespace OM
         public static event OnHealthChange OnHealthChanged;
 
         private float damageCounter;
-        private float damageRate = 3f;
+        private float damageRate = 1.5f;
 
         private float healCounter;
-        private float healRate = 2f;
+        private float healRate = 1.5f;
 
 
         public HealthSystem(int health, int maxHealth)

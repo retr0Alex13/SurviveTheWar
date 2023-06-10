@@ -1,0 +1,11 @@
+Model Information:
+* title:	City Building Downtown 03
+* source:	https://sketchfab.com/3d-models/city-building-downtown-03-45579f49613f445f9df7043885c57740
+* author:	jimbogies (https://sketchfab.com/jimbogies)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "City Building Downtown 03" (https://sketchfab.com/3d-models/city-building-downtown-03-45579f49613f445f9df7043885c57740) by jimbogies (https://sketchfab.com/jimbogies) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Old Russian bus stop
+* source:	https://sketchfab.com/3d-models/old-russian-bus-stop-074e11d7adb9420a83bc862e81579a9f
+* author:	halkiridze (https://sketchfab.com/halkiridze)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Old Russian bus stop" (https://sketchfab.com/3d-models/old-russian-bus-stop-074e11d7adb9420a83bc862e81579a9f) by halkiridze (https://sketchfab.com/halkiridze) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

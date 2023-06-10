@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -15,6 +16,16 @@ namespace OM
 
         private ItemSO itemSO;
         private IInteractable interactable;
+
+        private void Awake()
+        {
+            Gasoline.OnGasolineUsed += RemoveItem;
+        }
+
+        private void OnDestroy()
+        {
+            Gasoline.OnGasolineUsed -= RemoveItem;
+        }
 
         public void EquipItem(ItemSOHolder itemData)
         {
@@ -54,8 +65,8 @@ namespace OM
             if(context.performed)
             {
                 interactable?.Interact();
-                if(itemSO.itemType == ItemSO.ItemType.Gasoline)
-                    RemoveItem();
+                // if(itemSO.itemType == ItemSO.ItemType.Gasoline)
+                //     RemoveItem();
             }
         }
         

@@ -20,7 +20,7 @@ namespace OM
             if(!playerController.IsGrounded()) return;
             if (!playerController.IsMoving()) return;
             
-            if(Physics.Raycast(playerCamera.transform.position, Vector3.down, out RaycastHit hit, 2f))
+            if(Physics.Raycast(playerCamera.transform.position, Vector3.down, out RaycastHit hit, 1.5f))
             {
                 if (playerController.IsSprinting())
                 {
@@ -32,13 +32,12 @@ namespace OM
                         case "Footsteps/Tile":
                             SoundManager.Instance.PlaySound("TileRun");
                             break;
-                        case "Footsteps/Wood":
-                            SoundManager.Instance.PlaySound("WoodRun");
+                        case "Footsteps/Gravel":
+                            SoundManager.Instance.PlaySound("GravelRun");
                             break;
-                        default:
-                            SoundManager.Instance.PlaySound("TileRun");
-                            break;
-                        
+                        // default:
+                        //     SoundManager.Instance.PlaySound("GravelRun");
+                        //     break;
                     }
                 }
                 else
@@ -54,9 +53,12 @@ namespace OM
                         case "Footsteps/Wood":
                             SoundManager.Instance.PlaySound("WoodFootsteps");
                             break;
-                        default:
-                            SoundManager.Instance.PlaySound("TileFootsteps");
+                        case "Footsteps/Gravel":
+                            SoundManager.Instance.PlaySound("GravelFootsteps");
                             break;
+                        // default:
+                        //     SoundManager.Instance.PlaySound("GravelFootsteps");
+                        //     break;
                     }
                 }
             }

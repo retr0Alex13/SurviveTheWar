@@ -116,29 +116,35 @@ namespace OM
 
         private void HandleSanity()
         {
+            SanityStatus();
+            
             if (!dayNightCycle.IsNight())
             {
                 return;
             }
-            if(lightPoints == 100)
-                return;
-            if (lightPoints < 100)
-            {
-                ReduceSanity(decreaseSanityRate);
-            }
-            else if (lightPoints <= 0)
+            
+            if (lightPoints <= 0)
             {
                 ReduceSanity(hightDecreaseSanityRate);
             }
+            
+            else if (lightPoints < 100)
+            {
+                ReduceSanity(decreaseSanityRate);
+            }
+            OnSanityChanged?.Invoke(maxSanity, currentSanity);
+            //Debug.Log("Sanity: " + currentSanity);
+        }
 
+        private void SanityStatus()
+        {
             if (currentSanity <= 0)
             {
                 // Damage player for 0 sanity
                 playerHealth.health.DamageEntity(sanityDamage);
                 currentSanity = Mathf.Clamp(currentSanity, 0f, maxStamina);
+                OnSanityChanged?.Invoke(maxSanity, currentSanity);
             }
-            OnSanityChanged?.Invoke(maxSanity, currentSanity);
-            //Debug.Log("Sanity: " + currentSanity);
         }
 
         private void HandleStarvingAndThirst()

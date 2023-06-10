@@ -7,7 +7,7 @@ namespace OM
     public class HealthbarUI : MonoBehaviour
     {
         Image healthBar;
-        private float healthChangeSpeed = 0.5f;
+        [SerializeField] private float healthChangeSpeed = 0.5f;
         private float targetHealth;
 
         private void Awake()

@@ -15,13 +15,14 @@ namespace OM
         private void Awake()
         {
             animator = GetComponent<Animator>();
+            isOpened = false;
         }
 
         [ContextMenu("Open/CloseDoor")]
         public void Interact()
         {
             isOpened = !isOpened;
-            animator.SetBool("OpenClosed", isOpened);
+            animator.SetBool("isOpened", isOpened);
         }
 
         public void PlayCloseDoorSound()
