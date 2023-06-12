@@ -35,9 +35,12 @@ namespace OM
                         case "Footsteps/Gravel":
                             SoundManager.Instance.PlaySound("GravelRun");
                             break;
-                        // default:
-                        //     SoundManager.Instance.PlaySound("GravelRun");
-                        //     break;
+                        case "Footsteps/Stone":
+                            SoundManager.Instance.PlaySound("StoneRun");
+                            break;
+                            // default:
+                            //     SoundManager.Instance.PlaySound("GravelRun");
+                            //     break;
                     }
                 }
                 else
@@ -56,9 +59,12 @@ namespace OM
                         case "Footsteps/Gravel":
                             SoundManager.Instance.PlaySound("GravelFootsteps");
                             break;
-                        // default:
-                        //     SoundManager.Instance.PlaySound("GravelFootsteps");
-                        //     break;
+                        case "Footsteps/Stone":
+                            SoundManager.Instance.PlaySound("StoneFootsteps");
+                            break;
+                            // default:
+                            //     SoundManager.Instance.PlaySound("GravelFootsteps");
+                            //     break;
                     }
                 }
             }
