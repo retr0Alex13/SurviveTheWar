@@ -11,6 +11,7 @@ TagManager:
   - Food/Soda
   - Food/Water
   - Footsteps/Gravel
+  - Footsteps/Stone
   layers:
   - Default
   - TransparentFX
