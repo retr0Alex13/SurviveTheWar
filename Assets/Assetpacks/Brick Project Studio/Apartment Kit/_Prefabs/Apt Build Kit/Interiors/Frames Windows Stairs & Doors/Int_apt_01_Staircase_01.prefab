@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6298493336233793655}
   - component: {fileID: 7170756737053157428}
   - component: {fileID: 6666822125206671542}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Int_apt_01_Staircase_01
-  m_TagString: Untagged
+  m_TagString: Footsteps/Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6393942455669940875}
   m_Father: {fileID: 0}
@@ -53,6 +54,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -109,7 +111,7 @@ GameObject:
   - component: {fileID: 702485154620323150}
   - component: {fileID: 1987204309242188590}
   - component: {fileID: 5777202487657363277}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HandRail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,6 +128,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: -4.5619686e-10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7322839019957164238}
   m_RootOrder: 0
@@ -149,6 +152,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

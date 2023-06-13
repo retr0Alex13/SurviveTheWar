@@ -1,0 +1,11 @@
+Model Information:
+* title:	Building - Store
+* source:	https://sketchfab.com/3d-models/building-store-b84fdb12522c4e7ca32427b1798f176b
+* author:	Sunlan4ch (https://sketchfab.com/Sunlan4ch)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Building - Store" (https://sketchfab.com/3d-models/building-store-b84fdb12522c4e7ca32427b1798f176b) by Sunlan4ch (https://sketchfab.com/Sunlan4ch) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
