@@ -47,7 +47,8 @@ MonoBehaviour:
   isInSafeZone: 0
   probabilityOfEvent: 0.1
   isEventActive: 0
-  eventDamage: 35
+  eventDamage: 15
   currentTimeOfEvent: 0
+  eventDuration: 0
   timeToGetToSafe: 10
   currentTimeToGetSafe: 0

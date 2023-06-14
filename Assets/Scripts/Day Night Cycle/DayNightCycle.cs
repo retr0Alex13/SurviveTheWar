@@ -182,7 +182,6 @@ public class DayNightCycle : MonoBehaviour {
         if (currentHour != previousHour)
         {
             // Наступила нова година
-            //Debug.Log("New Hour");
             Debug.Log(GetHour());
             OnNewHour?.Invoke();
             previousHour = currentHour;
