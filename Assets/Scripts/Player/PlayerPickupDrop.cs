@@ -16,7 +16,7 @@ namespace OM
         private ObjectGrabbable objectGrabbable;
         private bool isHolding;
 
-        public delegate void PlayerPickUpAction(ItemSO itemSO);
+        public delegate void PlayerPickUpAction(ItemSO itemSO, ItemSOHolder itemSOHolder);
         public static event PlayerPickUpAction OnItemPickUp;
 
         private void Awake()
@@ -47,7 +47,9 @@ namespace OM
                                 return;
                             }
                             
-                            OnItemPickUp(itemSOHolder.ItemSO);
+                            OnItemPickUp(itemSOHolder.ItemSO, itemSOHolder);
+                            inventory.inventoryView.itemSlotPrefab.GetComponent<ItemSlot>().ItemCapacity = itemSOHolder.ItemCapacity;
+                            Debug.Log("Item Capacity: " + inventory.inventoryView.itemSlotPrefab.GetComponent<ItemSlot>().ItemCapacity);
                             Destroy(raycastHit.transform.gameObject);
                         }
                     }

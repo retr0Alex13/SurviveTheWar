@@ -39,6 +39,7 @@ namespace OM
                     currentlyequipedItem.gameObject.SetActive(true);
                     interactable = currentlyequipedItem.GetComponent<IInteractable>();
                     currentlyequipedItem.GetComponent<ItemSOHolder>().ItemCapacity = itemData.ItemCapacity;
+                    Debug.Log(itemData.ItemCapacity);
                 }
             }
         }
@@ -53,6 +54,7 @@ namespace OM
                 currentlyequipedItem.gameObject.SetActive(false);
                 GameObject dropItem = Instantiate(itemSO.Prefab, new Vector3(dropItemPoint.position.x, dropItemPoint.position.y, dropItemPoint.position.z),
                 Quaternion.identity);
+                dropItem.GetComponent<ItemSOHolder>().ItemCapacity = currentlyequipedItem.GetComponent<ItemSOHolder>().ItemCapacity;
                 ResetHands();
             }
         }

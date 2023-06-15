@@ -6,7 +6,7 @@ namespace OM
 {
     public class InventoryMediator : MonoBehaviour
     {
-        [SerializeField] private InventoryView inventoryView;
+        [SerializeField] public InventoryView inventoryView;
         [SerializeField] private TaskWindowBuilder taskWindow;
         [SerializeField] private GameObject inventoryMenu;
         [SerializeField] private Transform playerDropPoint;
@@ -53,7 +53,7 @@ namespace OM
             return false;
         }
 
-        public void AddItemToInventory(ItemSO item)
+        public void AddItemToInventory(ItemSO item, ItemSOHolder itemSOHolder)
         {
             InventorySystem.Add(item);
             EvaluateGatheringGoal(item.itemName);

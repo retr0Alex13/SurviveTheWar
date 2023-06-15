@@ -5,8 +5,13 @@ namespace OM
 {
     public class InventoryView : MonoBehaviour
     {
-        [SerializeField] private GameObject itemSlotPrefab;
+        [SerializeField] public GameObject itemSlotPrefab;
         [SerializeField] public InventoryMediator inventoryMediator;
+
+        private void Awake()
+        {
+            Debug.Log("Start");
+        }
 
         public void OnUpdateInventory()
         {

@@ -12,6 +12,7 @@ namespace OM
         [SerializeField] private GameObject OptionPanel;
         [SerializeField] private GameObject useButton;
         [SerializeField] private GameObject equipButton;
+        public float ItemCapacity;
 
         private InventoryView inventoryView;
         private PlayerEquipSlot equipSlot;
@@ -21,6 +22,11 @@ namespace OM
         private void Awake()
         {
             equipSlot = FindAnyObjectByType<PlayerEquipSlot>();
+        }
+
+        private void OnDestroy()
+        {
+
         }
 
         public void Set(InventoryItem item)
@@ -83,7 +89,9 @@ namespace OM
             {
                 if (equipSlot.currentlyequipedItem != null)
                     return;
-                equipSlot.EquipItem(InventoryItem.itemData.Prefab.GetComponent<ItemSOHolder>());
+                ItemSOHolder itemSOHolder = InventoryItem.itemData.Prefab.GetComponent<ItemSOHolder>();
+                itemSOHolder.ItemCapacity = ItemCapacity;
+                equipSlot.EquipItem(itemSOHolder);
                 inventoryView.inventoryMediator.RemoveItemFromInventory(InventoryItem.itemData);
             }
         }
