@@ -34,6 +34,16 @@ namespace OM
         {
             SoundManager.Instance.PlaySound("DoorOpening");
         }
+
+        public void SetDurability(float currentDurability)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public float GetDurability()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
         

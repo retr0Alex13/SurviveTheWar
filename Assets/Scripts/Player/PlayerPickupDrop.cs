@@ -46,10 +46,15 @@ namespace OM
                                 ProceedToEquipItem(itemSOHolder, raycastHit);
                                 return;
                             }
-                            
                             OnItemPickUp(itemSOHolder.ItemSO, itemSOHolder);
-                            inventory.inventoryView.itemSlotPrefab.GetComponent<ItemSlot>().ItemCapacity = itemSOHolder.ItemCapacity;
-                            Debug.Log("Item Capacity: " + inventory.inventoryView.itemSlotPrefab.GetComponent<ItemSlot>().ItemCapacity);
+                            foreach (Transform child in inventory.inventoryView.transform)
+                            {
+                                if (child.GetComponent<ItemSlot>().InventoryItem.itemData == itemSOHolder.ItemSO)
+                                {
+                                    child.GetComponent<ItemSlot>().ItemDurability = itemSOHolder.CurrentDurability;
+                                    Debug.Log("Setted item durability " + child.GetComponent<ItemSlot>().ItemDurability);
+                                }
+                            }
                             Destroy(raycastHit.transform.gameObject);
                         }
                     }

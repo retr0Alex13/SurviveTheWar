@@ -11,14 +11,15 @@ namespace OM
 
         public bool IsPickable { get; set; }
 
+        public float GetDurability()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Interact()
         {
             if (transform.GetChild(0) == null)
                 return;
-
-            ItemSOHolder itemSOHolder = transform.GetComponent<ItemSOHolder>();
-
-            currentCharge = itemSOHolder.ItemCapacity;
 
             if (currentCharge <= 0)
             {
@@ -30,11 +31,17 @@ namespace OM
             SoundManager.Instance.PlaySound("FlashlightClick");
         }
 
+        public void SetDurability(float currentDurability)
+        {
+            Debug.Log("Setted flashlight charge: " + currentCharge);
+            currentCharge = currentDurability;
+            GetComponent<ItemSOHolder>().CurrentDurability = currentDurability;
+        }
+
         private void Update()
         {
             if (sourceLight == null)
                 return;
-
 
             if (currentCharge <= 0)
             {
@@ -46,10 +53,9 @@ namespace OM
             if (sourceLight.gameObject.activeSelf)
             {
                 currentCharge -= Time.deltaTime;
+                GetComponent<ItemSOHolder>().CurrentDurability = currentCharge;
                 Debug.Log(currentCharge);
             }
-
-            transform.GetComponent<ItemSOHolder>().ItemCapacity = currentCharge;
         }
     }
 }

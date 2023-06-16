@@ -16,9 +16,7 @@ namespace OM
         public static event GasolineAction OnGasolineUsed;
         
         public void Interact()
-        {
-            fuelAmount = transform.GetComponent<ItemSOHolder>().ItemCapacity;
-            
+        {            
             foreach (Transform obj in transform.root)
             {
                 playerCameraTransform = obj.parent;
@@ -38,6 +36,16 @@ namespace OM
                 }
             }
 
+        }
+
+        public void SetDurability(float currentDurability)
+        {
+            fuelAmount = currentDurability;
+        }
+
+        public float GetDurability()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

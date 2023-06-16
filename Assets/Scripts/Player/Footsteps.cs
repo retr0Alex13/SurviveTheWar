@@ -38,6 +38,9 @@ namespace OM
                         case "Footsteps/Stone":
                             SoundManager.Instance.PlaySound("StoneRun");
                             break;
+                        case "Footsteps/Wood":
+                            SoundManager.Instance.PlaySound("WoodRun");
+                            break;
                             // default:
                             //     SoundManager.Instance.PlaySound("GravelRun");
                             //     break;

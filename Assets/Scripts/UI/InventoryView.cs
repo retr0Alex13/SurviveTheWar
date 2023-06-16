@@ -8,11 +8,6 @@ namespace OM
         [SerializeField] public GameObject itemSlotPrefab;
         [SerializeField] public InventoryMediator inventoryMediator;
 
-        private void Awake()
-        {
-            Debug.Log("Start");
-        }
-
         public void OnUpdateInventory()
         {
             foreach(Transform t in transform)
@@ -21,6 +16,18 @@ namespace OM
             }
 
             DrawInventory();
+        }
+
+        public ItemSlot GetItemSlot(ItemSO itemso)
+        {
+            foreach (Transform item in transform)
+            {
+                if (item.GetComponent<ItemSOHolder>().ItemSO == itemso)
+                {
+                    return item.GetComponent<ItemSlot>();
+                }
+            }
+            return null;
         }
 
         public void DrawInventory()

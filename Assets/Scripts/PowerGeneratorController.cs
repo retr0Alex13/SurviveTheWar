@@ -121,5 +121,15 @@ namespace OM
 
             return false;
         }
+
+        public void SetDurability(float currentDurability)
+        {
+            throw new NotImplementedException();
+        }
+
+        public float GetDurability()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

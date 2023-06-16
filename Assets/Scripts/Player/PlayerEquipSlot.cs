@@ -15,6 +15,7 @@ namespace OM
         [SerializeField] private Transform dropItemPoint;
 
         private ItemSO itemSO;
+        private ItemSOHolder itemSOHolder;
         private IInteractable interactable;
 
         private void Awake()
@@ -29,6 +30,7 @@ namespace OM
 
         public void EquipItem(ItemSOHolder itemData)
         {
+            itemSOHolder = itemData;
             itemSO = itemData.ItemSO;
             foreach(Transform transform in equipSlot)
             {
@@ -38,8 +40,7 @@ namespace OM
                     currentlyequipedItem = transform;
                     currentlyequipedItem.gameObject.SetActive(true);
                     interactable = currentlyequipedItem.GetComponent<IInteractable>();
-                    currentlyequipedItem.GetComponent<ItemSOHolder>().ItemCapacity = itemData.ItemCapacity;
-                    Debug.Log(itemData.ItemCapacity);
+                    interactable.SetDurability(itemData.CurrentDurability);
                 }
             }
         }
@@ -52,9 +53,11 @@ namespace OM
                     return;
 
                 currentlyequipedItem.gameObject.SetActive(false);
-                GameObject dropItem = Instantiate(itemSO.Prefab, new Vector3(dropItemPoint.position.x, dropItemPoint.position.y, dropItemPoint.position.z),
+                GameObject dropItem = Instantiate(itemSOHolder.ItemSO.Prefab, new Vector3(dropItemPoint.position.x, dropItemPoint.position.y, dropItemPoint.position.z),
                 Quaternion.identity);
-                dropItem.GetComponent<ItemSOHolder>().ItemCapacity = currentlyequipedItem.GetComponent<ItemSOHolder>().ItemCapacity;
+                dropItem.GetComponent<ItemSOHolder>().CurrentDurability = currentlyequipedItem.GetComponent<ItemSOHolder>().CurrentDurability;
+                Debug.Log(dropItem.GetComponent<ItemSOHolder>().CurrentDurability);
+                itemSOHolder.CurrentDurability = 0;
                 ResetHands();
             }
         }

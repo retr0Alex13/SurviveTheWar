@@ -64,7 +64,7 @@ namespace OM
             InventorySystem.Remove(item);
         }
 
-        public void RemoveItemAndDrop(ItemSO item)
+        public void RemoveItemAndDrop(ItemSO item, float itemDurability)
         {
             if(InventorySystem.Get(item) != null)
             {
@@ -73,6 +73,7 @@ namespace OM
             GameObject dropItem = Instantiate(item.Prefab, 
                 new Vector3(playerDropPoint.position.x, playerDropPoint.position.y, playerDropPoint.position.z), 
                 Quaternion.identity);
+            dropItem.GetComponent<ItemSOHolder>().CurrentDurability = itemDurability;
         }
 
         public void InventoryVisibility(InputAction.CallbackContext ctx)

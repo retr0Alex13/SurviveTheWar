@@ -12,7 +12,8 @@ namespace OM
         [SerializeField] private GameObject OptionPanel;
         [SerializeField] private GameObject useButton;
         [SerializeField] private GameObject equipButton;
-        public float ItemCapacity;
+
+        [HideInInspector] public float ItemDurability;
 
         private InventoryView inventoryView;
         private PlayerEquipSlot equipSlot;
@@ -35,7 +36,6 @@ namespace OM
             itemImage.sprite = item.itemData.image;
             inventoryView = transform.parent.GetComponent<InventoryView>();
             
-            Debug.Log(item.itemData.itemType);
             if (item.itemData.itemType == ItemSO.ItemType.Gasoline)
             {
                 Equip();
@@ -61,7 +61,7 @@ namespace OM
 
         public void Remove()
         {
-            inventoryView.inventoryMediator.RemoveItemAndDrop(InventoryItem.itemData);
+            inventoryView.inventoryMediator.RemoveItemAndDrop(InventoryItem.itemData, ItemDurability);
         }
 
         public void RemoveWithoutDrop()
@@ -90,7 +90,7 @@ namespace OM
                 if (equipSlot.currentlyequipedItem != null)
                     return;
                 ItemSOHolder itemSOHolder = InventoryItem.itemData.Prefab.GetComponent<ItemSOHolder>();
-                itemSOHolder.ItemCapacity = ItemCapacity;
+                itemSOHolder.CurrentDurability = ItemDurability;
                 equipSlot.EquipItem(itemSOHolder);
                 inventoryView.inventoryMediator.RemoveItemFromInventory(InventoryItem.itemData);
             }
