@@ -20,7 +20,6 @@ public class DayNightCycle : MonoBehaviour {
         }
     }
     [SerializeField]        
-
     private float elapsedTime;
     [SerializeField]
     private bool use24Clock = true;
@@ -95,6 +94,10 @@ public class DayNightCycle : MonoBehaviour {
     
     [Header("Quest View")]
     [SerializeField] private TaskView taskView;
+
+    [Header("Street Light")]
+    private bool streetLightStatus;
+    [SerializeField] private List<GameObject> streetLights;
     
     public delegate void DayNightAction();
     public static event DayNightAction OnNewHour;
@@ -121,6 +124,19 @@ public class DayNightCycle : MonoBehaviour {
         SunIntensity();
         AdjustSunColor();
         UpdateModules(); //will update modules each frame
+
+        if (streetLights == null)
+            return;
+        if (IsNight() && !streetLightStatus)
+        {
+            streetLightStatus = true;
+            SetStreetLights(false);
+        }
+        else if (!IsNight())
+        {
+            streetLightStatus = false;
+            SetStreetLights(true);
+        }
     }
 
     private void UpdateTimeScale()
@@ -284,5 +300,13 @@ public class DayNightCycle : MonoBehaviour {
         AdjustSunRotation();
         SunIntensity();
         AdjustSunColor();
+    }
+
+    private void SetStreetLights(bool status)
+    {
+        foreach(GameObject light in streetLights)
+        {
+            light.SetActive(status);
+        }
     }
 }

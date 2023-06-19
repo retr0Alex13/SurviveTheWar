@@ -10,12 +10,12 @@ namespace OM
     public class PlayerEquipSlot : MonoBehaviour
     {
         [HideInInspector] public Transform currentlyequipedItem;
+        [HideInInspector] public ItemSOHolder itemSOHolder;
 
         [SerializeField] private Transform equipSlot;
         [SerializeField] private Transform dropItemPoint;
 
         private ItemSO itemSO;
-        private ItemSOHolder itemSOHolder;
         private IInteractable interactable;
 
         private void Awake()
@@ -28,10 +28,11 @@ namespace OM
             Gasoline.OnGasolineUsed -= RemoveItem;
         }
 
-        public void EquipItem(ItemSOHolder itemData)
+        public void EquipItem(ItemSOHolder itemData, ItemDurability itemDurability)
         {
             itemSOHolder = itemData;
             itemSO = itemData.ItemSO;
+         
             foreach(Transform transform in equipSlot)
             {
                 ItemSO item = transform.GetComponent<ItemSOHolder>().ItemSO;
@@ -40,7 +41,16 @@ namespace OM
                     currentlyequipedItem = transform;
                     currentlyequipedItem.gameObject.SetActive(true);
                     interactable = currentlyequipedItem.GetComponent<IInteractable>();
-                    interactable.SetDurability(itemData.CurrentDurability);
+                    Debug.Log("Item durability when equipping item: " + itemDurability.CurrentDurability);
+
+                    if (itemDurability != null)
+                    {
+                        currentlyequipedItem.gameObject.GetComponent<ItemDurability>().SetComponent(itemDurability);
+                    }
+                    else
+                    {
+                        Debug.Log("Item durability is null");
+                    }
                 }
             }
         }
@@ -55,9 +65,7 @@ namespace OM
                 currentlyequipedItem.gameObject.SetActive(false);
                 GameObject dropItem = Instantiate(itemSOHolder.ItemSO.Prefab, new Vector3(dropItemPoint.position.x, dropItemPoint.position.y, dropItemPoint.position.z),
                 Quaternion.identity);
-                dropItem.GetComponent<ItemSOHolder>().CurrentDurability = currentlyequipedItem.GetComponent<ItemSOHolder>().CurrentDurability;
-                Debug.Log(dropItem.GetComponent<ItemSOHolder>().CurrentDurability);
-                itemSOHolder.CurrentDurability = 0;
+                dropItem.GetComponent<ItemDurability>().SetComponent(currentlyequipedItem.GetComponent<ItemDurability>());
                 ResetHands();
             }
         }

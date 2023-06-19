@@ -15,8 +15,10 @@ GameObject:
   - component: {fileID: 5715156674346945284}
   - component: {fileID: 5715156674346945287}
   - component: {fileID: 5715156674346945283}
+  - component: {fileID: 7967606299143921683}
   - component: {fileID: 5715156674346945282}
   - component: {fileID: 5715156674346945285}
+  - component: {fileID: 1568658063}
   m_Layer: 10
   m_Name: Battery
   m_TagString: Untagged
@@ -158,6 +160,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &7967606299143921683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5716102881895125267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 579e69fbbd321364c91e75f6d20a8eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashlight: {fileID: 0}
 --- !u!114 &5715156674346945282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,4 +200,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSO: {fileID: 11400000, guid: 556592d7a703bfd41b59714a8c79c2ff, type: 2}
-  <ItemCapacity>k__BackingField: 0
+--- !u!114 &1568658063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5716102881895125267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57be8a7faa91c04ba0c4b33ec9e0ba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentDurability: 30
+  maxDurability: 30
+  itemSO: {fileID: 0}

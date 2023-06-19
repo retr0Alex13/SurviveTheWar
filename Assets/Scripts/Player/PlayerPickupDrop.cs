@@ -46,15 +46,14 @@ namespace OM
                                 ProceedToEquipItem(itemSOHolder, raycastHit);
                                 return;
                             }
-                            OnItemPickUp(itemSOHolder.ItemSO, itemSOHolder);
-                            foreach (Transform child in inventory.inventoryView.transform)
+                            else if (itemSOHolder.ItemSO.itemType == ItemSO.ItemType.Equipable)
                             {
-                                if (child.GetComponent<ItemSlot>().InventoryItem.itemData == itemSOHolder.ItemSO)
-                                {
-                                    child.GetComponent<ItemSlot>().ItemDurability = itemSOHolder.CurrentDurability;
-                                    Debug.Log("Setted item durability " + child.GetComponent<ItemSlot>().ItemDurability);
-                                }
+                                ProceedToEquipItem(itemSOHolder, raycastHit);
+                                return;
                             }
+
+                            OnItemPickUp(itemSOHolder.ItemSO, itemSOHolder);
+
                             Destroy(raycastHit.transform.gameObject);
                         }
                     }
@@ -66,7 +65,18 @@ namespace OM
         {
             if (playerEquipSlot.currentlyequipedItem != null)
                 return;
-            playerEquipSlot.EquipItem(itemSOHolder);
+
+            Debug.Log("Equipping item..");
+
+            if (itemSOHolder.gameObject.TryGetComponent(out ItemDurability itemDurability))
+            {
+                Debug.Log(itemDurability.ItemSO + " durability when proceeded to equip " + itemDurability.CurrentDurability);
+                playerEquipSlot.EquipItem(itemSOHolder, itemDurability);
+            }
+            else
+            {
+                playerEquipSlot.EquipItem(itemSOHolder, null);
+            }
             Destroy(raycastHit.transform.gameObject);
         }
 

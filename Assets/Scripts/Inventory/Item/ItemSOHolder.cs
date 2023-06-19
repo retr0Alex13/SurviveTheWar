@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace OM
@@ -6,14 +7,6 @@ namespace OM
     {
         [SerializeField] private ItemSO itemSO;
         public ItemSO ItemSO { get { return itemSO; } }
-        [field: SerializeField] public float CurrentDurability;
-
-        public void DecreaseDurability(float amount)
-        {
-            CurrentDurability -= amount;
-            if (CurrentDurability < 0)
-                CurrentDurability = 0;
-        }
-
+       
     }
 }

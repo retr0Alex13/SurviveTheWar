@@ -15,9 +15,20 @@ namespace OM
 
         private void Awake() => playerInput = GetComponent<PlayerInput>();
 
-        private void OnEnable() => HealthSystem.OnHealthChanged += OnHealthChanged;
+        private void OnEnable()
+        {
+            HealthSystem.OnHealthChanged += OnHealthChanged;
+        }
 
-        private void OnDisable() => HealthSystem.OnHealthChanged -= OnHealthChanged;
+        private void OnDisable()
+        {
+            HealthSystem.OnHealthChanged -= OnHealthChanged;
+        }
+
+        private void Update()
+        {
+            Debug.Log(health.CurrentHealth);
+        }
 
         private void OnHealthChanged(float currentMaxHealth, float currentHealth)
         {
@@ -27,7 +38,7 @@ namespace OM
             }
             PlayerDead();
         }
-        
+
         private void PlayerDead()
         {
             playerInput.enabled = false;

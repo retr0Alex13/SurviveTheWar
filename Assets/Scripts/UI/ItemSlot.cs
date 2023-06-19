@@ -13,29 +13,28 @@ namespace OM
         [SerializeField] private GameObject useButton;
         [SerializeField] private GameObject equipButton;
 
-        [HideInInspector] public float ItemDurability;
-
         private InventoryView inventoryView;
         private PlayerEquipSlot equipSlot;
 
-        [HideInInspector] public InventoryItem InventoryItem;
+        private InventoryItem inventoryItem;
+        public InventoryItem InventoryItem { get { return inventoryItem; } }
 
         private void Awake()
         {
             equipSlot = FindAnyObjectByType<PlayerEquipSlot>();
         }
 
-        private void OnDestroy()
-        {
-
-        }
-
         public void Set(InventoryItem item)
         {
-            InventoryItem = item;
+            inventoryItem = item;
             itemImage.sprite = item.itemData.image;
             inventoryView = transform.parent.GetComponent<InventoryView>();
-            
+            Debug.Log(inventoryItem.ItemDurability);
+            if (inventoryItem.ItemDurability != null)
+            {
+                Debug.Log(inventoryItem.itemData.itemName + " durability " + inventoryItem.ItemDurability.CurrentDurability);
+            }
+
             if (item.itemData.itemType == ItemSO.ItemType.Gasoline)
             {
                 Equip();
@@ -43,7 +42,7 @@ namespace OM
                 return;
             }
 
-            if (item.itemData.itemType == ItemSO.ItemType.Eatable)
+            if (item.itemData.itemType == ItemSO.ItemType.Eatable || item.itemData.itemType == ItemSO.ItemType.Usable)
             {
                 useButton.SetActive(true);
             }
@@ -61,12 +60,12 @@ namespace OM
 
         public void Remove()
         {
-            inventoryView.inventoryMediator.RemoveItemAndDrop(InventoryItem.itemData, ItemDurability);
+            inventoryView.inventoryMediator.RemoveItemAndDrop(inventoryItem.itemData);
         }
 
         public void RemoveWithoutDrop()
         {
-            inventoryView.inventoryMediator.RemoveItemFromInventory(InventoryItem.itemData);
+            inventoryView.inventoryMediator.RemoveItemFromInventory(inventoryItem.itemData);
         }
 
         public void SetWindowState()
@@ -76,23 +75,46 @@ namespace OM
 
         public void Use()
         {
-            if (InventoryItem.itemData.Prefab.TryGetComponent(out ObjectEatable objectEatable))
+            if (inventoryItem.itemData.Prefab.TryGetComponent(out ObjectEatable objectEatable))
             {
                 objectEatable.Consume();
-                inventoryView.inventoryMediator.RemoveItemFromInventory(InventoryItem.itemData);
             }
+
+            if (inventoryItem.itemData.Prefab.TryGetComponent(out HealingObject healingObject))
+            {
+                healingObject.Heal();
+            }
+
+            if(inventoryItem.itemData.Prefab.TryGetComponent(out Battery battery))
+            {
+                if (equipSlot.currentlyequipedItem.TryGetComponent(out Flashlight flashlight1))
+                {
+                    battery.flashlight = flashlight1;
+                    battery.Interact();
+                }
+                Debug.Log(equipSlot.currentlyequipedItem);
+            }
+            inventoryView.inventoryMediator.RemoveItemFromInventory(inventoryItem.itemData);
         }
 
         public void Equip()
         {
-            if (InventoryItem.itemData.Prefab.TryGetComponent(out IInteractable interactable))
+            Debug.Log(inventoryItem.ItemDurability);
+            if (inventoryItem.itemData.Prefab.TryGetComponent(out IInteractable interactable))
             {
                 if (equipSlot.currentlyequipedItem != null)
                     return;
-                ItemSOHolder itemSOHolder = InventoryItem.itemData.Prefab.GetComponent<ItemSOHolder>();
-                itemSOHolder.CurrentDurability = ItemDurability;
-                equipSlot.EquipItem(itemSOHolder);
-                inventoryView.inventoryMediator.RemoveItemFromInventory(InventoryItem.itemData);
+                ItemSOHolder itemSOHolder = inventoryItem.itemData.Prefab.GetComponent<ItemSOHolder>();
+                if (inventoryItem != null)
+                {
+                    equipSlot.EquipItem(itemSOHolder, inventoryItem.ItemDurability);
+                }
+                else
+                {
+                    equipSlot.EquipItem(itemSOHolder, null);
+
+                }
+                inventoryView.inventoryMediator.RemoveItemFromInventory(inventoryItem.itemData);
             }
         }
     }

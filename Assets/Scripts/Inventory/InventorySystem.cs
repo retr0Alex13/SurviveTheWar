@@ -22,7 +22,7 @@ namespace OM
             return null;
         }
 
-        public void Add(ItemSO referenceData)
+        public void Add(ItemSO referenceData, ItemDurability itemDurability)
         {
             if (ItemDictionary.TryGetValue(referenceData, out InventoryItem value))
             {
@@ -30,17 +30,37 @@ namespace OM
             }
             else
             {
-                CreateNewItemCell(referenceData);
+                if(itemDurability == null)
+                {
+                    CreateNewItemCell(referenceData, null);
+                    Debug.Log("ItemDurability is null");
+                }
+                else
+                {
+                    CreateNewItemCell(referenceData, itemDurability);
+                }
             }
             SoundManager.Instance.PlaySound("PickupItem");
             OnInventoryChange();
         }
 
-        private void CreateNewItemCell(ItemSO referenceData)
+        private void CreateNewItemCell(ItemSO referenceData, ItemDurability itemDurability)
         {
-            InventoryItem newItem = new InventoryItem(referenceData);
-            Inventory.Add(newItem);
-            ItemDictionary.Add(referenceData, newItem);
+            if (itemDurability == null)
+            {
+                InventoryItem newItem = new InventoryItem(referenceData, null);
+                Inventory.Add(newItem);
+                ItemDictionary.Add(referenceData, newItem);
+                Debug.Log("Item durability is null");
+            }
+            else
+            {
+                InventoryItem newItem = new InventoryItem(referenceData, itemDurability);
+                Inventory.Add(newItem);
+                ItemDictionary.Add(referenceData, newItem);
+                Debug.Log(newItem);
+                Debug.Log("Item durability in new cell: " + newItem.ItemDurability.CurrentDurability);
+            }
         }
 
         public void Remove(ItemSO referenceData)

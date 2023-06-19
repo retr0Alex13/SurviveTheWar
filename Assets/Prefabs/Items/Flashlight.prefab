@@ -301,6 +301,7 @@ GameObject:
   - component: {fileID: 5085337864913645157}
   - component: {fileID: 5085337864913645158}
   - component: {fileID: 5085337864913645160}
+  - component: {fileID: 2528427147887853718}
   m_Layer: 10
   m_Name: Flashlight
   m_TagString: Untagged
@@ -395,6 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 117981e0eca0a344eafa36bd17e0a519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxCharge: 100
 --- !u!114 &5085337864913645157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,7 +442,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSO: {fileID: 11400000, guid: 8f034332f87045e4c8f4f329dfeb5621, type: 2}
-  <ItemCapacity>k__BackingField: 0
+--- !u!114 &2528427147887853718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5086441711626055566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57be8a7faa91c04ba0c4b33ec9e0ba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentDurability: 0
+  maxDurability: 0
+  itemSO: {fileID: 0}
 --- !u!1 &5086501498163830138
 GameObject:
   m_ObjectHideFlags: 0

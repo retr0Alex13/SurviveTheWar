@@ -12,7 +12,8 @@ namespace OM
             CraftingMaterial,
             Gasoline,
             Equipable,
-            Eatable
+            Eatable,
+            Usable
         }
 
 

@@ -86,11 +86,13 @@ namespace OM
         private void OnEnable()
         {
             ObjectEatable.OneItemConsuming += AddHungerAndThirst;
+            HealingObject.OnSanityHeal += AddSanity;
         }
 
         private void OnDisable()
         {
             ObjectEatable.OneItemConsuming -= AddHungerAndThirst;
+            HealingObject.OnSanityHeal -= AddSanity;
         }
 
         private void Start()
@@ -224,7 +226,10 @@ namespace OM
 
         public void AddSanity(float valueAmount)
         {
-            // Add Sanity
+            currentSanity += valueAmount;
+            currentSanity = Mathf.Clamp(currentSanity, 0f, maxSanity);
+
+            OnSanityChanged?.Invoke(maxSanity, currentSanity);
         }
     }
 }

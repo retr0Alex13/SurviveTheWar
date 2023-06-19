@@ -10,7 +10,7 @@ namespace OM
 
         public void OnUpdateInventory()
         {
-            foreach(Transform t in transform)
+            foreach (Transform t in transform)
             {
                 Destroy(t.gameObject);
             }
@@ -22,7 +22,7 @@ namespace OM
         {
             foreach (Transform item in transform)
             {
-                if (item.GetComponent<ItemSOHolder>().ItemSO == itemso)
+                if (item.GetComponent<ItemSlot>().InventoryItem.itemData == itemso)
                 {
                     return item.GetComponent<ItemSlot>();
                 }
@@ -34,6 +34,10 @@ namespace OM
         {
             foreach (InventoryItem item in inventoryMediator.InventorySystem.Inventory.ToList())
             {
+                if (item.ItemDurability != null)
+                {
+                    Debug.Log(item.itemData.itemName + " durability on inventory update: " + item.ItemDurability.CurrentDurability);
+                }
                 AddInventorySlot(item);
             }
         }
@@ -44,6 +48,10 @@ namespace OM
             obj.transform.SetParent(transform, false);
 
             ItemSlot itemSlot = obj.GetComponent<ItemSlot>();
+            if (item.ItemDurability != null)
+            {
+                Debug.Log(item.itemData.itemName + " durability when adding inventory slot " + item.ItemDurability.CurrentDurability);
+            }
             itemSlot.Set(item);
         }
     }

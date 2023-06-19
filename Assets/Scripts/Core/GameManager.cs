@@ -11,6 +11,8 @@ namespace OM
         public static GameManager gameManager { get; private set; }
         public TaskRewardController taskRewardController;
 
+        private PlayerHealth playerHealth;
+
         void Awake()
         {
             if (gameManager != null && gameManager != this)

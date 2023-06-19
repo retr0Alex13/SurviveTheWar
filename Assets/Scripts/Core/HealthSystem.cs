@@ -23,7 +23,7 @@ namespace OM
         private float damageRate = 1.5f;
 
         private float healCounter;
-        private float healRate = 1.5f;
+        private float healRate = 0f;
 
 
         public HealthSystem(int health, int maxHealth)

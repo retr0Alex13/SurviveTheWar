@@ -8,8 +8,5 @@ namespace OM
     {
         public bool IsPickable { get; set; }
         void Interact();
-        void SetDurability(float currentDurability);
-        float GetDurability();
-
     }
 }

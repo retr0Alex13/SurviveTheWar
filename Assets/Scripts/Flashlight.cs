@@ -7,21 +7,20 @@ namespace OM
     public class Flashlight : MonoBehaviour, IInteractable
     {
         private Transform sourceLight;
-        private float currentCharge;
+
+        private ItemDurability itemDurability;
+        public ItemDurability ItemDurability { get; }
 
         public bool IsPickable { get; set; }
 
-        public float GetDurability()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public void Interact()
         {
+            itemDurability = gameObject.GetComponent<ItemDurability>();
+
             if (transform.GetChild(0) == null)
                 return;
 
-            if (currentCharge <= 0)
+            if (itemDurability.CurrentDurability <= 0)
             {
                 return;
             }
@@ -31,30 +30,22 @@ namespace OM
             SoundManager.Instance.PlaySound("FlashlightClick");
         }
 
-        public void SetDurability(float currentDurability)
-        {
-            Debug.Log("Setted flashlight charge: " + currentCharge);
-            currentCharge = currentDurability;
-            GetComponent<ItemSOHolder>().CurrentDurability = currentDurability;
-        }
-
         private void Update()
         {
             if (sourceLight == null)
                 return;
 
-            if (currentCharge <= 0)
+            if (itemDurability.CurrentDurability <= 0)
             {
                 sourceLight.gameObject.SetActive(false);
-                currentCharge = 0;
+                itemDurability.CurrentDurability = 0;
                 return;
             }
 
             if (sourceLight.gameObject.activeSelf)
             {
-                currentCharge -= Time.deltaTime;
-                GetComponent<ItemSOHolder>().CurrentDurability = currentCharge;
-                Debug.Log(currentCharge);
+                itemDurability.CurrentDurability -= Time.deltaTime;
+                Debug.Log(itemDurability.CurrentDurability);
             }
         }
     }

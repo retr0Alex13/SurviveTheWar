@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a707cb3d5b390544db74a4794f858e42, type: 3}
   m_Name: Battery
   m_EditorClassIdentifier: 
-  itemType: 0
+  itemType: 5
   itemName: "\u0411\u0430\u0442\u0430\u0440\u0435\u0439\u043A\u0430"
   prefab: {fileID: 5716102881895125267, guid: 7bdc0d25b7ad27e4886eb14a07468e27, type: 3}
   image: {fileID: 21300000, guid: f0b97d9e4f31aa345b2282e2441b99c0, type: 3}

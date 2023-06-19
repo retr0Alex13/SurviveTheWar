@@ -34,10 +34,6 @@ namespace OM
         public void UpdateInventory()
         {
             inventoryView.OnUpdateInventory();
-            foreach (InventoryItem item in InventorySystem.Inventory)
-            {
-                Debug.Log(item.itemData.itemName);
-            }
         }
         
         public bool IsInventoryFull(ItemSO item)
@@ -55,7 +51,17 @@ namespace OM
 
         public void AddItemToInventory(ItemSO item, ItemSOHolder itemSOHolder)
         {
-            InventorySystem.Add(item);
+            if(itemSOHolder.TryGetComponent(out ItemDurability itemDurability))
+            {
+                Debug.Log(item.itemName + " durability when addding to inventory: " + itemDurability.CurrentDurability);
+
+                InventorySystem.Add(item, itemDurability);
+            }
+            else
+            {
+                InventorySystem.Add(item, null);
+
+            }
             EvaluateGatheringGoal(item.itemName);
         }
 
@@ -64,7 +70,7 @@ namespace OM
             InventorySystem.Remove(item);
         }
 
-        public void RemoveItemAndDrop(ItemSO item, float itemDurability)
+        public void RemoveItemAndDrop(ItemSO item)
         {
             if(InventorySystem.Get(item) != null)
             {
@@ -73,7 +79,6 @@ namespace OM
             GameObject dropItem = Instantiate(item.Prefab, 
                 new Vector3(playerDropPoint.position.x, playerDropPoint.position.y, playerDropPoint.position.z), 
                 Quaternion.identity);
-            dropItem.GetComponent<ItemSOHolder>().CurrentDurability = itemDurability;
         }
 
         public void InventoryVisibility(InputAction.CallbackContext ctx)
