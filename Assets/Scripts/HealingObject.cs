@@ -42,9 +42,8 @@ namespace OM
 
             playerHealth.health.HealEntity(healAmount);
 
-
             // play sounds
-
+            SoundManager.Instance.PlaySound("Healing");
         }
     }
 }

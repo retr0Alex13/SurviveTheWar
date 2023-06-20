@@ -418,12 +418,12 @@ MonoBehaviour:
   - name: GeneratorRunning
     clips:
     - {fileID: 8300000, guid: 83438171d6504af4f8a12b0f8c8c16ab, type: 3}
-    volume: 0.5
+    volume: 0.3
     isLoop: 1
     hasCooldown: 0
     cooldown: 0
     minDistance: 1.5
-    maxDistance: 50
+    maxDistance: 15
     audioSource: {fileID: 0}
   - name: Switch
     clips:
@@ -439,6 +439,36 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: 615d58796a96a4140b984db5133d617b, type: 3}
     volume: 0.4
+    isLoop: 0
+    hasCooldown: 0
+    cooldown: 0
+    minDistance: 1.5
+    maxDistance: 50
+    audioSource: {fileID: 0}
+  - name: Healing
+    clips:
+    - {fileID: 8300000, guid: e7f05054ebff1484a8d46b545c20f3ae, type: 3}
+    volume: 1
+    isLoop: 0
+    hasCooldown: 0
+    cooldown: 0
+    minDistance: 1.5
+    maxDistance: 50
+    audioSource: {fileID: 0}
+  - name: MainTheme
+    clips:
+    - {fileID: 8300000, guid: d9efcb13b82c49b44aeec64ed178d3a0, type: 3}
+    volume: 1
+    isLoop: 0
+    hasCooldown: 0
+    cooldown: 0
+    minDistance: 1.5
+    maxDistance: 50
+    audioSource: {fileID: 0}
+  - name: GameOver
+    clips:
+    - {fileID: 8300000, guid: 7ddeb2f2df55707469ddb8ffc5a1fcf9, type: 3}
+    volume: 1
     isLoop: 0
     hasCooldown: 0
     cooldown: 0

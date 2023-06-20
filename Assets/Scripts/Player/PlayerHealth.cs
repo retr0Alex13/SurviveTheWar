@@ -25,11 +25,6 @@ namespace OM
             HealthSystem.OnHealthChanged -= OnHealthChanged;
         }
 
-        private void Update()
-        {
-            Debug.Log(health.CurrentHealth);
-        }
-
         private void OnHealthChanged(float currentMaxHealth, float currentHealth)
         {
             if (health.CurrentHealth > 0)

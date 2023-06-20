@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
-using Object = System.Object;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace OM
@@ -40,6 +40,11 @@ namespace OM
                 sound.audioSource.outputAudioMixerGroup = audioMixer;
                 InitializeSoundCooldown(sound);
             }
+
+            if (SceneManager.GetActiveScene().buildIndex == 0)
+            {
+                _instance.PlaySound("MainTheme");
+            }
         }
 
         private static void InitializeSoundCooldown(Sound sound)
@@ -49,7 +54,19 @@ namespace OM
                 soundTimerDictionary[sound.name] = 0f;
             }
         }
-        
+
+        public AudioSource GetAudioManager(string soundName)
+        {
+            foreach (Sound sound in sounds)
+            {
+                if (sound.audioSource.clip == GetAudioClip(soundName))
+                {
+                    return sound.audioSource;
+                }
+            }
+            return null;
+        }
+
 
         public AudioClip GetAudioClip(string soundName)
         {
@@ -78,7 +95,7 @@ namespace OM
             GameObject soundGameObject = new GameObject(sound.name);
             soundGameObject.transform.position = position;
             soundGameObject.transform.parent = transform;
-            
+
             AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
             audioSource.clip = sound.clips[Random.Range(0, sound.clips.Length)];
             audioSource.outputAudioMixerGroup = audioMixer;
@@ -91,8 +108,8 @@ namespace OM
             audioSource.minDistance = sound.minDistance;
             audioSource.maxDistance = sound.maxDistance;
             audioSource.Play();
-            
-            if(audioSource.loop)
+
+            if (audioSource.loop)
                 return;
             GameObject.Destroy(soundGameObject, audioSource.clip.length);
         }
@@ -108,9 +125,9 @@ namespace OM
             }
 
             if (!CanPlaySound(sound)) return;
-            
+
             AudioClip randomClip = sound.clips[Random.Range(0, sound.clips.Length)];
-            
+
             sound.audioSource.volume = sound.volume;
             sound.audioSource.loop = sound.isLoop;
             sound.audioSource.pitch = Random.Range(0.9f, 1.1f);
@@ -126,7 +143,7 @@ namespace OM
                 Debug.Log("Sound " + soundName + " Not Found!");
                 return;
             }
-            
+
             foreach (Transform child in transform)
             {
                 if (child.name == sound.name)
@@ -135,7 +152,7 @@ namespace OM
                     Destroy(child.gameObject);
                 }
             }
-            
+
             sound.audioSource.Stop();
         }
 
@@ -156,7 +173,7 @@ namespace OM
 
             return true;
         }
-        
+
         private static float GetLongestClipDuration(AudioClip[] clips)
         {
             float longestDuration = 0f;

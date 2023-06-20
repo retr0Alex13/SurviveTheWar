@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace OM
 {
@@ -26,6 +28,8 @@ namespace OM
             });
             _gameStateView.deathScreenView.SetVisibleDeathGroupUI();
             _gameStateView.StateMachine.pauseState.OnPause();
+            AudioListener.pause = false;
+            SoundManager.Instance.PlaySound("GameOver");
         }
 
         public void Update()

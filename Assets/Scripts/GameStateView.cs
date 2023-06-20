@@ -21,6 +21,9 @@ namespace OM
         public DeathScreenView deathScreenView;
         public Button restartButton;
         public Button mainMenuButton;
+
+        [Header("Player reference")]
+        public PlayerInput playerInput;
         
         private StateMachine stateMachine;
         public StateMachine StateMachine => stateMachine;

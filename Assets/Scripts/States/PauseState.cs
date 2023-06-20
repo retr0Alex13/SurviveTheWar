@@ -68,17 +68,20 @@ namespace OM
         public void OnPause()
         {
             Cursor.lockState = CursorLockMode.None;
+
+            _gameStateView.playerInput.enabled = false;
             
             Time.timeScale = 0f;
 
             AudioListener.pause = true;
-
         }
         
         public void OnUnpause()
         {
             Cursor.lockState = CursorLockMode.Locked;
-            
+
+            _gameStateView.playerInput.enabled = true;
+
             Time.timeScale = 1f;
             
             AudioListener.pause = false;
