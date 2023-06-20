@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3235455811257159645}
   - component: {fileID: 7462082076502577656}
   - component: {fileID: 776093503218060234}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Straw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.023310825, y: 0.014326796, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2368471849580701088}
   m_RootOrder: 1
@@ -51,6 +52,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -93,7 +95,12 @@ GameObject:
   - component: {fileID: 682088540349665303}
   - component: {fileID: 7926741751147100028}
   - component: {fileID: 4963804632252523374}
-  m_Layer: 0
+  - component: {fileID: 2070662150}
+  - component: {fileID: 2070662148}
+  - component: {fileID: 2070662149}
+  - component: {fileID: 2070662151}
+  - component: {fileID: 2070662152}
+  m_Layer: 10
   m_Name: FountainCup_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,6 +117,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7383504120225998521}
   - {fileID: 3235455811257159645}
@@ -135,6 +143,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -178,6 +187,81 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.19822109, y: 0.31202173, z: 0.19822109}
   m_Center: {x: 0, y: 0.15648896, z: -0.000000014901161}
+--- !u!54 &2070662150
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344453670103961128}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &2070662148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344453670103961128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f332edd4bdb0948b0402b8c1881b5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodToRestore: 0
+  thirstToRestore: 35
+--- !u!114 &2070662149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344453670103961128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f737d7c069350d478551c30702b00ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPickable: 1
+  lerpSpeed: 10
+--- !u!114 &2070662151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344453670103961128}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &2070662152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344453670103961128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de42d2619b70dde47bbe91e610426590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemSO: {fileID: 0}
 --- !u!1 &7517679048651806336
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +273,7 @@ GameObject:
   - component: {fileID: 7383504120225998521}
   - component: {fileID: 6632431724080103923}
   - component: {fileID: 5664854437997304426}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,6 +290,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.31168258, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2368471849580701088}
   m_RootOrder: 0
@@ -229,6 +314,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

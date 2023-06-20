@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f737d7c069350d478551c30702b00ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPickable: 0
+  isPickable: 1
   lerpSpeed: 10
 --- !u!114 &1062333870425530469
 MonoBehaviour:

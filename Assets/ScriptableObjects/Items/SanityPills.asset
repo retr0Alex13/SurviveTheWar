@@ -15,5 +15,5 @@ MonoBehaviour:
   itemType: 5
   itemName: "\u041F\u0456\u0433\u0443\u043B\u043A\u0438"
   prefab: {fileID: 7930068957139686480, guid: 1ed53bff6ae49504da557171e1923f2a, type: 3}
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: bdf9519de13bfcb4e92f4c3ade7723d3, type: 3}
   MaxStackSize: 5

@@ -15,17 +15,26 @@ namespace OM
         [SerializeField] private Transform equipSlot;
         [SerializeField] private Transform dropItemPoint;
 
+        private bool isInventoryOpened;
+
         private ItemSO itemSO;
         private IInteractable interactable;
 
         private void Awake()
         {
             Gasoline.OnGasolineUsed += RemoveItem;
+            InventoryMediator.OnInventoryOpened += SetIsInventoryOpenedBool;
         }
 
         private void OnDestroy()
         {
             Gasoline.OnGasolineUsed -= RemoveItem;
+            InventoryMediator.OnInventoryOpened -= SetIsInventoryOpenedBool;
+        }
+
+        public void SetIsInventoryOpenedBool(bool status)
+        {
+            isInventoryOpened = status;
         }
 
         public void EquipItem(ItemSOHolder itemData, ItemDurability itemDurability)
@@ -61,7 +70,7 @@ namespace OM
             {
                 if (!CurrentlyEquipedItem())
                     return;
-
+                
                 currentlyequipedItem.gameObject.SetActive(false);
                 GameObject dropItem = Instantiate(itemSOHolder.ItemSO.Prefab, new Vector3(dropItemPoint.position.x, dropItemPoint.position.y, dropItemPoint.position.z),
                 Quaternion.identity);
@@ -74,12 +83,13 @@ namespace OM
         {
             if(!CurrentlyEquipedItem())
                 return;
-            
+
+            if (isInventoryOpened)
+                return;
+
             if(context.performed)
             {
                 interactable?.Interact();
-                // if(itemSO.itemType == ItemSO.ItemType.Gasoline)
-                //     RemoveItem();
             }
         }
         

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using StarterAssets;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,11 @@ namespace OM
         [SerializeField] private TaskWindowBuilder taskWindow;
         [SerializeField] private GameObject inventoryMenu;
         [SerializeField] private Transform playerDropPoint;
+
+        private FirstPersonController firstPersonController;
+
+        public delegate void InventoryMediatorAction(bool status);
+        public static event InventoryMediatorAction OnInventoryOpened;
 
         public InventorySystem InventorySystem = new InventorySystem();
 
@@ -29,6 +35,8 @@ namespace OM
         {
             InventorySystem.Inventory = new List<InventoryItem>();
             InventorySystem.ItemDictionary = new Dictionary<ItemSO, InventoryItem>();
+
+            firstPersonController = GetComponent<FirstPersonController>();
         }
 
         public void UpdateInventory()
@@ -90,11 +98,15 @@ namespace OM
                 {
                     Cursor.lockState = CursorLockMode.None;
                     SoundManager.Instance.PlaySound("OpenInventory");
+                    OnInventoryOpened?.Invoke(true);
+                    firstPersonController.enabled = false;
                 }
                 else
                 {
                     Cursor.lockState = CursorLockMode.Locked;
                     taskWindow.CloseWindow();
+                    OnInventoryOpened?.Invoke(false);
+                    firstPersonController.enabled = true;
                 }
             }
         }

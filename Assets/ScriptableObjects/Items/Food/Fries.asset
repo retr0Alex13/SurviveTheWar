@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a707cb3d5b390544db74a4794f858e42, type: 3}
+  m_Name: Fries
+  m_EditorClassIdentifier: 
+  itemType: 4
+  itemName: "\u041A\u0430\u0440\u0442\u043E\u043F\u043B\u044F \u0424\u0440\u0456"
+  prefab: {fileID: 860838972368079818, guid: 0d22ca8ceaa47fe43a30e304f5ef9943, type: 3}
+  image: {fileID: 21300000, guid: ee8c59193532f864d9cb8722aa1d5870, type: 3}
+  MaxStackSize: 0
