@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healAmount: 50
-  sanityAmount: 30
+  sanityAmount: 60
 --- !u!114 &-3082660966073822546
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,8 +20,14 @@ namespace OM
         
         private void OnTriggerExit(Collider other)
         {
-            playerNeeds = other.gameObject.GetComponent<PlayerNeeds>();
-            playerNeeds.lightPoints = 0;
+            if (other.TryGetComponent(out PlayerNeeds player))
+            {
+                playerNeeds = player;
+            }
+            if(playerNeeds != null)
+            {
+                playerNeeds.lightPoints = 0;
+            }
         }
 
         private void OnDisable()

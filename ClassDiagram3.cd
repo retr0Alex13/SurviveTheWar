@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="OM.Footsteps">
+    <Position X="11" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Player\Footsteps.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OM.PlayerEquipSlot">
+    <Position X="9.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAABAAAgAAAACAACAAAAAACAAAAEAAAUgAAAAAAEIEA=</HashCode>
+      <FileName>Assets\Scripts\Player\PlayerEquipSlot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OM.PlayerHeadbob">
+    <Position X="7.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACEAAAAAADAAAAAAAUAAAAAAAMAAAAEAEABIAAEA=</HashCode>
+      <FileName>Assets\Scripts\Player\PlayerHeadbob.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OM.PlayerHealth">
+    <Position X="5.75" Y="3.25" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="OM.PlayerHealth.PlayerHealthAction" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Player\PlayerHealth.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAACAAAAAAAAEQAAAAAAAAAAIAAAAAAAACEg=</HashCode>
+      <FileName>Assets\Scripts\Player\PlayerHealth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OM.PlayerInteraction">
+    <Position X="2.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAgCAAAgAAAAAEAAQAAIMAAAAAAAAABAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Player\PlayerInteraction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OM.PlayerNeeds">
+    <Position X="4" Y="3.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="OM.PlayerNeeds.CharacterStaminaAction" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Player\PlayerNeeds.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="OM.PlayerNeeds.CharacterNeedsAction" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Player\PlayerNeeds.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="OM.PlayerNeeds.CharacterSanityAction" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Player\PlayerNeeds.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>gQZAAEABAOIQAQgAFAQASAgIsBZGEBEoEUAABYAgCAA=</HashCode>
+      <FileName>Assets\Scripts\Player\PlayerNeeds.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OM.PlayerPickupDrop">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="OM.PlayerPickupDrop.PlayerPickUpAction" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Player\PlayerPickupDrop.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AEQEACAgAAAQAAAAAIQAgAAAAAAIAAACAAAAAAEQAEA=</HashCode>
+      <FileName>Assets\Scripts\Player\PlayerPickupDrop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OM.CraftingRecipeSO">
+    <Position X="2.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAgAE=</HashCode>
+      <FileName>Assets\Scripts\Crafting\CraftingRecipeSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OM.CraftingStation">
+    <Position X="6.25" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EIABAAAACKABAAAAAQIAAAIAAAAAgEAAAAAAAABBAAA=</HashCode>
+      <FileName>Assets\Scripts\Crafting\CraftingStation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OM.Crafting.PlayerCrafting">
+    <Position X="4.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACACACAAgAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Crafting\PlayerCrafting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OM.ObjectEatable">
+    <Position X="11.5" Y="12.25" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="OM.ObjectEatable.EatableAction" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Interactable\ObjectEatable.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAQAIACEBAAAAAAAAAAAAAAAAAEAAAAAIAABACEA=</HashCode>
+      <FileName>Assets\Scripts\Interactable\ObjectEatable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OM.ObjectGrabbable">
+    <Position X="13.25" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAgAAAgAREAAAABAAFBABIAAIAEAMAAAAAABAAEA=</HashCode>
+      <FileName>Assets\Scripts\Interactable\ObjectGrabbable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="OM.IInteractable">
+    <Position X="8" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Interactable\IInteractable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OM.ISelectable">
+    <Position X="9.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Scripts\Interactable\ISelectable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

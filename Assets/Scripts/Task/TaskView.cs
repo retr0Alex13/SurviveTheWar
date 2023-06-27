@@ -14,6 +14,7 @@ namespace OM
         [SerializeField] private GameObject taskPrefab;
         [SerializeField] private Transform taskContent;
         [SerializeField] private GameObject taskWindow;
+        [SerializeField] private int tasksPerDay;
 
         [FormerlySerializedAs("currentTasks")] public List<Task> allTasks;
         List<Task> listOfRandomTasks = new List<Task>();
@@ -66,9 +67,9 @@ namespace OM
                 Debug.Log(task);
             }
             listOfRandomTasks.Clear();
-            int numberOfTasksPerDay = 1;
+
             // Generate new random tasks for the day
-            for (int i = 0; i < numberOfTasksPerDay; i++)
+            for (int i = 0; i < tasksPerDay; i++)
             {
                 Task randomTask = GetRandomTaskFromList();
                 listOfRandomTasks.Add(randomTask);
